@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "blog/Blog post 1.md",
+                "file": "vault/New note.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Blog post 1"
+              "title": "New note"
             }
           }
         ],
@@ -183,11 +183,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "baaa6e4b5140c0d8",
+  "active": "82bd3282a844f650",
   "lastOpenFiles": [
-    "vault/New note.md",
+    "public",
+    "themes/Stack/layouts/_partials/head/js.html",
+    "themes/Stack/layouts/_partials/head/css.html",
+    "themes/Stack/content/posts/post-3/index.md",
+    "themes/Stack/content/posts/post-3/bryce-canyon.jpg",
+    "themes/Stack/layouts/_partials/terms.html",
+    "themes/Stack/layouts/_partials/menu.html",
+    "themes/Stack/layouts/_partials/header.html",
+    "themes/Stack/layouts/_partials/head.html",
+    "themes/Stack/layouts/_partials/head",
+    "themes/Stack/layouts/_partials/footer.html",
+    "themes/Stack/content/posts/post-3",
+    "themes/Stack/content/posts/post-2.md",
+    "themes/Stack/content/posts/post-1.md",
+    "themes/Stack/content/posts/_index.md",
+    "themes/Stack/assets/js/main.js",
+    "themes/Stack/content/_index.md",
+    "themes/Stack/archetypes/default.md",
+    "archetypes/default.md",
     "blog/Blog post 1.md",
-    "vault",
-    "blog"
+    "vault/New note.md"
   ]
 }
