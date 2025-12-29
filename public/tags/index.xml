@@ -6,6 +6,28 @@
     <description>Recent content in Tags on My NZ Blog</description>
     <generator>Hugo -- 0.153.1</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 28 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/HugoBasedNZBlog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hiking</title>
+      <link>http://localhost:1313/HugoBasedNZBlog/tags/hiking/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/HugoBasedNZBlog/tags/hiking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NZ</title>
+      <link>http://localhost:1313/HugoBasedNZBlog/tags/nz/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/HugoBasedNZBlog/tags/nz/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Travel</title>
+      <link>http://localhost:1313/HugoBasedNZBlog/tags/travel/</link>
+      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/HugoBasedNZBlog/tags/travel/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

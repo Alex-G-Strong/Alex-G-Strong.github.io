@@ -41,7 +41,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Post test with simple properties.md",
+                "file": "content/posts/Post test with simple properties.md",
                 "mode": "source",
                 "source": false
               },
@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/post-via-terminal.md",
+                "file": "blog/Blog post 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "post-via-terminal"
+              "title": "Blog post 1"
             }
           }
         ],
@@ -213,20 +213,20 @@
   },
   "active": "46250bdcd4531700",
   "lastOpenFiles": [
-    "Post 2 with complex properties.md",
+    "content/posts/Post 2 with complex properties.md",
     "content/posts/post-via-terminal.md",
-    "content/posts",
-    "Post test with simple properties.md",
     "vault/New note.md",
+    "public/posts/page/1/index.html",
+    "public/posts/page/1",
+    "public/posts/post-via-terminal/index.html",
+    "public/posts/index.xml",
+    "public/posts/page",
+    "public/posts/post-via-terminal",
+    "public/posts/index.html",
+    "public/posts",
+    "content/posts",
+    "content/posts/Post test with simple properties.md",
     "public/page/1/index.html",
-    "public/page/1",
-    "public/page",
-    "public/index.html",
-    "public/404.html",
-    "public/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css",
-    "public/assets/css",
-    "public/assets",
-    "themes/PaperMod/layouts/partials/templates/_funcs/get-page-images.html",
     "themes/PaperMod/images/tn.png",
     "themes/PaperMod/images/screenshot.png",
     "themes/PaperMod/README.md",

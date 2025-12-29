@@ -2,10 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/HugoBasedNZBlog/categories/</loc>
-  </url><url>
     <loc>http://localhost:1313/HugoBasedNZBlog/</loc>
+    <lastmod>2025-12-29T05:18:40+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/posts/post-via-terminal/</loc>
+    <lastmod>2025-12-29T05:18:40+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/posts/</loc>
+    <lastmod>2025-12-29T05:18:40+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/categories/adventure/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/categories/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/posts/post-2-with-complex-properties/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/tags/hiking/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/posts/post-test-with-simple-properties/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/tags/nz/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/HugoBasedNZBlog/tags/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/HugoBasedNZBlog/tags/travel/</loc>
+    <lastmod>2025-12-28T00:00:00+00:00</lastmod>
   </url>
 </urlset>
