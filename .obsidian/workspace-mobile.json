@@ -34,9 +34,37 @@
               "icon": "lucide-file",
               "title": "New note"
             }
+          },
+          {
+            "id": "361a33fb3834dec8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Post test with simple properties.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Post test with simple properties"
+            }
+          },
+          {
+            "id": "46250bdcd4531700",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/posts/post-via-terminal.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "post-via-terminal"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -183,28 +211,33 @@
       "bases:Create new base": false
     }
   },
-  "active": "82bd3282a844f650",
+  "active": "46250bdcd4531700",
   "lastOpenFiles": [
-    "public",
-    "themes/Stack/layouts/_partials/head/js.html",
-    "themes/Stack/layouts/_partials/head/css.html",
+    "Post 2 with complex properties.md",
+    "content/posts/post-via-terminal.md",
+    "content/posts",
+    "Post test with simple properties.md",
+    "vault/New note.md",
+    "public/page/1/index.html",
+    "public/page/1",
+    "public/page",
+    "public/index.html",
+    "public/404.html",
+    "public/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css",
+    "public/assets/css",
+    "public/assets",
+    "themes/PaperMod/layouts/partials/templates/_funcs/get-page-images.html",
+    "themes/PaperMod/images/tn.png",
+    "themes/PaperMod/images/screenshot.png",
+    "themes/PaperMod/README.md",
     "themes/Stack/content/posts/post-3/index.md",
     "themes/Stack/content/posts/post-3/bryce-canyon.jpg",
-    "themes/Stack/layouts/_partials/terms.html",
-    "themes/Stack/layouts/_partials/menu.html",
-    "themes/Stack/layouts/_partials/header.html",
-    "themes/Stack/layouts/_partials/head.html",
-    "themes/Stack/layouts/_partials/head",
-    "themes/Stack/layouts/_partials/footer.html",
-    "themes/Stack/content/posts/post-3",
     "themes/Stack/content/posts/post-2.md",
     "themes/Stack/content/posts/post-1.md",
     "themes/Stack/content/posts/_index.md",
-    "themes/Stack/assets/js/main.js",
     "themes/Stack/content/_index.md",
     "themes/Stack/archetypes/default.md",
     "archetypes/default.md",
-    "blog/Blog post 1.md",
-    "vault/New note.md"
+    "blog/Blog post 1.md"
   ]
 }
