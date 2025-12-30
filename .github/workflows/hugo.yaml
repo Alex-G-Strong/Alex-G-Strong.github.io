@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive # Important if you used git submodules for themes
+          # submodules: recursive  Important if you used git submodules for themes
           fetch-depth: 0
 
       - name: Setup Hugo
