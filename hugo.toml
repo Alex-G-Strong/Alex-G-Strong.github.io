@@ -14,3 +14,11 @@ relativeURLs = true
   quality = 75
   # Re-orient photos based on EXIF data (fixes sideways phone photos)
   resampleFilter = "CatmullRom"
+
+[[params.socialIcons]]
+    name = "email"
+    url = "https://buttondown.email/yourusername"
+
+[rss]
+  # This ensures the full text is available for Buttondown to grab
+  fullContent = true

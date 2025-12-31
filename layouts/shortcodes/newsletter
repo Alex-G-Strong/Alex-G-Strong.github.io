@@ -1,0 +1,23 @@
+<form
+  action="https://buttondown.email/api/emails/embed-subscribe/AlexStrong"
+  method="post"
+  target="popupwindow"
+  class="newsletter-form"
+>
+  <label for="bd-email">Enter your email to get New Zealand updates:</label>
+  <input type="email" name="email" id="bd-email" placeholder="you@example.com" />
+  <input type="submit" value="Subscribe" />
+</form>
+
+<style>
+  .newsletter-form {
+    padding: 20px;
+    background: var(--tertiary);
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .newsletter-form input[type="email"] {
+    padding: 8px;
+    width: 60%;
+  }
+</style>
