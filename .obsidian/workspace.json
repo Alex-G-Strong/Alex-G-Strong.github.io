@@ -148,7 +148,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -311,8 +311,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "54929e96ba2561ae",
+  "active": "632a628540971563",
   "lastOpenFiles": [
+    "content/about/index.md",
+    "content/posts/intro to the blog/index.md",
+    "Golden Path Workflow for making a post.md",
+    "content/poleta-photos/index.md",
     "content/poleta-photos/MapMaking.jpg",
     "content/poleta-photos/RearView.jpg",
     "content/poleta-photos/NightWork.jpg",
@@ -324,10 +328,7 @@
     "content/poleta-photos/DecentIntoTheField.jpg",
     "content/poleta-photos/BoxOffice.jpg",
     "themes/PaperMod/layouts/shortcodes/gallery.html",
-    "content/about/index.md",
-    "content/poleta-photos/index.md",
     "content/poleta-photos",
-    "content/posts/intro to the blog/index.md",
     "content/about",
     "website testing posts (originally from fwdslsh posts)/post-via-terminal.md",
     "content/posts/intro to the blog",
@@ -335,7 +336,6 @@
     "website testing posts (originally from fwdslsh posts)",
     "website testing posts (originally from fwdslsh posts)/Post test with simple properties.md",
     "website testing posts (originally from fwdslsh posts)/Post 2 with complex properties.md",
-    "website testing posts (originally from fwdslsh posts)/Austin test post/Tacodeli-Austin.jpg",
     "website testing posts (originally from fwdslsh posts)/Austin test post/index.md",
     "website testing posts (originally from fwdslsh posts)/Newsletter test post/index.md",
     "content/subscribe/index.md",
@@ -345,7 +345,6 @@
     "content/posts/subscribe/Index.md",
     "content/posts/subscribe",
     "content/posts/Subscribe",
-    "Golden Path Workflow for making a post.md",
     "Things to do for website navigability.md",
     "themes/PaperMod/README.md",
     "Last things to do.md",

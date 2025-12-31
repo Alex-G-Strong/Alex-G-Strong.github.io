@@ -43,8 +43,12 @@ In the Aboriginal Australian[^1] meaning, it is a wander away from the white soc
 
 I am not Aboriginal Australian (I am American from that countries south west), nor am I going to intentionally live away from "front country" society. But I will be going on a grand adventure to "go and see", and live in a way different than my usual.
 
-To me, a Walkabout is the kind of adventuring that sweeps you up with it. You go and put yourself into a position to make  
+To me, a Walkabout is the kind of adventuring that sweeps you up with it. You go and put yourself into a position to be in front of something that is happening. 
 
+
+I am going solo, but I have no doubt I will have friends along the way.
+I am going without a plan, but suspect that the plan will gel, and become a clear path.
+I am writing, but spending the time to reflect as much as anything else.
 
 
 ## Convinced?
