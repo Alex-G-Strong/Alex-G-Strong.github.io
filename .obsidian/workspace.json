@@ -285,6 +285,8 @@
   },
   "active": "632a628540971563",
   "lastOpenFiles": [
+    "content/subscribe/index.md",
+    "content/subscribe",
     "themes/PaperMod/layouts/shortcodes/subscribe.html",
     "content/posts/subscribe/index.md",
     "content/posts/subscribe/Index.md",
@@ -304,9 +306,7 @@
     "Things to do for website navigability.md",
     "layouts/shortcodes/newsletter",
     "themes/PaperMod/go.mod",
-    "themes/PaperMod/LICENSE",
     "themes/PaperMod/README.md",
-    "themes/PaperMod/theme.toml",
     "themes/PaperMod/images/screenshot.png",
     "themes/PaperMod/images/tn.png",
     "Last things to do.md",
