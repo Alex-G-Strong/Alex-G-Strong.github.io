@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/Austin test post/index.md",
+                "file": "Last things to do.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Last things to do"
             }
           }
         ],
@@ -242,8 +242,8 @@
   },
   "active": "0c42186e5ca9054b",
   "lastOpenFiles": [
-    "content/posts/Austin test post/Tacodeli-Austin.jpg",
     "content/posts/Austin test post/index.md",
+    "content/posts/Austin test post/Tacodeli-Austin.jpg",
     "Tacodeli.md",
     "content/posts/Austin test post",
     "2025-12-29.md",

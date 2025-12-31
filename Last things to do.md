@@ -21,7 +21,9 @@
 	- [ ] light
 	- [ ] garmin
 - [ ] finish website
-	- [ ] get it working, and up
+	- [x] get it working, and up
+	- [ ] get the landing page built
+	- [ ] send out to everyone 
 - [ ] setup garmin subscription
 - [ ] place to stay in chch
 	- [ ] nova tell something will knows
@@ -38,8 +40,9 @@
 
 
 REI/Purchases:
-- [ ] chain lube (absolute dry)
+- [x] chain lube (absolute dry)
 - [ ] return sleeping pad?
-- [ ] new sawyer filter
-- [ ] deoderant native and small plastic container for it
-- [ ] camel back podium bottle (or one to fit the mud caps)
+- [x] new sawyer filter
+- [x] deoderant native and small plastic container for it
+- [x] camel back podium bottle (or one to fit the mud caps)
+- [x] nikwax down wash
