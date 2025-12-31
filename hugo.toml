@@ -1,18 +1,34 @@
 baseURL = 'https://www.alexstrong.design/'
 languageCode = 'en-us'
-title = 'My NZ Blog'
+title = 'The Big Walkabout'
 theme = 'PaperMod'
 canonifyURLs = true
 relativeURLs = true
 
-[params.homeInfoParams]
-    Title = "Welcome to The Big Walkabout"
-    Content = """
+[params]
+    defaultTheme = "auto"
+    showCodeCopyButtons = true
+    socialInHeader = true 
+
+    # HOME INFO SECTION
+    [params.homeInfoParams]
+        Title = "Welcome to The Big Walkabout"
+        Content = """
 I'm bikepacking New Zealand.
 
 Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in your inbox.
 """
 
+# SOCIAL ICONS
+[[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+[[params.socialIcons]]
+    name = "email"
+    url = "https://buttondown.email/AlexStrong"
+
+# NAVIGATION MENU
 [[menu.main]]
     identifier = "posts"
     name = "Blog"
@@ -31,28 +47,11 @@ Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in
     url = "/subscribe/"
     weight = 30
 
-[params]
-    defaultTheme = "auto" # automatically switches between dark/light mode
-    showCodeCopyButtons = true
-
+# IMAGE PROCESSING
 [imaging]
-  # Default JPEG quality
-  quality = 75
-  # Re-orient photos based on EXIF data (fixes sideways phone photos)
-  resampleFilter = "CatmullRom"
+    quality = 75
+    resampleFilter = "CatmullRom"
 
-[params]
-    # This specifically puts icons in the top bar
-    socialInHeader = true 
-
-[[params.socialIcons]]
-    name = "rss"
-    url = "/index.xml"
-
-[[params.socialIcons]]
-    name = "email"
-    url = "https://buttondown.email/AlexStrong"
-
+# RSS SETTINGS
 [rss]
-  # This ensures the full text is available for Buttondown to grab
-  fullContent = true
+    fullContent = true
