@@ -31,22 +31,11 @@ I am bikepacking New Zealand!
 
 Bike packing is living off your bike while you ride around. It is almost exactly backpacking (what that [one movie with that hiker girl was about](https://en.wikipedia.org/wiki/Wild_(2014_film))) but on a bike. 
 
-And there is a lot more difference, but that is basically it. Nor am I the person to come up with the idea. There is a whole [Website]() devoted to bikepacking. So I am not the only person to do this.
+And there is a lot more difference, but that is basically it. Nor am I the person to come up with the idea. There is a whole [Website](https://bikepacking.com/) devoted to bikepacking. So I am not the only person to do this.
 
 Once I get there, the plan is to ~ride north~, with all the pure vibes that implies. After I ~ride north~ I will be ~riding south~. I have no route, no plan, very little itinerary, and no real intention to make one.
 
-I think this may be the magic part of the trip
-## Yeah, but who is this guy!
-
-I am Alex Strong.
-
-I love to:
-1) make things
-2) know how things work
-3) move my body under its own power
-
-I study product design (called Design) at Stanford university, and am also perusing a masters in Geology (called Earth and Planetary Science)
-
+I think this may be the magic part of the trip - having the ability to serendipitously go with what I want to do next.
 
 ## So What is a Walkabout?
 
@@ -55,6 +44,8 @@ In the Aboriginal Australian[^1] meaning, it is a wander away from the white soc
 I am not Aboriginal Australian (I am American from that countries south west), nor am I going to intentionally live away from "front country" society. But I will be going on a grand adventure to "go and see", and live in a way different than my usual.
 
 To me, a Walkabout is the kind of adventuring that sweeps you up with it. You go and put yourself into a position to make  
+
+
 
 ## Convinced?
 
@@ -67,6 +58,6 @@ My thoughts, delivered to you directly.
 
 ## Footnotes:
 
-Of course I am footnotes guy. I LOVE my footnotes.
+Of course I am footnotes guy. You can always find them down here.
 
 [^1]: Technically, a Walkabout, in the strict sense, is not kiwi at all, but rather Aboriginal Australian. There exists a very large difference between Kiwi's and Aussies (as well as the Aboriginal of Australia and the Māori of New Zealand), but it seems from some Google-Fu that no equivalent to the "walkabout" exists in NZ slang, nor could I think of one in my own US slang. So for now, and likely forever, this will be my Big Walkabout.

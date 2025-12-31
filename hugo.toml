@@ -29,6 +29,13 @@ Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in
     url = "https://buttondown.email/AlexStrong"
 
 # NAVIGATION MENU
+
+[[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 5
+
 [[menu.main]]
     identifier = "posts"
     name = "Blog"
@@ -39,13 +46,13 @@ Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in
     identifier = "tags"
     name = "Tags"
     url = "/tags/"
-    weight = 20
+    weight = 15
 
 [[menu.main]]
     identifier = "subscribe"
     name = "Newsletter"
     url = "/subscribe/"
-    weight = 30
+    weight = 20
 
 # IMAGE PROCESSING
 [imaging]

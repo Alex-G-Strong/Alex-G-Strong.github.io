@@ -1,0 +1,20 @@
+<div class="photo-grid" style="
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 15px; 
+    margin: 20px 0;">
+    {{ .Inner }}
+</div>
+
+<style>
+    .photo-grid img {
+        width: 100%;
+        height: 200px; /* Adjust height as you like */
+        object-fit: cover; /* This crops them to be uniform squares/rectangles */
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+    .photo-grid img:hover {
+        transform: scale(1.02);
+    }
+</style>
