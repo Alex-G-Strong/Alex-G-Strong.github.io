@@ -11,9 +11,9 @@ hidemeta: true
 I am Alex Strong.
 
 I love to:
-1) make things
-2) know how things work
-3) move my body under its own power
+1) make things;
+2) know how things work;
+3) move my body under its own power.
 
 I study product design (called Design) at Stanford university, and am also perusing a masters in Geology (called Earth and Planetary Science).
 
