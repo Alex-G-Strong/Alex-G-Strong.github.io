@@ -1,4 +1,4 @@
-baseURL = 'https://www.alexstrong.design/'
+BaseURL = 'https://www.alexstrong.design/'
 languageCode = 'en-us'
 title = 'The Big Walkabout'
 theme = 'PaperMod'
@@ -12,13 +12,18 @@ relativeURLs = true
   filename = "sitemap.xml"
 
 [params]
-    # SEO
+    # Simple values first
     title = "The Big Walkabout | Alex Strong"
     description = "Documenting a bikepacking journey through the landscapes of New Zealand."
     keywords = ["New Zealand", "Bikepacking", "Photography", "Te Araroa", "Alex Strong", "Travel Blog", "Alex Strong Design"]
     author = "Alex Strong"
+    defaultTheme = "auto"
+    showCodeCopyButtons = true
+    socialInHeader = true
+    # This replaces the broken [params.images] section
+    images = ["profile.jpg"]
 
-    # FAVICONS
+    # FAVICONS (A sub-table)
     [params.assets]
       favicon = "favicon.ico"
       favicon16x16 = "favicon-16x16.png"
@@ -28,27 +33,12 @@ relativeURLs = true
       android_chrome_192 = "android-chrome-192x192.png"
       android_chrome_512 = "android-chrome-512x512.png"
 
-    # This ensures Android knows where to find your manifest
-    manifest = "site.webmanifest"
-
-    # This helps Google show your face or a logo in search results
-    [params.images]
-        url = "profile.jpg"
-
-    defaultTheme = "auto"
-    showCodeCopyButtons = true
-    socialInHeader = true 
-
-    # HOME INFO SECTION
+    # HOME INFO SECTION (A sub-table)
     [params.homeInfoParams]
         Title = "Welcome to The Big Walkabout"
-        Content = """
-I'm bikepacking New Zealand.
+        Content = "I'm bikepacking New Zealand.\n\nCheck out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in your inbox."
 
-Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in your inbox.
-"""
-
-# SOCIAL ICONS
+# SOCIAL ICONS (Global table)
 [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
@@ -58,7 +48,6 @@ Check out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in
     url = "https://buttondown.email/AlexStrong"
 
 # NAVIGATION MENU
-
 [[menu.main]]
     identifier = "about"
     name = "About"
