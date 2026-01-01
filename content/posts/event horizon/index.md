@@ -1,8 +1,8 @@
 ---
 title: The Event Horizon
 date: 2026-01-01
-draft:
-description: Why I have
+draft: false
+description: Feeling the momentum of jumping off.
 tags:
   - Longform
   - Philosophical

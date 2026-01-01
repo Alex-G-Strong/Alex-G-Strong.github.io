@@ -99,7 +99,7 @@
               "state": {
                 "file": "content/posts/event horizon/index.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "index"
@@ -256,6 +256,8 @@
   },
   "active": "071c1ba54379d7d5",
   "lastOpenFiles": [
+    "2026-01-01.md",
+    "content/posts/event horizon/index.md",
     "public/poleta-photos/index.html",
     "public/poleta-photos/BoxOffice.jpg",
     "public/sitemap.xml",
@@ -267,7 +269,6 @@
     "public/posts/event-horizon/bagsataus.webp",
     "content/posts/event horizon/bagsataus.jpg",
     "content/posts/event horizon/sunriseauslax.jpg",
-    "content/posts/event horizon/index.md",
     "sunriseauslax.webp",
     "blog/Blog post 1.md",
     "bagsataus.webp",
@@ -278,7 +279,6 @@
     "public/posts/event-horizon/index.html",
     "content/poleta-photos/index.md",
     "public/posts/event-horizon/Sunrise in the new year.jpg",
-    "public/posts/event-horizon",
     "public/poleta-photos/RearView.jpg",
     "Last things to do.md",
     "content/about/index.md",
