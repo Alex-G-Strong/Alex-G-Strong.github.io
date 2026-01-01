@@ -5,7 +5,23 @@ theme = 'PaperMod'
 canonifyURLs = true
 relativeURLs = true
 
+# SEO for web crawling
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
 [params]
+    # SEO
+    title = "The Big Walkabout | Alex Strong"
+    description = "Documenting a bikepacking journey through the landscapes of New Zealand."
+    keywords = ["New Zealand", "Bikepacking", "Photography", "Te Araroa", "Alex Strong", "Travel Blog", "Alex Strong Design"]
+    author = "Alex Strong"
+    
+    # This helps Google show your face or a logo in search results
+    [params.images]
+        url = "profile.jpg"
+
     defaultTheme = "auto"
     showCodeCopyButtons = true
     socialInHeader = true 
