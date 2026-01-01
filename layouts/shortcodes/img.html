@@ -1,7 +1,19 @@
-{{ $image := .Page.Resources.GetMatch (.Get 0) }}
-{{ $scaled := $image.Resize "1200x webp q75" }}
-<figure>
-    <img src="{{ $scaled.RelPermalink }}" width="{{ $scaled.Width }}" height="{{ $scaled.Height }}" alt="{{ .Get 1 }}">
-    {{ with .Get 1 }}<figcaption>{{ . }}</figcaption>{{ end }}
-</figure>
+{{- $image := .Page.Resources.GetMatch (.Get 0) -}}
+{{- if $image -}}
+  {{- $scaled := $image.Resize "1200x webp q75" -}}
+  <figure style="text-align: center; margin: 20px 0;">
+    <img src="{{ $scaled.RelPermalink }}" 
+         width="{{ $scaled.Width }}" 
+         height="{{ $scaled.Height }}" 
+         alt="{{ .Get 1 }}" 
+         style="max-width: 100%; height: auto; border-radius: 8px;">
+    {{ with .Get 1 }}
+      <figcaption style="font-style: italic; font-size: 0.9em; color: #666; margin-top: 8px;">
+        {{ . }}
+      </figcaption>
+    {{ end }}
+  </figure>
+{{- else -}}
+  <p style="color: red;">!! Image Error: Cannot find "{{ .Get 0 }}" in this folder !!</p>
+{{- end -}}
 

@@ -1,47 +1,47 @@
 - [x] log everything in the gear list
 	- [x] then send to will
 	- [x] inlcude prices for expensive items
-- [ ] Wash Cloths
-	- [ ] wash down stuff
+- [x] Wash Cloths
+	- [x] wash down stuff
 		- using tide and zum detergent in the sink in the art room
 			- agitate it and let it sit
 			- then drain and rinse the shit out of it and let it dry outside
-	- [ ] cold water wash for everything else
+	- [x] cold water wash for everything else
 		- cashmere hung to dry
-- [ ] bike maintence
-	- [ ] replace cable
-	- [ ] grind down rear ring
-	- [ ] new stem bolts
-	- [ ] place the tag in the frame with the foam in one of the sewing boxes
-- [ ] charge all electronics
-	- [ ] watch
-	- [ ] battery
-	- [ ] wahoo
-	- [ ] phone
-	- [ ] light
-	- [ ] garmin
+- [x] bike maintenance
+	- [x] replace cable
+	- [x] grind down rear ring
+	- [x] new stem bolts
+	- [x] place the tag in the frame with the foam in one of the sewing boxes
+- [x] charge all electronics
+	- [x] watch
+	- [x] battery
+	- [x] wahoo
+	- [x] phone
+	- [x] lights
+	- [x] garmin
 - [ ] finish website
 	- [x] get it working, and up
-	- [ ] get the landing page built
+	- [x] get the landing page built
 	- [ ] send out to everyone 
-- [ ] setup garmin subscription
-- [ ] place to stay in chch
-	- [ ] nova tell something will knows
-- [ ] supplements ready
-- [ ] med kit prepared
-	- [ ] tylonol
+- [x] setup garmin subscription
+- [x] place to stay in chch
+	- [x] nova tell something will knows
+- [x] supplements ready
+- [x] med kit prepared
+	- [x] tylonol
 	- [ ] 
-- [ ] new sole for tire shoes
-- [ ] refill castile soap
-- [ ] fill spice kit
+- [x] new sole for tire shoes
+- [x] refill castile soap
+- [x] fill spice kit
 - [ ] 
 
-- [ ] pack everything
+- [x] pack everything
 
 
 REI/Purchases:
 - [x] chain lube (absolute dry)
-- [ ] return sleeping pad?
+- [x] return sleeping pad?
 - [x] new sawyer filter
 - [x] deoderant native and small plastic container for it
 - [x] camel back podium bottle (or one to fit the mud caps)

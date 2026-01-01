@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on My NZ Blog</title>
-    <link>http://localhost:1313/HugoBasedNZBlog/posts/</link>
-    <description>Recent content in Posts on My NZ Blog</description>
+    <title>Posts on The Big Walkabout</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on The Big Walkabout</description>
+    <image>
+      <title>The Big Walkabout</title>
+      <url>http://localhost:1313/</url>
+      <link>http://localhost:1313/</link>
+    </image>
     <generator>Hugo -- 0.153.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Dec 2025 05:18:40 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/HugoBasedNZBlog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Post via Terminal</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-via-terminal/</link>
-      <pubDate>Mon, 29 Dec 2025 05:18:40 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-via-terminal/</guid>
-      <description>&lt;p&gt;This header was made via the terminal!&lt;/p&gt;
-&lt;p&gt;Other posts were made in other ways.&lt;/p&gt;
-&lt;p&gt;[[Post 2 with complex properties]]&lt;/p&gt;</description>
+      <title>The Event Horizon</title>
+      <link>http://localhost:1313/posts/event-horizon/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/event-horizon/</guid>
+      <description>Why I have</description>
     </item>
     <item>
-      <title>Riding around Austin for prep</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/austin-test-post/note-with-photo-test/</link>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/austin-test-post/note-with-photo-test/</guid>
-      <description>&lt;p&gt;Yep! I was here!&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Tacodeli in Austin&#34; loading=&#34;lazy&#34; src=&#34;Tacodeli%20in%20Austin.jpg&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Exploring the South Island</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-2-with-complex-properties/</link>
-      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-2-with-complex-properties/</guid>
-      <description>A summary of my hike through Milford Sound.</description>
-    </item>
-    <item>
-      <title>My New Zealand Adventure</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-test-with-simple-properties/</link>
-      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-test-with-simple-properties/</guid>
-      <description>&lt;p&gt;Post 1!&lt;/p&gt;</description>
+      <title>Welcome to the Big Walkabout!</title>
+      <link>http://localhost:1313/posts/intro-to-the-blog/</link>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/intro-to-the-blog/</guid>
+      <description>&lt;p&gt;Welcome!&lt;/p&gt;
+&lt;p&gt;You have found the location for my Big Walkabout.&lt;/p&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can SUBSCRIBE to this page, and receive an email when I make a new post. Use the email newsletter box below to put in your email. Feel free to send this around to the folks I may have missed in my initial blast, and others who you think may be interested in following the adventure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feel free to respond to the posts. I will be doing other things than checking email, but I would love to hear your thoughts or questions.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

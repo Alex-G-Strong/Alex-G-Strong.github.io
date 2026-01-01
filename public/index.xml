@@ -1,43 +1,90 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>My NZ Blog</title>
-    <link>http://localhost:1313/HugoBasedNZBlog/</link>
-    <description>Recent content on My NZ Blog</description>
+    <title>The Big Walkabout</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on The Big Walkabout</description>
+    <image>
+      <title>The Big Walkabout</title>
+      <url>http://localhost:1313/</url>
+      <link>http://localhost:1313/</link>
+    </image>
     <generator>Hugo -- 0.153.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Dec 2025 05:18:40 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/HugoBasedNZBlog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Post via Terminal</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-via-terminal/</link>
-      <pubDate>Mon, 29 Dec 2025 05:18:40 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-via-terminal/</guid>
-      <description>&lt;p&gt;This header was made via the terminal!&lt;/p&gt;
-&lt;p&gt;Other posts were made in other ways.&lt;/p&gt;
-&lt;p&gt;[[Post 2 with complex properties]]&lt;/p&gt;</description>
+      <title>The Event Horizon</title>
+      <link>http://localhost:1313/posts/event-horizon/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/event-horizon/</guid>
+      <description>Why I have</description>
     </item>
     <item>
-      <title>Riding around Austin for prep</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/austin-test-post/</link>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/austin-test-post/</guid>
-      <description>&lt;p&gt;Yep! I was here!&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Tacodeli in Austin&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/HugoBasedNZBlog/posts/austin-test-post/Tacodeli-Austin.jpg&#34;&gt;&lt;/p&gt;</description>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;howdy&#34;&gt;Howdy!&lt;/h1&gt;
+&lt;p&gt;I am Alex Strong.&lt;/p&gt;
+&lt;p&gt;I love to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;make things;&lt;/li&gt;
+&lt;li&gt;know how things work;&lt;/li&gt;
+&lt;li&gt;move my body under its own power.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I study product design (called Design) at Stanford university, and am also perusing a masters in Geology (called Earth and Planetary Science).&lt;/p&gt;
+&lt;p&gt;I race bikes, climb, and social dance.&lt;/p&gt;
+&lt;p&gt;I shoot photos.&lt;/p&gt;
+&lt;p&gt;I also make podcasts. I have my own show &lt;a href=&#34;https://shows.acast.com/the-story-exchange&#34; 
+    
+    target=&#34;_blank&#34; rel=&#34;noopener&#34; &gt;
+   The Story Exchange with Alex Strong
+&lt;/a&gt; originally hosted on Stanford&amp;rsquo;s student run radio, 90.1 KZSU. I am also an associate producer for Stanford&amp;rsquo;s &lt;a href=&#34;https://stateofthehuman.podbean.com/page/2/&#34; 
+    
+    target=&#34;_blank&#34; rel=&#34;noopener&#34; &gt;
+   State of the Human
+&lt;/a&gt; podcast.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Exploring the South Island</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-2-with-complex-properties/</link>
-      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-2-with-complex-properties/</guid>
-      <description>A summary of my hike through Milford Sound.</description>
+      <title>Welcome to the Big Walkabout!</title>
+      <link>http://localhost:1313/posts/intro-to-the-blog/</link>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/intro-to-the-blog/</guid>
+      <description>&lt;p&gt;Welcome!&lt;/p&gt;
+&lt;p&gt;You have found the location for my Big Walkabout.&lt;/p&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You can SUBSCRIBE to this page, and receive an email when I make a new post. Use the email newsletter box below to put in your email. Feel free to send this around to the folks I may have missed in my initial blast, and others who you think may be interested in following the adventure.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feel free to respond to the posts. I will be doing other things than checking email, but I would love to hear your thoughts or questions.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>My New Zealand Adventure</title>
-      <link>http://localhost:1313/HugoBasedNZBlog/posts/post-test-with-simple-properties/</link>
-      <pubDate>Sun, 28 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/HugoBasedNZBlog/posts/post-test-with-simple-properties/</guid>
-      <description>&lt;p&gt;Post 1!&lt;/p&gt;</description>
+      <title>Poleta Project Photos</title>
+      <link>http://localhost:1313/poleta-photos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/poleta-photos/</guid>
+      <description>&lt;p&gt;Welcome! If you are here, you found the summit log, and this website. When you get the chance, head on back and leave a message. The other folks in the field would love to hear from.&lt;/p&gt;
+&lt;p&gt;This project is a collection of photos taken from 2024, 2025 and in the upcoming 2026 field seasons. The photos were taken by me Alex Strong on film of various types.&lt;/p&gt;
+&lt;p&gt;The goal was to capture poleta - the place, and the people, and the magic that being in the field offers. Hopefully, these photos take you, dear mapper, back to your own mapping course, and its own magic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stay Updated</title>
+      <link>http://localhost:1313/subscribe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/subscribe/</guid>
+      <description>&lt;p&gt;Keep up to date, and have my reflections delivered straight to your inbox. No distractions from social media, no algorithms telling you what to do, just me.&lt;/p&gt;
+&lt;div class=&#34;subscribe-box&#34; style=&#34;border: 2px solid #eee; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center;&#34;&gt;
+    &lt;h3&gt;Join the Journey&lt;/h3&gt;
+    &lt;p&gt;Get my New Zealand updates delivered to your inbox.&lt;/p&gt;
+    &lt;form action=&#34;https://buttondown.email/api/emails/embed-subscribe/AlexStrong&#34; method=&#34;post&#34; target=&#34;popupwindow&#34;&gt;
+        &lt;input type=&#34;email&#34; name=&#34;email&#34; id=&#34;bd-email&#34; placeholder=&#34;you@example.com&#34; style=&#34;padding: 8px; width: 60%; border: 1px solid #ccc; border-radius: 5px;&#34;&gt;
+        &lt;input type=&#34;submit&#34; value=&#34;Subscribe&#34; style=&#34;padding: 8px 20px; background: #000; color: #fff; border: none; border-radius: 5px; cursor: pointer;&#34;&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;You can reply directly to any email to chat with me! Response time may vary :)&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

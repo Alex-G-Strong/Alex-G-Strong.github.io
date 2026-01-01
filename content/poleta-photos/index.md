@@ -12,13 +12,13 @@ The goal was to capture poleta - the place, and the people, and the magic that b
 
 Photos from the 2024 field season. They were shot on Fujifilm 400 on a Canon AE-1 Program.
 
-{{< gallery >}}
+{{% gallery %}}
 [Overview](Overview.jpg)
 [Lunch at the Outcrop](LunchAtTheOutcrop.jpg)
 [Notes](Notes.jpg)
 [Night Work](NightWork.jpg)
 [Rear View(RearView.jpg)
-{{< /gallery >}}
+{{% /gallery %}}
 
 [See all the photos in the Album →](https://photos.app.goo.gl/S6Pqoh4HoQjmVaP99)
 
@@ -26,13 +26,13 @@ Photos from the 2024 field season. They were shot on Fujifilm 400 on a Canon AE-
 
 Photos from the 2025 field season. They were shot on Illford HP5 Plus and Illford Delta 400 on a Canon F1.
 
-{{< gallery >}}
+{{% gallery %}}
 [Light Painting](LightPainting.jpg)
 [Decent into the Field](DecentIntoTheField.jpg)
 [Map Making](MapMaking.jpg)
 [Camp Fire](CampFire.jpg)
 [Box Office(BoxOffice.jpg)
-{{< /gallery >}}
+{{% /gallery %}}
 
 [See all the photos in the Album →](https://photos.app.goo.gl/S6Pqoh4HoQjmVaP99)
 
