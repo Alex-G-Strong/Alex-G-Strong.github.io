@@ -5,10 +5,6 @@ theme = 'PaperMod'
 canonifyURLs = true
 relativeURLs = true
 
-[params]
-    # Explicitly set this as a blank list to satisfy the OpenGraph function
-    images = []
-
 # SEO for web crawling
 [sitemap]
   changefreq = "weekly"
@@ -21,6 +17,9 @@ relativeURLs = true
     description = "Documenting a bikepacking journey through the landscapes of New Zealand."
     keywords = ["New Zealand", "Bikepacking", "Photography", "Te Araroa", "Alex Strong", "Travel Blog", "Alex Strong Design"]
     author = "Alex Strong"
+
+    # Explicitly set this as a blank list to satisfy th>
+    images = []
 
     # FAVICONS
     [params.assets]
