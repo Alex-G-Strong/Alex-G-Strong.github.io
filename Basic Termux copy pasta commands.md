@@ -5,7 +5,7 @@ cd storage/shared/website/HugoBasedNZBlog
 ### testing the website
 
 hugo server -D --noBuildLock
-
+Note the -F flag adds pages that are set to a future date
 
 ### generating webp images
 

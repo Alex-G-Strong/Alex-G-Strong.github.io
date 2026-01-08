@@ -36,7 +36,7 @@ relativeURLs = true
     # HOME INFO SECTION (A sub-table)
     [params.homeInfoParams]
         Title = "Welcome to The Big Walkabout"
-        Content = "I'm bikepacking New Zealand.\n\nCheck out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in your inbox."
+        Content = "I'm bikepacking New Zealand.\n\nCheck out my [latest posts](/posts) or [subscribe](/subscribe) to get updates in your inbox.\n\nYou can track my progress on [Strava](https://www.strava.com/athletes/25085850) as well."
 
 # SOCIAL ICONS (Global table)
 [[params.socialIcons]]
@@ -46,6 +46,10 @@ relativeURLs = true
 [[params.socialIcons]]
     name = "email"
     url = "https://buttondown.email/AlexStrong"
+
+[[params.socialIcons]]
+    name = "strava"
+    url = "https://www.strava.com/athletes/YOUR_ID"
 
 # NAVIGATION MENU
 [[menu.main]]

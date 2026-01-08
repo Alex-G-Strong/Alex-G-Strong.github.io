@@ -139,7 +139,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/disorientation/index.md",
+                "file": "content/posts/intro to the blog/index.md",
                 "mode": "source",
                 "source": true
               },
@@ -176,7 +176,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "",
+            "query": "Big wal",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -227,7 +227,7 @@
         }
       }
     ],
-    "currentTab": 0
+    "currentTab": 1
   },
   "right": {
     "id": "5f6b94d9bac837cd",
@@ -298,14 +298,17 @@
   },
   "active": "4a56ff0fde8994e0",
   "lastOpenFiles": [
+    "content/posts/disorientation/index.md",
+    "blog/Blog post 1.md",
+    "content/subscribe/index.md",
+    "content/about/index.md",
+    "Basic Termux copy pasta commands.md",
     "public/posts/disorientation/index.html",
     "public/posts/disorientation/westcoastfromtheair.webp",
     "public/posts/disorientation/landing.webp",
     "public/posts/disorientation/happytrails.webp",
     "public/posts/disorientation",
     "2026-01-06.md",
-    "content/posts/disorientation/index.md",
-    "Basic Termux copy pasta commands.md",
     "content/disorientation/index.md",
     "content/posts/disorientation/westcoastfromtheair.webp",
     "content/posts/disorientation/happytrails.webp",
@@ -331,12 +334,8 @@
     "resources/_gen/images",
     "resources/_gen",
     "resources",
-    "blog/Blog post 1.md",
     "public/categories/thoughts/index.xml",
-    "public/tags/longform/index.xml",
     "Last things to do.md",
-    "content/about/index.md",
-    "content/subscribe/index.md",
     "content/posts/Austin test post/index.md",
     "Tacodeli.md",
     "2025-12-29.md",
