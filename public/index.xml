@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.153.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Start of the Long Road</title>
+      <link>http://localhost:1313/posts/starting-the-long-road/</link>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/starting-the-long-road/</guid>
+      <description>Alex started the Tour Aoteroa</description>
+    </item>
     <item>
       <title>Disorientation</title>
       <link>http://localhost:1313/posts/disorientation/</link>

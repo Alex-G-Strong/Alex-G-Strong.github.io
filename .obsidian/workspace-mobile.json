@@ -139,9 +139,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/intro to the blog/index.md",
+                "file": "content/posts/starting the long road/index.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "index"
@@ -176,7 +176,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "Big wal",
+            "query": "",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -227,7 +227,7 @@
         }
       }
     ],
-    "currentTab": 1
+    "currentTab": 0
   },
   "right": {
     "id": "5f6b94d9bac837cd",
@@ -298,50 +298,51 @@
   },
   "active": "4a56ff0fde8994e0",
   "lastOpenFiles": [
+    "public/tags/ta/index.xml",
+    "public/posts/starting-the-long-road/index.html",
+    "content/posts/event horizon/index.md",
+    "content/posts/starting the long road/index.md",
+    "Basic Termux copy pasta commands.md",
+    "public/tags/ta/page/1/index.html",
+    "public/tags/ta/page/1",
+    "public/tags/ta/page",
+    "public/tags/ta/index.html",
+    "public/tags/ta",
+    "public/posts/starting-the-long-road/lighthousewithbike.webp",
+    "public/posts/starting-the-long-road/lighthousedistant.webp",
+    "public/posts/starting-the-long-road/cape20ksaway.webp",
+    "public/posts/starting-the-long-road/alexatsignposts.webp",
+    "public/posts/starting-the-long-road",
+    "content/posts/starting the long road",
+    "content/posts/starting the long road/lighthousewithbike.webp",
+    "content/posts/starting the long road/lighthousedistant.webp",
+    "content/posts/starting the long road/cape20ksaway.webp",
+    "().md",
+    "content/posts/starting the long road/alexatsignposts.webp",
+    "capelighthouse.webp",
+    "Golden Path Workflow for making a post.md",
+    "sunriseauslax.webp",
+    "content/posts/intro to the blog/index.md",
     "content/posts/disorientation/index.md",
     "blog/Blog post 1.md",
     "content/subscribe/index.md",
     "content/about/index.md",
-    "Basic Termux copy pasta commands.md",
     "public/posts/disorientation/index.html",
-    "public/posts/disorientation/westcoastfromtheair.webp",
-    "public/posts/disorientation/landing.webp",
-    "public/posts/disorientation/happytrails.webp",
     "public/posts/disorientation",
     "2026-01-06.md",
     "content/disorientation/index.md",
-    "content/posts/disorientation/westcoastfromtheair.webp",
-    "content/posts/disorientation/happytrails.webp",
-    "content/posts/disorientation/landing.webp",
-    "content/posts/disorientation",
-    "westcoastfromtheair.webp",
-    "content/disorientation/westcoastfromtheair.webp",
-    "content/disorientation/happytrails.webp",
-    "content/disorientation/landing.webp",
     "2026-01-04.md",
     "2026-01-05.md",
     "2026-01-03 Collected thoughts landing in NZ.md",
     "2026-01-03.md",
     "Initial email blast message.md",
     "People to email.md",
-    "content/posts/event horizon/index.md",
     "content/poleta-photos/index.md",
-    "content/posts/intro to the blog/index.md",
     "2026-01-01.md",
-    "public/poleta-photos/index.html",
-    "public/sitemap.xml",
-    "resources/_gen/assets",
-    "resources/_gen/images",
-    "resources/_gen",
-    "resources",
-    "public/categories/thoughts/index.xml",
     "Last things to do.md",
     "content/posts/Austin test post/index.md",
     "Tacodeli.md",
     "2025-12-29.md",
-    "Templates/Generic blog post template.md",
-    "content/posts/Post 2 with complex properties.md",
-    "content/posts/Post test with simple properties.md",
-    "content/posts/post-via-terminal.md"
+    "Templates/Generic blog post template.md"
   ]
 }

@@ -11,7 +11,10 @@ Note the -F flag adds pages that are set to a future date
 
 magick your/file/path/input.jpg -resize 2000x -quality 75 -strip your/output/path/output.webp
 
+magick ~/storage/dcim/camera/your image.jpg -resize 2000x -quality 75 -strip ~/storage/shared/website/HugoBasedNZBlog/yourname.webp
+
 These images are WAY smaller, so use them instead of regular jpgs.
+
 
 ### uploading
 
