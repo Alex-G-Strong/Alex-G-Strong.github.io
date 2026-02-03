@@ -11,7 +11,7 @@ categories:
 ---
 0400 is a groggy time to be waking up and headed to the airport. Excitement - or was it anxiety? - mixed with a handful of fatigue, and a pinch of serenity as I found myself driven to the airport.
 
-![0400 at AUS](bagsataus.webp)
+![0400 at AUS](../disorientation/bagsataus.webp)
 
 In the car, a large grey box was taking up almost the entire truck and back seat, and a grey black duffel bag. The box carried my bike, broken into pieces and packed in foam between two hard plastic shells. In the bag, clothes, a helmet, sleeping bag and bad, and a pot. Together, these two bags will make up the entire contents of my life for the next 11 weeks. 
 
