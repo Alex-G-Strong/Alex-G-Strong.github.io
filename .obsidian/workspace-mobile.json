@@ -141,7 +141,7 @@
               "state": {
                 "file": "content/posts/bungy/index.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "index"
@@ -298,6 +298,8 @@
   },
   "active": "4a56ff0fde8994e0",
   "lastOpenFiles": [
+    "content/posts/bungy/freefall.webp",
+    "content/posts/bungy/index.md",
     "Basic Termux copy pasta commands.md",
     "public/posts/bungy/index.html",
     "public/posts/bungy/wave.webp",
@@ -310,9 +312,7 @@
     "public/posts/bungy/freefall.webp",
     "public/posts/bungy/chair.webp",
     "public/posts/bungy",
-    "content/posts/bungy/index.md",
     "content/posts/bungee/Untitled.md",
-    "content/posts/bungy/freefall.webp",
     "content/posts/disorientation/index.md",
     "content/posts/onthetrack/index.md",
     "content/posts/bungy",
