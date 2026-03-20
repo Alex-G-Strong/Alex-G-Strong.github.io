@@ -1,5 +1,5 @@
 ---
-title: Bungy Jumping
+title: Bungee Jumping
 date: 2026-03-17
 draft: false
 description: Jumping off a cliff.
@@ -20,63 +20,63 @@ I stood on the edge of a platform suspended in the air far above a river, a whit
 > The falls at Taupo, which we absolutely did not go down, but is the only photo that I have of the blue of the river.
 
 
-It turns out that new Zealand invented bungy jumping. This fact was little known to me when I first arrived in the country. bungy jumping came up quickly when talking to local about the 'must-dos' of NZ[^1].
+It turns out that New Zealand invented bungee jumping. This fact was little known to me when I first arrived in the country. Bungee jumping came up quickly when talking to locals about the 'must-dos' of NZ[^1].
 
-The first time I saw someone jump I hated it. I tubing the crystal clear Waikato river just outside of Taupō when a cliff came in sight. Perched atop the 75 m wall of welded tuff was a building, and, matryoshka doll like, perched on the building was a man. The man jumped and strung out a huge cord of white rope tied to his ankles. As he came closer to the water line, his head was violently torqued around his center axis by the accumulating tension. He caressed the water, before jerked back to the sky by the white cord tied to his ankles, and came to rest while a boat puttered out to pick him up.
+The first time I saw someone jump, I hated it. I was tubing the crystal clear Waikato River just outside of Taupō when a cliff came into sight. Perched atop the 75m wall of welded tuff was a building, and, matryoshka doll-like, perched on the building was a man. The man jumped and strung out a huge cord of white rope tied to his ankles. As he came closer to the water line, his head was violently torqued around his center axis by the accumulating tension. He caressed the water before being jerked back to the sky by the white cord tied to his ankles, and came to rest while a boat puttered out to pick him up.
 
-'That looked sickening!' I thought, remembering his sharp twist. 'he must have pulled a few gs doing that stunt!' 
+'That looked sickening!' I thought, remembering his sharp twist. 'He must have pulled a few gs doing that stunt!' 
 
-bungy jumping. Yeah, not for me.
+Bungee jumping. Yeah, not for me.
 
 
 ### The Big Whip:
 
 ![Tākaka climbing](takakaclimbing.webp)
 
-Along my journey through New Zealand, I was invited to do some climbing in the Golden Bay at a craft called Paines Ford, staying at a camp for climbers called Hangdog[^2]. The invite was itself a serendipitous connection with a fellow traveler at a Thai restaurant after two very wet days on the Timber Trail only a few days after my time watching the twisting bungy jumper in Taupo.
-New Zealand is known for its adventure culture, and, while the climbing is not world class, the chance to do something rock-related on my bike trip was something I was looking forward to. The invite to Hangdog offered me a focus for that aspiration.
+Along my journey through New Zealand, I was invited to do some climbing in  Golden Bay at a crag called Paines Ford, staying at a camp for climbers called Hangdog[^2]. The invite was itself a serendipitous connection with a fellow traveler at a Thai restaurant after two very wet days on the Timber Trail, only a few days after my time watching the twisting bungee jumper in Taupo.
+New Zealand is known for its adventure culture, and while the climbing is not world-class, the chance to do something rock-related on my bike trip was something I was looking forward to. The invite to Hangdog offered me a focus for that aspiration.
 
-Within the first two days of climbing I was up at one of the crags belayed by a skilled climber called Charlie. We chatted about his time as a climbing coach in the UK. Eventually my fear of falling came up. 
+Within the first two days of climbing, I was up at one of the crags, belayed by a skilled climber called Charlie. We chatted about his time as a climbing coach in the UK. Eventually, my fear of falling came up. 
 
-By way of explanation, I love climbing. It pushes me to set fear aside, assess the actual safety of a particular move, and then act accordingly. Often, that is to act boldly, pushing myself to do what my body is convinced is a certainly a life threatening move, when in reality bolts and a competent belayer insulate me from any real risk of serious injury. 
-This is not to say that climbing is a safe sport - it absolutely is not. Rather, that with proper risk assessment, many moments of paralyzing fear are determined to be just head-scary, but not actually dangerous (because of good system building). I find myself drawn to these moments because they force me to see the world clearly, and do something I am afraid to do anyway.
-And still, I am quite afraid of falling while leading or even top roping any climb.
+By way of explanation, I love climbing. It pushes me to set fear aside, assess the actual safety of a particular move, and then act accordingly. Often, that is to act boldly, pushing myself to do what my body is convinced is certainly a life-threatening move, when in reality bolts and a competent belayer insulate me from any real risk of serious injury. 
+This is not to say that climbing is a safe sport - it absolutely is not. Rather, with proper risk assessment, many moments of paralyzing fear are determined to be just head-scary, but not actually dangerous (because of good system building). I find myself drawn to these moments because they force me to see the world clearly, and do something I am afraid to do anyway.
+And still, I am quite afraid of falling while leading or even top-roping any climb.
 
 It was something that I quickly noticed was holding me back at Paines Ford. I decided to do something about it, and Charlie, I had assessed, would be a good person to practice with. 
 
-"Oh! I have the PERFECT activity for your fear of big falls" Charlie replied to my inquiry.
+"Oh! I have the PERFECT activity for your fear of big falls," Charlie replied to my inquiry.
 "I've just put up an overhanging route, but haven't clipped the anchors, so you could take a HUGE whip from the top into clean air. It's about as good as it gets, and I bet it will help."
 "Ok," I grudgingly replied, "I'll give it a shot. Will you give me a catch?"
 "That's the spirit!" He replied.
 
-In general I tend to find myself emotionally self-contained. I don't scream on rollercoasters or clutch the railing when standing over a great height. I am most comfortable hiding my anxiety behind a mask of cool calm business-like efficiency. I go cold and kind of numb while the stress occurs.
+In general, I tend to find myself emotionally self-contained. I don't scream on roller coasters or clutch the railing when standing over a great height. I am most comfortable hiding my anxiety behind a mask of cool, calm business-like efficiency. I go cold and kind of numb while the stress occurs.
 
-We tied in, did out safety checks, and I quietly and coolly made my way up to the anchors. The climbing was hard and the overhanging route constantly pulled me back to the ground. My calm acted like a thin shell over a pool of deep fear.
-Eventually, I pulled the final hard moves and the climbing settled down in the final approach to the anchors. At this point the rope dragged below my feet, flowing through the last carabineer, firmly connected to a rock solid bolt, down to Charlie, my counterweight, below.
+We tied in, did our safety checks, and I quietly and coolly made my way up to the anchors. The climbing was hard, and the overhanging route constantly pulled me back to the ground. My calm acted like a thin shell over a pool of deep fear.
+Eventually, I pulled the final hard moves, and the climbing settled down in my final approach to the anchors. At this point, the rope dragged below my feet, flowing through the last carabiner, firmly connected to a rock-solid bolt, down to Charlie, my counterweight, below.
 
 I took a long look at the anchors. 
-'I could just clip them, and get lowered safely back to the ground' I thought.
-'You promised you would take the fall' another voice admonished, 'plus the fall is super safe.'
+'I could just clip them and get lowered safely back to the ground,' I thought.
+'You promised you would take the fall,' another voice admonished, 'plus, the fall is super safe.'
 I gritted my teeth, tapping the anchors, and shouted a confident "falling" before I took the plunge and jumped off into the clean air. 
 
-A feeling of sickening free fall filled my body as I watched the rock shoot past me. Much to my surprise, I let out a gutteral "raaaawwwwwww" as my abdominal muscles forced the air from my lungs through my voice box and into the open air in their feeble attempt to keep my organs and spine together for the inevitable termination of my free fall by the ground. 
+A feeling of sickening free fall filled my body as I watched the rock shoot past me. Much to my surprise, I let out a guttural "raaaawwwwwww" as my abdominal muscles forced the air from my lungs through my voice box and into the open air in their feeble attempt to keep my organs and spine together for the inevitable termination of my free fall by the ground. 
 
-But I did not hit the ground. As expected, I came to rest about 20 feet above the ground, Charlie, my belayer, suspended three feet below me, pulled up by the momentum and his jump to give me a soft catch. 
+But I did not hit the ground. As expected, I came to rest about 20 feet above the ground with Charlie, my belayer, suspended three feet below me, pulled up by the momentum and his jump to give me a soft catch. 
 
 I don't remember what happened next, but Charlie maintains that I looked down at him, eyes very wide. He proffered a hand for a fist bump, which I reciprocated. As our fists touched, a huge smile cracked across my face. I was lowered back to the ground, and did my best to suppress the giddy feeling of being super-not-dead on firm ground. 
 
-For the rest of my time climbing at Paines Ford, I pushed on my fear of falling. I did a hard route which required me to fall on pretty much every bolt as I made my way to the top. The fear started to retreat and I was better able to keep my head while on the sharp end of the rope. It was not a panecea, but it helped. 
+For the rest of my time climbing at Paines Ford, I pushed on my fear of falling. I did a hard route, which required me to fall on pretty much every bolt as I made my way to the top. The fear started to retreat, and I was better able to keep my head while on the sharp end of the rope. It was not a panacea, but it helped. 
 
 
 ## Continued Encounters:
 
 ![Queenstown](queenstown.webp)
 
-Eventually I left Hangdog, continuing south. I rode through the west coast, over the mountains to the steepest hill in the world ok the east coast before making my way back up to Queenstown. After my riding in the 'deep south' seeing fjordland and Dunedin, I was taking it slow at the hostel. 
-The day before I met a north-bound American bikepacker who asked me what I planned to do for my day off in Queenstown. 
-"I don't know" I replied.
-"Well, this place will take your money, it just depends on what your interested in. You could go on the lake in a jet boat, or take the gondola up to the lookout."
-"Yeah" I replied, my tone conveying my lukewarm interest.
+I eventually left Hangdog and continued south. I rode along the west coast, over the mountains to the steepest hill in the world on the east coast, before making my way back up to Queenstown. After riding in the 'deep south,' seeing Fjordland and Dunedin, I was taking it slow at the hostel. 
+The day before, I met a northbound American bikepacker who asked me what I planned to do for my day off in Queenstown. 
+"I don't know," I replied.
+"Well, this place will take your money, it just depends on what you're interested in. You could go on the lake in a jet boat, or take the gondola up to the lookout."
+"Yeah," I replied, my tone conveying my lukewarm interest.
 "Or you could go bungy jump," he offered. "It is where the activity was first invented, and they have really good safety standards here."
 "Really.".I replied, mulling the idea over. 
 "Yeah, they have one in the Nevis valley, where you fall like 100m. It's so far, and the landscape is so distant that it feels surreal. I think AJ-Hackett does it."
