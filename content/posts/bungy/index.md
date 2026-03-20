@@ -2,7 +2,7 @@
 title: Bungy Jumping
 date: 2026-03-17
 draft: false
-description: Jumping off a cliff.
+description: Jumping off a cliff. To cut through fear ... for fun.
 tags:
 categories:
 ---
@@ -17,7 +17,7 @@ I stood on the edge of a platform suspended in the air far above a river, a whit
 ### First Encounters:
 
 ![taupo](taupo.webp)
-> The falls at Taupo, which we absolutely did not go down, but is the only photo that I have of the blue of the river.
+> The falls at Taupo, which we absolutely did not go down, but is the only photo that I have of the day and the blue of the river above this point.
 
 
 It turns out that new Zealand invented bungy jumping. This fact was little known to me when I first arrived in the country. bungy jumping came up quickly when talking to local about the 'must-dos' of NZ[^1].
@@ -207,6 +207,12 @@ And regardless of whether the fear is dulled in the future, I have proven beyond
 And that skill is not only for climbing or bungy jumping - that is a deeply important life skill, crucial for taking chances of all kinds, one that I intend to make good use of in my own life.
 
 
+## PS:
+
+If you want to watch the full 'edit' of the jump, the fine folks at AJ Hackett created a video of it. It was certainly part of the vibe of the place to make such a video. 
+
+Find it here:
+https://photos.app.goo.gl/qwS5Scsx9G3b3S5V6
 
 
 ## Footnotes:

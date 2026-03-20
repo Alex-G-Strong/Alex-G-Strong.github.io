@@ -139,12 +139,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Basic Termux copy pasta commands.md",
+                "file": "content/posts/bungy/index.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "Basic Termux copy pasta commands"
+              "title": "index"
             }
           }
         ],
@@ -239,7 +239,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Basic Termux copy pasta commands.md",
+            "file": "content/posts/bungy/index.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -298,24 +298,26 @@
   },
   "active": "4a56ff0fde8994e0",
   "lastOpenFiles": [
+    "Basic Termux copy pasta commands.md",
+    "public/posts/bungy/index.html",
+    "public/posts/bungy/wave.webp",
+    "public/posts/bungy/taupo.webp",
+    "public/posts/bungy/takakaclimbing.webp",
+    "public/posts/bungy/queenstown.webp",
+    "public/posts/bungy/platform.webp",
+    "public/posts/bungy/lookingdown.webp",
+    "public/posts/bungy/jump.webp",
+    "public/posts/bungy/freefall.webp",
+    "public/posts/bungy/chair.webp",
+    "public/posts/bungy",
     "content/posts/bungy/index.md",
     "content/posts/bungee/Untitled.md",
     "content/posts/bungy/freefall.webp",
-    "content/posts/bungy/queenstown.webp",
     "content/posts/disorientation/index.md",
-    "content/posts/bungy/platform.webp",
-    "content/posts/bungy/jump.webp",
-    "content/posts/bungy/wave.webp",
-    "content/posts/bungy/lookingdown.webp",
-    "content/posts/bungy/takakaclimbing.webp",
-    "content/posts/bungy/taupo.webp",
-    "Basic Termux copy pasta commands.md",
-    "content/posts/bungy/chair.webp",
     "content/posts/onthetrack/index.md",
     "content/posts/bungy",
     "2026-03-08.md",
     "content/posts/event horizon/index.md",
-    "public/posts/disorientation/bagsataus.webp",
     "public/posts/onthetrack/index.html",
     "public/posts/onthetrack",
     "content/posts/intro to the blog/index.md",
@@ -325,8 +327,6 @@
     "public/tags/ta/page/1/index.html",
     "public/tags/ta/page/1",
     "public/tags/ta/page",
-    "public/tags/ta/index.html",
-    "public/tags/ta",
     "().md",
     "Golden Path Workflow for making a post.md",
     "blog/Blog post 1.md",
@@ -342,7 +342,6 @@
     "People to email.md",
     "content/poleta-photos/index.md",
     "2026-01-01.md",
-    "Last things to do.md",
-    "content/posts/Austin test post/index.md"
+    "Last things to do.md"
   ]
 }
