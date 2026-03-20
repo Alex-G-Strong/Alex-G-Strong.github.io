@@ -75,32 +75,32 @@ For the rest of my time climbing at Paines Ford, I pushed on my fear of falling.
 I eventually left Hangdog and continued south. I rode along the west coast, over the mountains to the steepest hill in the world on the east coast, before making my way back up to Queenstown. After riding in the 'deep south,' seeing Fjordland and Dunedin, I was taking it slow at the hostel. 
 The day before, I met a northbound American bikepacker who asked me what I planned to do for my day off in Queenstown. 
 "I don't know," I replied.
-"Well, this place will take your money, it just depends on what you're interested in. You could go on the lake in a jet boat, or take the gondola up to the lookout."
+"Well, this place will take your money; it just depends on what you're interested in. You could go on the lake in a jet boat, or take the gondola up to the lookout."
 "Yeah," I replied, my tone conveying my lukewarm interest.
-"Or you could go bungy jump," he offered. "It is where the activity was first invented, and they have really good safety standards here."
-"Really.".I replied, mulling the idea over. 
+"Or you could go bungee jump," he offered. "It is where the activity was first invented, and they have really good safety standards here."
+"Really?" I replied, mulling the idea over. 
 "Yeah, they have one in the Nevis valley, where you fall like 100m. It's so far, and the landscape is so distant that it feels surreal. I think AJ-Hackett does it."
 
-The fear of falling nagged at me. When I left Paines, I had the distinct sense that I had a long way to push it. In the bungy I saw an opportunity to take a truly massive fall in an extremely safe way. I also had nothing else that I was particularly interested in, and a wrist injury had sidelined the cycling for the moment. Lastly, I could not reasonably defend that I spent a day where bungy jumping was invented and I did not jump.
+The fear of falling nagged at me. When I left Paines, I had the distinct sense that I had a long way to push it. In the bungee, I saw an opportunity to take a truly massive fall in an extremely safe way. I also had nothing else that I was particularly interested in doing, and a wrist injury had sidelined the cycling for the moment. Lastly, I could not reasonably defend that I spent a day where bungee jumping was invented, and I did not jump.
 
 The next morning, I called the AJ-Hackett Queenstown location. 
-"Hello this is flo" came the reply on the other end of the phone.
-"Hi, yeah, I was hoping to book a bungy jump." I replied. 
-"Sure, we have space on our 1230 bus if that suits you."
-"That sounds good" I replied.
-"Ok, well just show up 30 minutes before to get checked in and you'll be on your way."
-She took my payment details and we hung up the phone. 
+"Hello, this is Flo" came the reply on the other end of the phone.
+"Hi, yeah, I was hoping to book a bungee jump." I replied. 
+"Sure, we have space on our 12:30 bus if that suits you."
+"That sounds good," I replied.
+"Ok, well, just show up 30 minutes before to get checked in, and you'll be on your way."
+She took my payment details, and we hung up the phone. 
 'Well, I guess I am committed,' I thought. 
 
 
-Come 1200, I walked into the sleek white-walled glass office of AJ-Hackett in central Queenstown. The young woman behind the desk asked me for my name, then took me over to a scale to be weighed in, like a piece of checked luggage. She wrote '90' written in red on my right hand, and N8 R44 in blue on my left hand, while her colleagues teased and joked with her from the desk situated just over her shoulder.
-"Ok your good. Go take a seat over there," she said, gesturing to a sleek area with couches and a few huddled customer that was reminiscent of an airport lounge. TVs mounted on the white walls showed videos of the different offerings at the AJ hackett locations - a bungy off Auckland's harbor bridge, a 300m swing in Queenstown, a jump off of Auckland's sky tower to the ground, amongst other gravity-related endeavors.
+Come 12:00, I walked into the sleek white-walled glass office of AJ-Hackett in central Queenstown. The young woman behind the desk asked me for my name, then took me over to a scale to be weighed in, like a piece of checked luggage. She wrote '90' written in red on my right hand, and N8 R44 in blue on my left hand, while her colleagues teased and joked with her from the desk situated just over her shoulder.
+"Ok, you're good. Go take a seat over there," she said, gesturing to a sleek area with couches and a few huddled customers reminiscent of an airport lounge. TVs mounted on the white walls showed videos of the different offerings at the AJ Hackett locations - a bungy off Auckland's harbor bridge, a 300m swing in Queenstown, a jump off of Auckland's sky tower to the ground, amongst other gravity-related endeavors.
 
 
-After about 20 minutes of tense waiting another young employee sauntered into the waiting room, declaring that 'it is time to go', before spinning on his heel and heading out to the bus. About 8 of us climbed into the bus, which looked much more like a military troop transporter than a shuttle bus.
+After about 20 minutes of tense waiting, another young employee sauntered into the waiting room, declaring that it was time to go, before spinning on his heel and heading out to the bus. About 8 of us climbed into the bus, which looked much more like a military troop transporter than a shuttle bus.
 
 We hit the road, fighting Queenstown traffic all the way out of town. 
-"Hey guys", came the driver's voice over the PA, "I have a video for you, so we will play that right now".
+"Hey guys," came the driver's voice over the PA. "I have a video for you, so we will play that right now."
 On the front screen played an edit showing closeup shots of bungy jumpers preparing to jump, backed by thumping music.
 The bus rolled to a stop, pulling into a parking lot in front of the yellow and green DOC sign for the "kawakawa bridge preserve".
 "This is the stop for the Kawakawa bridge. Anyone with green on their right hand should get off now."
