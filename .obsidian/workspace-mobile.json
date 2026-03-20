@@ -139,12 +139,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/posts/event horizon/index.md",
+                "file": "Basic Termux copy pasta commands.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Basic Termux copy pasta commands"
             }
           }
         ],
@@ -239,7 +239,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "content/posts/event horizon/index.md",
+            "file": "Basic Termux copy pasta commands.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -296,37 +296,39 @@
       "random-note:Open random note": false
     }
   },
-  "active": "82bd3282a844f650",
+  "active": "4a56ff0fde8994e0",
   "lastOpenFiles": [
+    "content/posts/bungy/index.md",
+    "content/posts/bungee/Untitled.md",
+    "content/posts/bungy/freefall.webp",
+    "content/posts/bungy/queenstown.webp",
+    "content/posts/disorientation/index.md",
+    "content/posts/bungy/platform.webp",
+    "content/posts/bungy/jump.webp",
+    "content/posts/bungy/wave.webp",
+    "content/posts/bungy/lookingdown.webp",
+    "content/posts/bungy/takakaclimbing.webp",
+    "content/posts/bungy/taupo.webp",
+    "Basic Termux copy pasta commands.md",
+    "content/posts/bungy/chair.webp",
+    "content/posts/onthetrack/index.md",
+    "content/posts/bungy",
+    "2026-03-08.md",
+    "content/posts/event horizon/index.md",
     "public/posts/disorientation/bagsataus.webp",
     "public/posts/onthetrack/index.html",
-    "public/posts/onthetrack/wildhorsesat90nile.webp",
-    "public/posts/onthetrack/uwofbikeinstream.webp",
-    "public/posts/onthetrack/sunsetat90mile.webp",
-    "public/posts/onthetrack/rivertrack.webp",
-    "public/posts/onthetrack/muscleson90mile.webp",
-    "public/posts/onthetrack/infinitybeach.webp",
-    "public/posts/onthetrack/glassbeach.webp",
-    "public/posts/onthetrack/creekonbeach.webp",
-    "public/posts/onthetrack/climbingatthecape.webp",
-    "public/posts/onthetrack/campon90mile.webp",
     "public/posts/onthetrack",
-    "content/posts/onthetrack/index.md",
-    "content/posts/event horizon/index.md",
     "content/posts/intro to the blog/index.md",
     "content/posts/starting the long road/index.md",
     "public/tags/ta/index.xml",
     "public/posts/starting-the-long-road/index.html",
-    "Basic Termux copy pasta commands.md",
     "public/tags/ta/page/1/index.html",
     "public/tags/ta/page/1",
     "public/tags/ta/page",
     "public/tags/ta/index.html",
     "public/tags/ta",
-    "public/posts/starting-the-long-road",
     "().md",
     "Golden Path Workflow for making a post.md",
-    "content/posts/disorientation/index.md",
     "blog/Blog post 1.md",
     "content/subscribe/index.md",
     "content/about/index.md",
@@ -341,8 +343,6 @@
     "content/poleta-photos/index.md",
     "2026-01-01.md",
     "Last things to do.md",
-    "content/posts/Austin test post/index.md",
-    "Tacodeli.md",
-    "2025-12-29.md"
+    "content/posts/Austin test post/index.md"
   ]
 }
