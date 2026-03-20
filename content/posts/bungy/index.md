@@ -81,11 +81,11 @@ The day before, I met a northbound American bikepacker who asked me what I plann
 "Really?" I replied, mulling the idea over. 
 "Yeah, they have one in the Nevis valley, where you fall like 100m. It's so far, and the landscape is so distant that it feels surreal. I think AJ-Hackett does it."
 
-The fear of falling nagged at me. When I left Paines, I had the distinct sense that I had a long way to push it. In the bungee, I saw an opportunity to take a truly massive fall in an extremely safe way. I also had nothing else that I was particularly interested in doing, and a wrist injury had sidelined the cycling for the moment. Lastly, I could not reasonably defend that I spent a day where bungee jumping was invented, and I did not jump.
+The fear of falling nagged at me. When I left Paines, I had the distinct sense that I had a long way to push it. In the bungee, I saw an opportunity to take a truly massive fall in an extremely safe way. I also had nothing else that I was particularly interested in doing, and a wrist injury had sidelined the cycling for the moment. Lastly, I could not reasonably defend that I spent a day where bungee jumping was invented and didn't jump.
 
 The next morning, I called the AJ-Hackett Queenstown location. 
 "Hello, this is Flo" came the reply on the other end of the phone.
-"Hi, yeah, I was hoping to book a bungee jump." I replied. 
+"Hi, yeah, I was hoping to book a bungee jump," I replied. 
 "Sure, we have space on our 12:30 bus if that suits you."
 "That sounds good," I replied.
 "Ok, well, just show up 30 minutes before to get checked in, and you'll be on your way."
@@ -101,44 +101,44 @@ After about 20 minutes of tense waiting, another young employee sauntered into t
 
 We hit the road, fighting Queenstown traffic all the way out of town. 
 "Hey guys," came the driver's voice over the PA. "I have a video for you, so we will play that right now."
-On the front screen played an edit showing closeup shots of bungy jumpers preparing to jump, backed by thumping music.
-The bus rolled to a stop, pulling into a parking lot in front of the yellow and green DOC sign for the "kawakawa bridge preserve".
+On the front screen, a video showing close-up shots of bungee jumpers preparing to jump played, backed by thumping music.
+The bus rolled to a stop, pulling into a parking lot in front of the yellow and green DOC sign for the "Kawakawa Bridge Preserve".
 "This is the stop for the Kawakawa bridge. Anyone with green on their right hand should get off now."
-Everyone got off the bus except me. A long moment of lonelyness followed. 
-'what am I doing!?!' I thought. 
+Everyone got off the bus except me. A long moment of loneliness followed. 
+'What am I doing!?!' I thought. 
 
 The engine roared back to life, and two other people got on. 
 
 "Alright, to Nevis," said the driver. 
 
-15 mins later, we turned off onto a dirt road, through what looked like a construction site, and up a steep dirt road. I felt myself pressed into my seat by the grade. The engine's roar redoubled. Sheer drops to the canyon floor below alternating on each side of the vehicle as we ascended. 
+Fifteen minutes later, we turned off onto a dirt road, through what looked like a construction site, and up a steep dirt road. I felt myself pressed into my seat by the grade. The engine's roar redoubled. Sheer drops to the canyon floor below alternated on each side of the vehicle as we ascended. 
 
-We reached the top, and a well built modern structure, in the style of the Queenstown office, greeted us. Another young woman greeted us, and ushered the three of us inside.
+We reached the top, and a well-built, modern structure in the Queenstown office style loomed before us. Another young woman greeted us and ushered the three of us inside.
 
-As instructed, we all took off glasses, hats, and everything from our pockets, placing them into lockers. Then we checked in with the front desk, and received a ticket, printed with information that matched the writing on the backs of our hand.
+As instructed, we all took off our glasses, hats, and anything from our pockets and placed them in the lockers. Then we checked in with the front desk and received a ticket, printed with information that matched the writing on the backs of our hand.
 
-From there the streamlined operation directed us to another young guy who fitted me with a harness. He expertly pulled the buckles, maneuvering, tightening, and otherwise fitting the harness with smooth practiced hands, chatting the whole time. Once I was harnesses up, he pointed me to the door to the jump. 
+From there, the streamlined operation directed us to another young guy who fitted me with a harness. He expertly pulled the buckles, maneuvering, tightening, and otherwise fitting the harness with smooth, practiced hands, chatting the whole time. Once I was harnesses up, he pointed me to the jump door. 
 
-I walked through the door, down to a small open-air gondola which traversed a set of steel cables out to a suspended platform hanging in the middle of a huge canyon. I met back up with the two other people from the bus as we just intercepted a group of recent jumpers heading back up the path, gently cracked smiles hinting at the exhilaration they had just been through. 
-We came to the gondola - which was beginning to look more like a metal basket - and another young woman ushered us into the platform. She made idle small talk, asking us where we were from (California) and whether we were excited (yes). Then she closed the door, neglecting to get ok the cart herself, and pressed the button to send us across to the platform suspended in the valley.
+I walked through the door, down to a small open-air gondola which traversed a set of steel cables out to a suspended platform hanging in the middle of a huge canyon. I met back up with the two other people from the bus as we just intercepted a group of recent jumpers heading back up the path, gently cracking smiles that hinted at the exhilaration they had just been through. 
+We came to the gondola, which was beginning to look more like a metal basket, and another young woman ushered us onto the platform. She made idle small talk, asking us where we were from (California) and whether we were excited (yes). Then she closed the door, neglecting to get in the cart herself, and pressed the button to send us across to the platform suspended in the valley.
 
-The three of us looked at each other. "Well, this is real" said one of my companions.
+The three of us looked at each other. "Well, this is real!" said one of my companions.
 
-The wind picked up, gently shifting the gondola from side to side. The platform grew inexorably closer, until we bonked into it, docking against the structure in the sky.
+The wind picked up, gently shifting the gondola from side to side. The platform grew inexorably closer until we bonked into it, docking against the structure in the sky.
 
-Another young woman excitedly asked us if we were excited, before locking the cart to the platform and opening the door. We proffered our tickets to the gate woman. We walked into a small but open structure with an open rear wall, separated by a waist high railing. A sheet of glass divided the room in two, giving a view of the canyon dizzyingly far below.
+Another young woman excitedly asked us if we were excited before locking the cart to the platform and opening the door. We proffered our tickets to the gate woman. We walked into a small but open structure with an open rear wall, separated by a waist-high railing. A sheet of glass divided the room in two, offering a dizzying view of the canyon far below.
 
-We were asked to jump up on a waist high bench. We were each fitted with ankle straps, and showed how to pull a cord that would shift our weight from our ankles to our harnesses. By pulling the cord we could sit upright in the harness. If we missed the timing, our weight would not allow the pin to be released, and we would have to be dragged up to the platform upside down by our ankles. 
+We were asked to jump up onto a waist-high bench. We were each fitted with ankle straps and shown how to pull a cord that would shift our weight from our ankles to our harnesses. By pulling the cord, we could sit upright in the harness. If we missed the timing, our weight would prevent the pin from releasing, and we would have to be dragged up to the platform upside down by our ankles. 
 
 "Also, make sure you do a *head first* dive off the platform. You can fall forward, do a hug swan dive, or anything else, so long as your head is first."
 We all nodded, our eyes beginning to widen slightly from the growing fear. 
-'Oh shit,' I thought, 'I have no idea how to jump head first. Hopefully it will work itself out.'
+'Oh shit,' I thought, 'I have no idea how to jump headfirst. Hopefully it will work itself out.'
 
-"Ok," he said, checking the first name on his list. "Alex, are you ready."
+"Ok," he said, checking the first name on his list. "Alex, are you ready?"
 
 'Well, at least I don't have to watch anyone else,' I thought.
 
-I slid off the bench, and walk over to the railing. He asked me to show my wrists and checked the numbers written there against the ticket he held. Then he checked my harness before clipping me into the safety rail above. I was guided to a chair which was pushed back, and they attached the bungy to my ankles. Next thing I knew I was giving a camera a smile, and shuffling to the grip-taped edge of the platform.
+I slid off the bench and walked over to the railing. He asked me to show my wrists and checked the numbers written there against the ticket he held. Then he checked my harness before clipping me into the safety rail above. I was guided to a chair that was pushed back, and they attached the bungee to my ankles. Next thing I knew I was giving a camera a smile, and shuffling to the grip-taped edge of the platform.
 
 ![Smiling at the camera](chair.webp)
 
