@@ -142,15 +142,15 @@ I slid off the bench and walked over to the railing. He asked me to show my wris
 
 ![Smiling at the camera](chair.webp)
 
-Freed from the chair, I shuffled in smaller increments to the open back of the platform, and the waiting edge. As I got closer, my hand instinctively reaching out to steady my progress towards the edge.
+Freed from the chair, I shuffled in smaller increments to the open back of the platform and the waiting edge. As I got closer, my hand instinctively reached out to steady my progress towards the edge.
 
-The water below was very very far below. Directly below me over the edge the crystal clear air did nothing to blur the detail of the white water rapids at the distant bottom of the canyon. 
+The water was very, very far below. Directly below me, over the edge, the crystal-clear air did nothing to blur the detail of the white-water rapids at the distant bottom of the canyon. 
 
-"Just remember to dive head first. Alright jump in in five, four, three—"
-"Woah woah woah, can I get a second" I said.
-"What are you waiting for mate?" Replied the Kiwi,
-I was not entirely sure I knew how to fall head first, and my protest was intended to give me a second to think it through. 'You know that no amount of thinking will magically give you the somatic understanding and/or confidence to jump off, right' a voice inside my head said. 'You'll just have to do it'.
-I looked back at over the edge. 
+"Just remember to dive headfirst. Alright, jump in in five, four, three—"
+"Whoa whoa whoa, can I get a second?" I said.
+"What are you waiting for, mate?" Replied the Kiwi.
+I was not entirely sure I knew how to fall headfirst, and my protest was intended to give me a second to think it through. 'You know that no amount of thinking will magically give you the somatic understanding and/or confidence to jump off, right?' a voice inside my head said. 'You'll just have to do it.'
+I looked back over the edge. 
 "Ok," said the kiwi, "five, four, three, two,"
 
 ![looking down](lookingdown.webp)
@@ -159,24 +159,24 @@ On 'one' I jumped[^3].
 
 ![Jumping](jump.webp)
 
-Suddenly, the wind roared in my ears, the canyon got a LOT closer, and a huge pit opened in the bottom of my stomach. Then my throat made a gutteral "raaaawwwwwww" as my abdomen tightened. 
-I kept falling. 'wow,' I thought, 'this is long.'
-Suddenly my view of the blue water in the river below was wrenched away and gravity returned. There was a fleeting moment of static before I was rocketed back up by the elastic cord strapped to my ankles. The vertical acceleration felt much more tolerable to me than the free fall, but it was short lived. I felt myself slow again, and the the pit reopened in my stomach. 
+Suddenly, the wind roared in my ears, the canyon got a LOT closer, and a huge pit opened in the bottom of my stomach. Then my throat made a guttural "raaaawwwwwww" as my abdomen tightened. 
+I kept falling. 'Wow,' I thought, 'this is long.'
+Suddenly, my view of the blue water in the river below was wrenched away, and gravity returned. There was a fleeting moment of static before I was rocketed back up by the elastic cord strapped to my ankles. The vertical acceleration felt much more tolerable to me than the free fall, but it was short-lived. I felt myself slow again, and the pit reopened in my stomach. 
 'ok, that was the first bounce, I thought. Top of the second is when you pull the cord.'
-Ok my next bounce up, I looked up at my feet, and pulled myself up on the red safety tether til I could reach the green pull line. Firmly grasping the line, I jerked it to the left, and the buckle came loose with a click.
+On my next bounce up, I looked up at my feet, and pulled myself up on the red safety tether until I could reach the green pull line. Firmly grasping the line, I jerked it to the left, and the buckle came loose with a click.
 
 ![Free falling](freefall.webp)
 
-Upright, and no longer falling, I was beginning to feel much more comfortable. It was reminding me of sitting in a harness, resting after a climbing fall. 
+Upright and no longer falling, I was beginning to feel much more comfortable. It was reminding me of sitting in a harness, resting after a climbing fall. 
 
-I looked around. The bedding planes of the schist making up the canyon wall dipped to my left. A gull rode the thermals to my right. My attention next drifted to the cord suspending me. It was white, and made of a firearm-thick coil of rubber elastic threads, as if a huge number of extremely long white rubber bands had been assembled into a rope. I put a hand on the cord. The surface was elastic under the pressure of my pinch. 
+I looked around. The bedding planes of the schist making up the canyon wall dipped to my left. A gull rode the thermals to my right. My attention next drifted to the cord suspending me. It was white and made of a firearm-thick coil of rubber elastic threads, as if a huge number of extremely long white rubber bands had been assembled into a rope. I put a hand on the cord. The surface was elastic under the pressure of my pinch. 
 
-Suddenly a loud click startled me out of my revery. The draw line has been attached to my end of the cord, and now winched me up back to the platform. The ground slowly receded as I ascended.
+Suddenly, a loud click startled me out of my reverie. The draw line has been attached to my end of the cord, and now winches me up back to the platform. The ground slowly receded as I ascended.
 
-I came level with the platform, then I was drawn to the platform again. I stepped off, and suddenly found myself on the other side of the gate again. 
+I came level with the platform, then I was drawn to the platform again. I stepped off and suddenly found myself on the other side of the gate again. 
 
-"How was it?" Asked the employee unclipping my tether line. "That was quite the sound you made."
-"Yeah, thanks it was good."
+"How was it?" Asked the employee, unclipping my tether line. "That was quite the sound you made."
+"Yeah, thanks, it was good."
 
 I went to take my seat on the bench, shaken from the dump of adrenaline my body had just endured.
 
@@ -185,26 +185,26 @@ I looked over the gate. The second rider was already in the chair getting fitted
 "Yeah," she replied.
 We both snapped our attention to the glass pane in the center of the platform as a dot slowly bounced back towards us. 
 
-The crew on the platform sprung into action, starting to lower the redraw cord, as the jumper below pulled himself to a sitting position.
+The crew on the platform sprang into action, lowering the draw cord, as the jumper below pulled himself to a sitting position.
 
 As he came up, the woman was called and proffered her wrists, and was led behind the gate for her own jump.
 
-The whole operation was smooth, mechanical, and deeply systematic. It reminded me of watching roughnecks string pipe in videos of the oil industry - the high exposure environment, men tethered by full body harnesses to a line above their heads, and a constant motion gave the pacing the same smooth rhythm. As soon as one step was finished, the next one was already half done. No one rushed, and everything was smooth and efficient. They appeared to have practiced a thousand times. The rising line was dropped down, and she was drawn up, delivered to the safe side of the fence, and returned to the bench where we sat. The flurry of activity which had characterized the edge-side of the fence suddenly stopped - the machine idled, as soon as the stream of jumping patrons had come to an end.
+The whole operation was smooth, mechanical, and deeply systematic. It reminded me of watching roughnecks string pipe in videos of the oil industry - the high-exposure environment, men tethered by full-body harnesses to a line above their heads, and a constant motion gave the pacing the same smooth rhythm. As soon as one step was finished, the next one was already half done. No one rushed, and everything was smooth and efficient. They appeared to have practiced a thousand times. The rising line was dropped down, and she was drawn up, delivered to the safe side of the fence, and returned to the bench where we sat. The flurry of activity which characterized the edge-side of the fence suddenly stopped - the machine idled, as soon as the stream of jumping patrons had come to an end.
 
-As soon as all the equipment was removed, we were ushered back to the gondola, as if nothing had happened. For them, it was just another day at the same old office, and it was easy to let their mundane nonchalant attitude rub off.
+As soon as all the equipment was removed, we were ushered back to the gondola, as if nothing had happened. For them, it was just another day at the same old office, and it was easy to let their mundane, nonchalant attitude rub off.
 
 I certainly let it rub off on me. The rush of the fall had felt just a little overwhelming. All the adrenaline and cortisol, dumped into my brain all at once by the fall, had left me feeling hollow and tired. Back up at the bus stop, harnesses removed, the bunch of jumpers from our round, as well as the round before, sat cooly chitchatting or staring into space. 
 
-When the bus arrived, I sat, looking out the window, letting my mind wander in its subdued state. We arrived back on the streets of Queenstown 45 minutes later. And with that our jump ended. I went off to find something to eat. 
+When the bus arrived, I sat, looking out the window, letting my mind wander in its subdued state. We arrived back on the streets of Queenstown 45 minutes later. And with that, our jump ended. I went off to find something to eat. 
 
 ## Terra Firma
 
-The jury is still out on whether that biggest of big whips effected my climbing, but my sense is that some barrier in my brain has broken, and that the acute fear related to falling is gone. It's as if I have cried the biggest call of wolf to my body, falling to my death, only for the hand of good preparation to snatch my mortal form from certain disaster. 
-'yeah, right,' I can imagine my body saying the next time I end up on the sharp end, fixing to fall. 'It was ok last time, even if we put out so much stress about it. What is the point of all that stress this time?'
-Of course, only time - and a return to climbing - will tell. I hope to retain my healthy fear. I have no interest in dying climbing or falling off a cliff. But I am interested in seeing the world clearly and keeping a cool head under pressure. I suspect that this fall will help me in that direction. 
+The jury is still out on whether that biggest of big whips affected my climbing, but my sense is that some barrier in my brain has broken, and that the acute fear related to falling is gone. It's as if I have cried the biggest call of wolf to my body, falling to my death, only for the hand of good preparation to snatch my mortal form from certain disaster. 
+'Yeah, right,' I can imagine my body saying the next time I end up on the sharp end, fixing to fall. 'It was ok last time, even if we put out so much stress about it. What is the point of all that stress this time?'
+Of course, only time - and a return to climbing - will tell. I hope to retain my healthy fear. I have no interest in dying climbing, or falling off a cliff. But I am interested in seeing the world clearly and keeping a cool head under pressure. I suspect that this fall will help me in that direction. 
 
-And regardless of whether the fear is dulled in the future, I have proven beyond a shadow of a doubt that I can cut through my fear and do something my body really does not want to do, if I have deemed it safe to do. 
-And that skill is not only for climbing or bungy jumping - that is a deeply important life skill, crucial for taking chances of all kinds, one that I intend to make good use of in my own life.
+And regardless of whether the fear is dulled in the future, I have proven beyond a shadow of a doubt that I can cut through my fear and do something my body really does not want to do if I deem it safe to do so. 
+And that skill is not only for climbing or bungee jumping - that is a deeply important life skill, crucial for taking chances of all kinds, one that I intend to make good use of in my own life.
 
 
 
