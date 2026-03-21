@@ -1,5 +1,5 @@
 ---
-title: Bungee Jumping
+title: Bungy Jumping
 date: 2026-03-17
 draft: false
 description: Jumping off a cliff. To cut through fear ... for fun.
