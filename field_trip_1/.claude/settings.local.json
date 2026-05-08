@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python src/plot_pin_heights_all_years.py)",
+      "Bash(python src/plot_first_last_change.py)"
+    ]
+  }
+}
