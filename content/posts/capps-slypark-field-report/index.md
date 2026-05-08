@@ -1,7 +1,7 @@
 ---
 title: "Capps Crossing & Sly Park: Erosion Pin Field Report"
 date: 2026-05-04
-draft: true
+draft: false
 description: "Erosion pin analysis from two hillslope transects in the Sierra Nevada foothills, documenting surface change between October 2021 and April 2026."
 tags: ["geomorphology", "erosion", "field report", "Sierra Nevada"]
 ---
