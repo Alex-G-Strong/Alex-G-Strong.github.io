@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compost Optimizer: Operations Simulator</title>
+    <style>
+        /* Responsive Layout & General Styling */
+        body { font-family: sans-serif; padding: 10px; max-width: 1000px; margin: auto; color: #333; }
+        
+        /* Navigation */
+        nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
+        nav button { flex: 1; padding: 15px; font-size: 1rem; cursor: pointer; border: 1px solid #ccc; background: #f8f9fa; border-radius: 5px; transition: background 0.2s;}
+        nav button:hover { background: #e2e6ea; }
+        nav button.active-nav { background: #007bff; color: white; border-color: #0056b3; }
+        
+        /* Tab Content */
+        .tab-content { display: none; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff; }
+        .active { display: block; }
+        
+        /* Form Elements */
+        input[type="number"], input[type="text"], select { padding: 8px; font-size: 0.95rem; width: 100%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;}
+        .header-note { text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+        
+        /* Tooltips */
+        .info-icon { color: #007bff; cursor: help; margin-left: 4px; font-size: 0.9em; text-decoration: none; user-select: none; }
+        
+        /* Buttons */
+        .btn-add { margin-top: 15px; width: 100%; padding: 10px; font-size: 1rem; cursor: pointer; border: 1px dashed #007bff; border-radius: 5px; background: #f0f7ff; color: #007bff; font-weight: bold;}
+        .btn-add:hover { background: #e0f0ff; }
+        .btn-solve { width: 100%; padding: 15px; font-size: 1.1rem; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: background 0.2s;}
+        .btn-solve:hover { background: #218838; }
+        .btn-next { width: 100%; padding: 15px; font-size: 1.1rem; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: background 0.2s;}
+        .btn-next:hover { background: #5a6268; }
+        .btn-save { background: #e9ecef; color: #aaa; border: 1px solid #ccc; border-radius: 3px; padding: 5px 10px; cursor: not-allowed; font-size: 0.8rem; width: 100%; transition: all 0.2s;}
+        .btn-save.active-save { background: #ffffff; color: #007bff; border-color: #007bff; cursor: pointer; }
+        .btn-save.active-save:hover { background: #f0f7ff; }
+        
+        /* Tables */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; min-width: 800px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; vertical-align: middle;}
+        .remove-btn { color: red; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        
+        .ing-name { min-width: 130px; }
+        .ing-num { min-width: 65px; }
+
+        /* Draggable Priority List */
+        #priorityList { list-style: none; padding: 0; margin: 0; }
+        .draggable-item { display: flex; align-items: center; gap: 10px; padding: 15px; background: #f8f9fa; border: 1px solid #ddd; margin-bottom: 8px; border-radius: 5px; cursor: grab; transition: transform 0.1s ease, box-shadow 0.1s ease; }
+        .draggable-item:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #ffffff; border-color: #b8daff;}
+        .draggable-item:active { cursor: grabbing; transform: translateY(0); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .drag-handle { font-size: 1.5rem; color: #999; padding-right: 10px; cursor: grab; }
+        .range-inputs { display: flex; gap: 10px; align-items: center; flex: 1; justify-content: flex-end;}
+        .range-inputs label { font-size: 0.85rem; color: #555; display: flex; align-items: center; gap: 5px;}
+        .range-inputs input { width: 70px; }
+        
+        /* Flash Effect */
+        #results-container { transition: opacity 0.15s ease-in-out; }
+        .flash-hide { opacity: 0; }
+
+        /* Modal Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: #fff; padding: 20px; border-radius: 8px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; }
+        .lib-item-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; align-items: center;}
+
+        /* Phase Cards */
+        .phases-wrapper { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+        .phase-card { min-width: 280px; flex: 1; background: #f8f9fa; border: 1px solid #ccc; border-radius: 5px; padding: 15px; display: flex; flex-direction: column;}
+        .phase-card h4 { margin-top: 0; margin-bottom: 15px; color: #007bff;}
+        .phase-ing { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #ddd; font-size: 0.95rem; }
+        .exhausted-badge { display: inline-block; background: #dc3545; color: white; font-size: 0.7rem; padding: 3px 6px; border-radius: 3px; margin-top: 8px;}
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Compost Optimizer</h1>
+
+<nav>
+    <button id="nav-tab1" class="active-nav" onclick="showTab('tab1')">1. Constraints</button>
+    <button id="nav-tab2" onclick="showTab('tab2')">2. Ingredients</button>
+    <button id="nav-tab3" onclick="showTab('tab3')">3. Operations Sheet</button>
+</nav>
+
+<datalist id="ingredient-library"></datalist>
+
+<div id="libraryModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Manage Saved Ingredients</h2>
+        <p style="font-size: 0.9em; color: #666;">Items saved to your local browser.</p>
+        <div id="customLibraryList"></div>
+        <button class="btn-next" style="margin-top: 15px;" onclick="closeLibraryModal()">Close</button>
+    </div>
+</div>
+
+<div id="tab1" class="tab-content active">
+    <h2 style="text-align: center;">Site & Batch Settings</h2>
+    
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <label style="flex: 1; min-width: 200px;">Measurement Unit: <span class="info-icon" title="The physical unit you will use to measure and load ingredients on the pad.">ⓘ</span>
+            <select id="unitSelect" onchange="toggleVolumeUI()" style="margin-top: 5px;">
+                <option value="cuyd" selected>Cubic Yards (cuyd)</option>
+                <option value="loader">Custom Loader Bucket</option>
+                <option value="wheelbarrow">Wheelbarrow (~6 cu ft)</option>
+                <option value="5gal">5-Gallon Bucket</option>
+            </select>
+        </label>
+        
+        <label id="loaderVolContainer" style="display: none; flex: 1; min-width: 200px;">Loader Bucket Size (cuyd): <span class="info-icon" title="The exact volume of your specific machine's bucket, used to convert buckets to cubic yards.">ⓘ</span>
+            <input type="number" id="customBucketVol" value="1.0" min="0.1" step="0.1" style="margin-top: 5px;">
+        </label>
+
+        <label style="flex: 1; min-width: 200px;">Define Batch Size By: <span class="info-icon" title="Choose whether to build based on a direct raw volume target, or by physical pad footprint dimensions.">ⓘ</span>
+            <select id="batchModeSelect" onchange="toggleVolumeUI()" style="margin-top: 5px;">
+                <option value="direct">Direct Volume</option>
+                <option value="dimensions">Pile Dimensions (L x W x H)</option>
+            </select>
+        </label>
+    </div>
+
+    <div id="directVolContainer" style="margin-top: 15px;">
+        <label>Target Batch Volume (cuyd): <span class="info-icon" title="The total amount of compost you want to build in this single pile.">ⓘ</span>
+            <input type="number" id="targetBatchVol" value="20.0" min="0.1" step="0.1" style="margin-top: 5px;">
+        </label>
+    </div>
+
+    <div id="dimensionsContainer" style="display: none; background: #f0f4f8; padding: 15px; border-radius: 5px; margin-top: 15px;">
+        <p style="margin-top: 0; font-size: 0.9em; color: #555;">Calculates cubic yards using a parabolic profile (Base × Height × 0.67 × Length). <span class="info-icon" title="Standard geometry for windrow calculations.">ⓘ</span></p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <label style="flex: 1; min-width: 100px;">Length (ft): <input type="number" id="dimL" value="20" oninput="updateCalculatedVol()"></label>
+            <label style="flex: 1; min-width: 100px;">Base Width (ft): <input type="number" id="dimW" value="10" oninput="updateCalculatedVol()"></label>
+            <label style="flex: 1; min-width: 100px;">Height (ft): <input type="number" id="dimH" value="5" oninput="updateCalculatedVol()"></label>
+        </div>
+        <p id="heightWarning" style="display: none; color: #721c24; background: #f8d7da; padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 10px;"></p>
+        <p style="margin-bottom: 0;"><strong>Calculated Target Volume:</strong> <span id="calculatedVolDisplay">24.81</span> cuyd</p>
+    </div>
+    
+    <hr style="margin: 30px 0;">
+    
+    <h2 style="text-align: center;">Optimization Priorities & Ranges</h2>
+    <p class="header-note">Drag the handle (≡) to reorder. The solver will HALT if the mix falls outside these bounds.</p>
+    
+    <ul id="priorityList">
+        <li class="draggable-item" draggable="true" data-id="moisture">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;">Moisture (%) <span class="info-icon" title="Target: 55-65%. Too dry slows decomposition; too wet causes anaerobic conditions and odor.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-moisture-min" value="55"></label>
+                <label>Max: <input type="number" id="tgt-moisture-max" value="65"></label>
+            </div>
+        </li>
+        <li class="draggable-item" draggable="true" data-id="density">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;">Density (lb/yd³) <span class="info-icon" title="Target: 600-800. A proxy for porosity. Dense piles lack oxygen; light piles lack mass to retain heat.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-density-min" value="600"></label>
+                <label>Max: <input type="number" id="tgt-density-max" value="800"></label>
+            </div>
+        </li>
+        <li class="draggable-item" draggable="true" data-id="cn">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;">C:N Ratio <span class="info-icon" title="Target: 25-35. The balance of Carbon (browns) to Nitrogen (greens) that feeds the microbes.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-cn-min" value="25"></label>
+                <label>Max: <input type="number" id="tgt-cn-max" value="35"></label>
+            </div>
+        </li>
+    </ul>
+
+    <button class="btn-next" onclick="showTab('tab2')">Next: Add Ingredients &rarr;</button>
+</div>
+
+<div id="tab2" class="tab-content">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Ingredient Manager</h2>
+        <button onclick="openLibraryModal()" style="padding: 8px 15px; border: 1px solid #ccc; border-radius: 5px; background: #fff; cursor: pointer;">Manage Saved Items</button>
+    </div>
+    <p class="header-note">Type to search library. Input available inventory. The calculator will build the pile in stages.</p>
+    
+    <div class="table-container">
+        <table id="ingredientTable">
+            <thead>
+                <tr>
+                    <th>Ingredient Name</th>
+                    <th>C:N <span class="info-icon" title="Carbon to Nitrogen Ratio">ⓘ</span></th>
+                    <th>Density <span class="info-icon" title="Bulk weight in lbs per cubic yard">ⓘ</span><br><small>(lb/yd³)</small></th>
+                    <th>Moist. <span class="info-icon" title="Percentage of total mass that is water">ⓘ</span><br><small>(%)</small></th>
+                    <th>Struct. <span class="info-icon" title="Resistance to compaction. 10 = rigid (woodchips), 1 = mushy (food waste).">ⓘ</span><br><small>(1-10)</small></th>
+                    <th id="availHeader">Avail. Inventory <span class="info-icon" title="The maximum amount you currently have. The solver will NOT exceed this limit.">ⓘ</span><br><small>(Cubic Yards)</small></th>
+                    <th style="width: 70px;">Action</th>
+                    <th style="width: 40px;"></th>
+                </tr>
+            </thead>
+            <tbody id="ingredientBody">
+            </tbody>
+        </table>
+    </div>
+    
+    <button class="btn-add" onclick="addIngredientRow()">+ Add Row</button>
+    <button class="btn-solve" onclick="autoSolve()">Generate Phased Operations Sheet &rarr;</button>
+</div>
+
+<div id="tab3" class="tab-content">
+    <div id="results-container">
+        <div id="results">
+            <p style="text-align: center; color: #666;">Run the solver from the ingredients tab to see results here.</p>
+        </div>
+    </div>
+    <button id="tab3UpdateBtn" class="btn-next" style="display: none; background: #17a2b8;" onclick="showTab('tab2')">&larr; Edit Ingredients</button>
+</div>
+
+<script>
+    const UNIT_CONVERSIONS = {
+        "cuyd": { name: "Cubic Yards", toCuyd: 1.0 },
+        "loader": { name: "Buckets", toCuyd: 1.0 }, 
+        "wheelbarrow": { name: "Wheelbarrows", toCuyd: 0.2222 },
+        "5gal": { name: "5-Gal Buckets", toCuyd: 0.02476 }
+    };
+
+    const internalLibrary = [
+        { name: "Horse Manure", cn: 25, density: 800, moisture: 70, si: 4 },
+        { name: "Wood Chips", cn: 400, density: 400, moisture: 20, si: 10 },
+        { name: "Grass Clippings", cn: 15, density: 600, moisture: 80, si: 1 },
+        { name: "Cow Manure", cn: 18, density: 1400, moisture: 80, si: 3 },
+        { name: "Poultry Manure", cn: 10, density: 1200, moisture: 70, si: 2 },
+        { name: "Vegetable Scraps", cn: 15, density: 800, moisture: 85, si: 1 },
+        { name: "Coffee Grounds", cn: 20, density: 800, moisture: 60, si: 2 },
+        { name: "Leaves (Dry)", cn: 60, density: 200, moisture: 15, si: 6 },
+        { name: "Straw", cn: 80, density: 100, moisture: 10, si: 9 },
+        { name: "Cardboard/Paper", cn: 350, density: 150, moisture: 5, si: 7 },
+        { name: "Sawdust", cn: 500, density: 350, moisture: 15, si: 8 },
+        { name: "Food Waste (Mixed)", cn: 15, density: 1000, moisture: 75, si: 1 }
+    ];
+
+    let fullLibrary = [];
+
+    window.onload = () => { 
+        loadLibrary();
+        addIngredientRow(); 
+        toggleVolumeUI();
+        initDragAndDrop();
+    };
+
+    function initDragAndDrop() {
+        let draggedItem = null;
+        const list = document.getElementById('priorityList');
+        const items = list.querySelectorAll('.draggable-item');
+
+        items.forEach(item => {
+            item.addEventListener('dragstart', function(e) {
+                draggedItem = this;
+                setTimeout(() => this.style.opacity = '0.5', 0);
+            });
+            item.addEventListener('dragend', function() {
+                setTimeout(() => this.style.opacity = '1', 0);
+                draggedItem = null;
+            });
+            item.addEventListener('dragover', function(e) { e.preventDefault(); });
+            item.addEventListener('dragenter', function(e) { e.preventDefault(); });
+            item.addEventListener('drop', function(e) {
+                e.preventDefault();
+                if (this !== draggedItem) {
+                    let allItems = Array.from(list.querySelectorAll('.draggable-item'));
+                    let draggedIdx = allItems.indexOf(draggedItem);
+                    let targetIdx = allItems.indexOf(this);
+                    if (draggedIdx < targetIdx) { this.after(draggedItem); } 
+                    else { this.before(draggedItem); }
+                }
+            });
+        });
+    }
+
+    function loadLibrary() {
+        let customLibrary = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const libraryMap = new Map();
+        internalLibrary.forEach(item => libraryMap.set(item.name.toLowerCase(), item));
+        customLibrary.forEach(item => libraryMap.set(item.name.toLowerCase(), item));
+        fullLibrary = Array.from(libraryMap.values());
+        
+        const datalist = document.getElementById('ingredient-library');
+        datalist.innerHTML = fullLibrary.map(item => `<option value="${item.name}">`).join('');
+    }
+
+    function openLibraryModal() {
+        const modal = document.getElementById('libraryModal');
+        const listContainer = document.getElementById('customLibraryList');
+        let customLibrary = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        
+        if(customLibrary.length === 0) {
+            listContainer.innerHTML = "<p>No custom ingredients saved yet.</p>";
+        } else {
+            listContainer.innerHTML = customLibrary.map((item, idx) => `
+                <div class="lib-item-row">
+                    <strong>${item.name}</strong> 
+                    <button onclick="deleteCustomItem(${idx})" style="color: red; border: none; background: none; cursor: pointer;">Delete</button>
+                </div>
+            `).join('');
+        }
+        modal.style.display = "flex";
+    }
+
+    function closeLibraryModal() { document.getElementById('libraryModal').style.display = "none"; }
+
+    function deleteCustomItem(index) {
+        let customLibrary = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        customLibrary.splice(index, 1);
+        localStorage.setItem('compostLibrary', JSON.stringify(customLibrary));
+        loadLibrary();
+        openLibraryModal();
+    }
+
+    function showTab(id) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
+        const navBtnMap = { 'tab1': 'nav-tab1', 'tab2': 'nav-tab2', 'tab3': 'nav-tab3' };
+        document.getElementById(navBtnMap[id]).classList.add('active-nav');
+    }
+
+    function toggleVolumeUI() {
+        const unit = document.getElementById('unitSelect').value;
+        const mode = document.getElementById('batchModeSelect').value;
+        document.getElementById('loaderVolContainer').style.display = (unit === 'loader') ? 'block' : 'none';
+        
+        if (mode === 'direct') {
+            document.getElementById('directVolContainer').style.display = 'block';
+            document.getElementById('dimensionsContainer').style.display = 'none';
+        } else {
+            document.getElementById('directVolContainer').style.display = 'none';
+            document.getElementById('dimensionsContainer').style.display = 'block';
+            updateCalculatedVol();
+        }
+
+        const unitName = UNIT_CONVERSIONS[unit].name;
+        document.getElementById('availHeader').innerHTML = `Avail. Inventory <span class="info-icon" title="The maximum amount you currently have. The solver will NOT exceed this limit.">ⓘ</span><br><small>(${unitName})</small>`;
+    }
+
+    function updateCalculatedVol() {
+        const l = parseFloat(document.getElementById('dimL').value) || 0;
+        const w = parseFloat(document.getElementById('dimW').value) || 0;
+        const h = parseFloat(document.getElementById('dimH').value) || 0;
+        
+        const hWarn = document.getElementById('heightWarning');
+        if (h > (w / 2) && w > 0) {
+            hWarn.style.display = 'block';
+            hWarn.innerText = "⚠️ Height is more than half width - pile risks over compaction. A high structural index is required.";
+        } else {
+            hWarn.style.display = 'none';
+        }
+
+        const cuyd = (w * h * 0.67 * l) / 27;
+        document.getElementById('calculatedVolDisplay').innerText = cuyd.toFixed(2);
+    }
+
+    function getTargetVolumeCuyd() {
+        if (document.getElementById('batchModeSelect').value === 'direct') {
+            return parseFloat(document.getElementById('targetBatchVol').value) || 1.0;
+        } else {
+            const l = parseFloat(document.getElementById('dimL').value) || 0;
+            const w = parseFloat(document.getElementById('dimW').value) || 0;
+            const h = parseFloat(document.getElementById('dimH').value) || 0;
+            return (w * h * 0.67 * l) / 27;
+        }
+    }
+
+    function getUnitMultiplier() {
+        const unit = document.getElementById('unitSelect').value;
+        if (unit === 'loader') {
+            return parseFloat(document.getElementById('customBucketVol').value) || 1.0;
+        }
+        return UNIT_CONVERSIONS[unit].toCuyd;
+    }
+
+    function addIngredientRow() {
+        const tbody = document.getElementById('ingredientBody');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><input type="text" class="ing-name" list="ingredient-library" placeholder="Name..." onchange="autofillRow(this)"></td>
+            <td><input type="number" class="ing-cn ing-num" placeholder="30" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-density ing-num" placeholder="600" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-moisture ing-num" placeholder="50" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-si ing-num" placeholder="5" min="1" max="10" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-avail ing-num" placeholder="∞"></td>
+            <td><button class="btn-save" disabled onclick="saveCustomIngredient(this)">Save</button></td>
+            <td style="text-align: center;"><button class="remove-btn" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    }
+
+    function autofillRow(inputElement) {
+        const row = inputElement.closest('tr');
+        const item = fullLibrary.find(i => i.name.toLowerCase() === inputElement.value.trim().toLowerCase());
+        if (item) {
+            row.querySelector('.ing-cn').value = item.cn;
+            row.querySelector('.ing-density').value = item.density;
+            row.querySelector('.ing-moisture').value = item.moisture;
+            row.querySelector('.ing-si').value = item.si || 5;
+            const saveBtn = row.querySelector('.btn-save');
+            saveBtn.classList.remove('active-save');
+            saveBtn.disabled = true;
+        }
+    }
+
+    function markAsEdited(inputElement) {
+        const row = inputElement.closest('tr');
+        const saveBtn = row.querySelector('.btn-save');
+        saveBtn.classList.add('active-save');
+        saveBtn.disabled = false;
+    }
+
+    function saveCustomIngredient(btn) {
+        const row = btn.closest('tr');
+        const name = row.querySelector('.ing-name').value.trim();
+        const cn = parseFloat(row.querySelector('.ing-cn').value);
+        const density = parseFloat(row.querySelector('.ing-density').value);
+        const moisture = parseFloat(row.querySelector('.ing-moisture').value);
+        const si = parseFloat(row.querySelector('.ing-si').value) || 5;
+
+        if (!name || isNaN(cn) || isNaN(density) || isNaN(moisture)) {
+            alert("Please fill out Name, C:N, Density, and Moisture to save.");
+            return;
+        }
+
+        let customLibrary = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const existingIndex = customLibrary.findIndex(i => i.name.toLowerCase() === name.toLowerCase());
+        const newItem = { name, cn, density, moisture, si };
+        if (existingIndex > -1) { customLibrary[existingIndex] = newItem; } 
+        else { customLibrary.push(newItem); }
+
+        localStorage.setItem('compostLibrary', JSON.stringify(customLibrary));
+        loadLibrary();
+        
+        btn.innerHTML = "Saved!";
+        btn.classList.remove('active-save');
+        btn.disabled = true;
+        setTimeout(() => { btn.innerHTML = "Save"; }, 2000);
+    }
+
+    function getDynamicTargets() {
+        return {
+            moisture: { min: parseFloat(document.getElementById('tgt-moisture-min').value), max: parseFloat(document.getElementById('tgt-moisture-max').value) },
+            density: { min: parseFloat(document.getElementById('tgt-density-min').value), max: parseFloat(document.getElementById('tgt-density-max').value) },
+            cn: { min: parseFloat(document.getElementById('tgt-cn-min').value), max: parseFloat(document.getElementById('tgt-cn-max').value) }
+        };
+    }
+
+    function autoSolve() {
+        const orderNodes = document.querySelectorAll('#priorityList .draggable-item');
+        const orderedIds = Array.from(orderNodes).map(node => node.getAttribute('data-id'));
+        const weights = {};
+        weights[orderedIds[0]] = 1000; weights[orderedIds[1]] = 100; weights[orderedIds[2]] = 10;
+        const dynTargets = getDynamicTargets();
+        
+        const rows = document.querySelectorAll('#ingredientBody tr');
+        let activeIngredients = [];
+        const multiplier = getUnitMultiplier();
+
+        rows.forEach((row) => {
+            const name = row.querySelector('.ing-name').value || "Unnamed Item";
+            const cn = parseFloat(row.querySelector('.ing-cn').value);
+            const density = parseFloat(row.querySelector('.ing-density').value);
+            const moisture = parseFloat(row.querySelector('.ing-moisture').value);
+            const si = parseFloat(row.querySelector('.ing-si').value) || 5;
+            let availableUI = parseFloat(row.querySelector('.ing-avail').value);
+            
+            if(!isNaN(cn) && !isNaN(density) && !isNaN(moisture)) {
+                let availCuyd = isNaN(availableUI) ? Infinity : availableUI * multiplier;
+                activeIngredients.push({ name, cn, density, moisture, si, availCuyd, totalUsedCuyd: 0, exhausted: false }); 
+            }
+        });
+
+        if (activeIngredients.length < 2) {
+            alert("Please fill out at least two valid ingredients.");
+            return;
+        }
+
+        let targetBatchVolCuyd = getTargetVolumeCuyd();
+        let remainingTargetVol = targetBatchVolCuyd;
+        let phases = [];
+        let globalHaltReason = null;
+
+        const evalFractionalScore = (ratio) => {
+            let tV = 0, tW = 0, tM = 0, tD = 0, tN = 0;
+            ratio.forEach(ing => {
+                const volCuyd = ing.frac; 
+                const weight = volCuyd * ing.density;
+                const mWeight = weight * (ing.moisture / 100);
+                const dWeight = weight - mWeight;
+                tV += volCuyd; tW += weight; tM += mWeight; tD += dWeight; tN += (dWeight / ing.cn);
+            });
+            const m = (tM / tW) * 100; const d = tW / tV; const cn = tD / tN;
+
+            const errM = m < dynTargets.moisture.min ? dynTargets.moisture.min - m : (m > dynTargets.moisture.max ? m - dynTargets.moisture.max : 0);
+            const errD = d < dynTargets.density.min ? dynTargets.density.min - d : (d > dynTargets.density.max ? d - dynTargets.density.max : 0);
+            const errCN = cn < dynTargets.cn.min ? dynTargets.cn.min - cn : (cn > dynTargets.cn.max ? cn - dynTargets.cn.max : 0);
+            return (errM * weights.moisture) + (errD * weights.density) + (errCN * weights.cn);
+        };
+
+        const calcMetrics = (volArray) => {
+            let tV = 0, tW = 0, tM = 0, tD = 0, tN = 0, tSI = 0;
+            volArray.forEach(ing => {
+                const weight = ing.volCuyd * ing.origIng.density;
+                const mWeight = weight * (ing.origIng.moisture / 100);
+                const dWeight = weight - mWeight;
+                tV += ing.volCuyd; tW += weight; tM += mWeight; tD += dWeight; tN += (dWeight / ing.origIng.cn);
+                tSI += (ing.volCuyd * ing.origIng.si);
+            });
+            return {
+                m: (tM / tW) * 100, d: tW / tV, cn: tD / tN, si: tSI / tV, weight: tW
+            };
+        };
+
+        while (remainingTargetVol > 0.05) {
+            let available = activeIngredients.filter(i => i.availCuyd > 0.05 && !i.exhausted);
+            if (available.length === 0) {
+                globalHaltReason = "Ran out of all available inventory limits.";
+                break;
+            }
+
+            let ratio = available.map(ing => ({...ing, frac: 1.0 / available.length}));
+            let currentScore = evalFractionalScore(ratio);
+
+            for (let i = 0; i < 5000; i++) {
+                if (ratio.length < 2) break;
+                let testRatio = ratio.map(r => ({...r}));
+                let idxA = Math.floor(Math.random() * testRatio.length);
+                let idxB = Math.floor(Math.random() * testRatio.length);
+                if (idxA === idxB) continue;
+                
+                let shift = 0.05;
+                if (testRatio[idxA].frac > shift) {
+                    testRatio[idxA].frac -= shift;
+                    testRatio[idxB].frac += shift;
+                    let tScore = evalFractionalScore(testRatio);
+                    if (tScore < currentScore) { currentScore = tScore; ratio = testRatio; }
+                }
+                if (currentScore === 0) break;
+            }
+
+            if (currentScore > 1000 && phases.length > 0) {
+                globalHaltReason = "Further phases would ruin healthy pile chemistry bounds.";
+                break;
+            }
+
+            let maxScale = Infinity;
+            let limitingIng = null;
+            ratio.forEach(ing => {
+                if (ing.frac > 0.001) {
+                    let mainIng = activeIngredients.find(i => i.name === ing.name);
+                    let limit = mainIng.availCuyd / ing.frac;
+                    if (limit < maxScale) { maxScale = limit; limitingIng = mainIng.name; }
+                }
+            });
+
+            let phaseVolCuyd = Math.min(remainingTargetVol, maxScale);
+            if (phaseVolCuyd < 0.05) break; 
+
+            let phaseDetails = {
+                phaseNum: phases.length + 1,
+                volumeCuyd: phaseVolCuyd,
+                targetPct: (phaseVolCuyd / targetBatchVolCuyd) * 100,
+                ingredients: [],
+                limiting: (phaseVolCuyd === maxScale && maxScale !== Infinity) ? limitingIng : null
+            };
+
+            ratio.forEach(ing => {
+                let usedVol = ing.frac * phaseVolCuyd;
+                if (usedVol > 0.001) {
+                    let mainIng = activeIngredients.find(i => i.name === ing.name);
+                    mainIng.availCuyd -= usedVol;
+                    mainIng.totalUsedCuyd += usedVol;
+                    if (mainIng.availCuyd < 0.05) mainIng.exhausted = true;
+                    phaseDetails.ingredients.push({ name: ing.name, volCuyd: usedVol, origIng: mainIng });
+                }
+            });
+
+            phaseDetails.metrics = calcMetrics(phaseDetails.ingredients);
+            phases.push(phaseDetails);
+            remainingTargetVol -= phaseVolCuyd;
+        }
+
+        renderPhasedResults(phases, activeIngredients, targetBatchVolCuyd, globalHaltReason, dynTargets);
+    }
+
+    function renderPhasedResults(phases, allIngredients, targetVolCuyd, haltReason, dynTargets) {
+        showTab('tab3');
+        document.getElementById('tab3UpdateBtn').style.display = "block";
+        const container = document.getElementById('results-container');
+        container.classList.add('flash-hide');
+        const unitName = UNIT_CONVERSIONS[document.getElementById('unitSelect').value].name;
+        const multiplier = getUnitMultiplier();
+
+        setTimeout(() => {
+            const resultsDiv = document.getElementById('results');
+            
+            if (phases.length === 0) {
+                resultsDiv.innerHTML = `<h3 style="color: red; text-align: center;">Pile Failed</h3>
+                <p style="text-align: center;">Cannot build a healthy pile with these ingredients. Adjust inventory or chemistry constraints.</p>`;
+                container.classList.remove('flash-hide');
+                return;
+            }
+
+            let gVol = 0, gWeight = 0, gMoistW = 0, gDryW = 0, gN = 0, gSI = 0;
+            allIngredients.forEach(ing => {
+                if(ing.totalUsedCuyd > 0) {
+                    gVol += ing.totalUsedCuyd;
+                    let w = ing.totalUsedCuyd * ing.density;
+                    let mw = w * (ing.moisture / 100);
+                    let dw = w - mw;
+                    gWeight += w; gMoistW += mw; gDryW += dw; gN += (dw / ing.cn);
+                    gSI += (ing.totalUsedCuyd * ing.si);
+                }
+            });
+            const gMoisture = (gMoistW / gWeight) * 100;
+            const gDensity = gWeight / gVol;
+            const gCN = gDryW / gN;
+            const gAvgSI = gSI / gVol;
+
+            const getStatus = (val, min, max) => {
+                if (val >= min && val <= max) return { c: '#155724', bg: '#d4edda', br: '#c3e6cb' };
+                return { c: '#721c24', bg: '#f8d7da', br: '#f5c6cb' };
+            };
+            const mS = getStatus(gMoisture, dynTargets.moisture.min, dynTargets.moisture.max);
+            const dS = getStatus(gDensity, dynTargets.density.min, dynTargets.density.max);
+            const cnS = getStatus(gCN, dynTargets.cn.min, dynTargets.cn.max);
+            const siC = gAvgSI >= 5 ? '#155724' : '#856404'; const siBg = gAvgSI >= 5 ? '#d4edda' : '#fff3cd'; const siBr = gAvgSI >= 5 ? '#c3e6cb' : '#ffeeba';
+
+            let haltHtml = '';
+            if (haltReason || (targetVolCuyd - gVol) > 0.1) {
+                haltHtml = `<div style="background: #fff3cd; color: #856404; padding: 15px; border: 1px solid #ffeeba; border-radius: 5px; margin-bottom: 20px;">
+                    <strong>⚠️ Pile Halted at ${gVol.toFixed(1)} cuyd </strong> (Target was ${targetVolCuyd.toFixed(1)}).<br>
+                    <em>Reason: ${haltReason || "Insufficient inventory limits."}</em>
+                </div>`;
+            } else {
+                haltHtml = `<div style="background: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+                    <strong>✅ Target Volume Reached Successfully!</strong>
+                </div>`;
+            }
+
+            let summaryRows = allIngredients.filter(i => i.totalUsedCuyd > 0).map(ing => {
+                let note = ing.exhausted ? `<span style="color: #dc3545; font-size: 0.85rem; font-weight: bold;">(Exhausted)</span>` : "";
+                let amountInUnit = (ing.totalUsedCuyd / multiplier).toFixed(1);
+                return `<tr>
+                    <td><strong>${ing.name}</strong> ${note}</td>
+                    <td>${amountInUnit} ${unitName}</td>
+                </tr>`;
+            }).join('');
+
+            // Centered layout for phase cards
+            let phaseCards = phases.map(p => {
+                let ingList = p.ingredients.map(i => {
+                    let aUnit = (i.volCuyd / multiplier).toFixed(1);
+                    return `<div class="phase-ing"><span>${i.name}</span> <strong>${aUnit} ${unitName}</strong></div>`;
+                }).join('');
+                
+                let limitBadge = p.limiting ? `<div class="exhausted-badge">Ran out of ${p.limiting}</div>` : `<div style="color: #28a745; font-size: 0.8rem; margin-top: 5px; font-weight: bold;">Target Hit</div>`;
+
+                return `
+                <div class="phase-card">
+                    <h4 style="text-align: center;">Phase ${p.phaseNum}</h4>
+                    
+                    <div style="background: #fff; border-radius: 5px; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; text-align: center;">
+                        <span style="font-size: 0.8rem; color: #666; display: block; margin-bottom: 2px;">Target Volume Added</span>
+                        <strong style="font-size: 1.2rem; display: block; color: #007bff;">${p.volumeCuyd.toFixed(1)} cuyd <small style="color: #666;">(${p.targetPct.toFixed(0)}%)</small></strong>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 15px; text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <div style="background: #fff; border: 1px solid #eee; border-radius: 4px; padding: 8px 4px;">
+                            <span style="display:block; font-size:0.75rem; color:#666; margin-bottom: 2px;">Moisture</span>
+                            <strong style="font-size:1rem; color: #333;">${p.metrics.m.toFixed(1)}%</strong>
+                        </div>
+                        <div style="background: #fff; border: 1px solid #eee; border-radius: 4px; padding: 8px 4px;">
+                            <span style="display:block; font-size:0.75rem; color:#666; margin-bottom: 2px;">C:N Ratio</span>
+                            <strong style="font-size:1rem; color: #333;">${p.metrics.cn.toFixed(1)}</strong>
+                        </div>
+                        <div style="background: #fff; border: 1px solid #eee; border-radius: 4px; padding: 8px 4px;">
+                            <span style="display:block; font-size:0.75rem; color:#666; margin-bottom: 2px;">Density</span>
+                            <strong style="font-size:1rem; color: #333;">${p.metrics.d.toFixed(0)}</strong>
+                        </div>
+                    </div>
+                    
+                    <div>${ingList}</div>
+                    <div style="text-align: center;">${limitBadge}</div>
+                </div>`;
+            }).join('');
+
+            resultsDiv.innerHTML = `
+                ${haltHtml}
+                
+                <h3 style="text-align: center;">Total Recipe Summary</h3>
+                <table style="background: #f8f9fa; border: 1px solid #ccc; margin-bottom: 25px;">
+                    <tbody>${summaryRows}</tbody>
+                </table>
+
+                <h3 style="text-align: center; margin-bottom: 10px;">Phase Construction Breakdown</h3>
+                <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: 0;">Build the pile in these sequential layers to maximize inventory usage.</p>
+                <div class="phases-wrapper">
+                    ${phaseCards}
+                </div>
+
+                <hr style="margin: 30px 0;">
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="text-align: center;">Total Pile Yield</h3>
+                        <div style="background: #f8f9fa; padding: 20px; border: 1px solid #ccc; border-radius: 5px; text-align: center;">
+                            <p style="margin: 0 0 10px 0; font-size: 1.2rem;"><strong>${gVol.toFixed(2)} cuyd</strong> built</p>
+                            <p style="margin: 0; color: #555;">${(gWeight / 2000).toFixed(2)} Tons</p>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 2; min-width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">Overall Pile Health</h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center;">
+                            <div style="padding: 15px 10px; border-radius: 5px; background: ${mS.bg}; color: ${mS.c}; border: 1px solid ${mS.br};">
+                                <span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Moisture</span>
+                                <strong style="display: block; font-size: 1.3rem;">${gMoisture.toFixed(1)}%</strong>
+                                <span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${dynTargets.moisture.min}-${dynTargets.moisture.max})</span>
+                            </div>
+                            
+                            <div style="padding: 15px 10px; border-radius: 5px; background: ${dS.bg}; color: ${dS.c}; border: 1px solid ${dS.br};">
+                                <span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Bulk Density</span>
+                                <strong style="display: block; font-size: 1.3rem;">${gDensity.toFixed(0)}</strong>
+                                <span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${dynTargets.density.min}-${dynTargets.density.max})</span>
+                            </div>
+                            
+                            <div style="padding: 15px 10px; border-radius: 5px; background: ${cnS.bg}; color: ${cnS.c}; border: 1px solid ${cnS.br};">
+                                <span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">C:N Ratio</span>
+                                <strong style="display: block; font-size: 1.3rem;">${gCN.toFixed(1)}:1</strong>
+                                <span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${dynTargets.cn.min}-${dynTargets.cn.max})</span>
+                            </div>
+                            
+                            <div style="padding: 15px 10px; border-radius: 5px; background: ${siBg}; color: ${siC}; border: 1px solid ${siBr};">
+                                <span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Structure Score</span>
+                                <strong style="display: block; font-size: 1.3rem;">${gAvgSI.toFixed(1)} / 10</strong>
+                                <span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: 5.0+)</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <button class="btn-solve" style="margin-top: 30px;" onclick="window.print()">Print Operations Sheet</button>
+            `;
+            container.classList.remove('flash-hide');
+        }, 150); 
+    }
+</script>
+</body>
+</html>
