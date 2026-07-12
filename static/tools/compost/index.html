@@ -175,6 +175,7 @@
     <p style="background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 12px; font-size: 0.85rem; color: var(--muted); margin-top: -5px;">
         💾 Recipes are saved on this device, in this browser only. Use <strong>Export All</strong> before switching browsers, computers, or clearing browser data.
     </p>
+    <p id="fileSyncStatus" style="background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 12px; font-size: 0.85rem; color: var(--muted); margin-top: 8px;"></p>
 
     <div id="recipeGrid" class="recipe-grid"></div>
     <button class="btn-solve" style="margin-top: 30px;" onclick="startNewRecipe()">+ Start a New Recipe</button>
@@ -445,11 +446,14 @@
 
     // IndexedDB wrapper for Recipes
     const dbPromise = new Promise((resolve, reject) => {
-        const req = indexedDB.open('CompostDB', 1);
+        const req = indexedDB.open('CompostDB', 2);
         req.onupgradeneeded = e => {
             const db = e.target.result;
             if (!db.objectStoreNames.contains('recipes')) {
                 db.createObjectStore('recipes', { keyPath: 'id' });
+            }
+            if (!db.objectStoreNames.contains('fileHandles')) {
+                db.createObjectStore('fileHandles');
             }
         };
         req.onsuccess = e => resolve(e.target.result);
@@ -481,6 +485,130 @@
             tx.objectStore('recipes').delete(id);
             tx.oncomplete = () => resolve();
         });
+    }
+
+    // --- Automatic File Backup (File System Access API) ---
+    // Chrome/Edge/Opera only -- Firefox has rejected this API and Safari has never
+    // implemented it, so this whole feature no-ops on those browsers (they keep using
+    // the manual Export/Import flow instead).
+    const FILE_SYNC_SUPPORTED = 'showSaveFilePicker' in window;
+
+    async function getStoredFileHandle() {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('fileHandles', 'readonly');
+            const req = tx.objectStore('fileHandles').get('backupFile');
+            req.onsuccess = () => resolve(req.result || null);
+            req.onerror = () => resolve(null);
+        });
+    }
+
+    async function storeFileHandle(handle) {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('fileHandles', 'readwrite');
+            tx.objectStore('fileHandles').put(handle, 'backupFile');
+            tx.oncomplete = () => resolve();
+        });
+    }
+
+    async function clearStoredFileHandle() {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('fileHandles', 'readwrite');
+            tx.objectStore('fileHandles').delete('backupFile');
+            tx.oncomplete = () => resolve();
+        });
+    }
+
+    // Prompts for a backup file location only if one isn't already linked. Called from the
+    // save flow, so the very first "Save New Recipe" click on a Chromium browser is what
+    // triggers the native file picker.
+    async function ensureFileHandleLinked() {
+        if (!FILE_SYNC_SUPPORTED) return null;
+        let handle = await getStoredFileHandle();
+        if (handle) return handle;
+        try {
+            handle = await window.showSaveFilePicker({
+                suggestedName: 'compost-recipe-book-backup.json',
+                types: [{ description: 'JSON File', accept: { 'application/json': ['.json'] } }]
+            });
+            await storeFileHandle(handle);
+        } catch (e) {
+            return null; // user cancelled the picker -- not an error, just skip linking for now
+        }
+        return handle;
+    }
+
+    // Writes the full recipe book out to the linked file, if any. Called after every recipe
+    // mutation (save/update/delete/note/import) so the file stays continuously up to date --
+    // this is safer than trying to catch a "before close" event, since browsers don't
+    // guarantee an async file write finishes before an unloading page is killed.
+    async function syncRecipesToLinkedFile() {
+        if (!FILE_SYNC_SUPPORTED) return;
+        const handle = await getStoredFileHandle();
+        if (!handle) return;
+        try {
+            let perm = await handle.queryPermission({ mode: 'readwrite' });
+            if (perm !== 'granted') perm = await handle.requestPermission({ mode: 'readwrite' });
+            if (perm !== 'granted') return;
+            const allR = await getRecipes();
+            const writable = await handle.createWritable();
+            await writable.write(JSON.stringify(allR, null, 2));
+            await writable.close();
+        } catch (e) {
+            // The linked file was likely moved, renamed, or deleted outside the browser.
+            // Clear it so the next save prompts for a fresh location instead of failing silently forever.
+            await clearStoredFileHandle();
+        }
+        if (typeof renderFileSyncStatus === 'function') renderFileSyncStatus();
+    }
+
+    async function manualLinkBackupFile() {
+        await ensureFileHandleLinked();
+        await syncRecipesToLinkedFile();
+        renderFileSyncStatus();
+    }
+
+    async function unlinkBackupFile() {
+        await clearStoredFileHandle();
+        renderFileSyncStatus();
+    }
+
+    async function reconnectBackupFile() {
+        const handle = await getStoredFileHandle();
+        if (!handle) return renderFileSyncStatus();
+        try {
+            const perm = await handle.requestPermission({ mode: 'readwrite' });
+            if (perm === 'granted') await syncRecipesToLinkedFile();
+        } catch (e) { /* ignore */ }
+        renderFileSyncStatus();
+    }
+
+    function maybeShowNonChromiumNotice() {
+        if (localStorage.getItem('nonChromiumNoticeShown')) return;
+        localStorage.setItem('nonChromiumNoticeShown', 'true');
+        alert('Heads up: this browser doesn\'t support automatic file backups. Your recipe is still saved in this browser (see the note on the Recipe Book tab), but for automatic JSON file backup, this calculator is designed to work with Chromium-based browsers (Chrome, Edge, Brave, Opera). You can always use Export/Import manually here.');
+    }
+
+    async function renderFileSyncStatus() {
+        const el = document.getElementById('fileSyncStatus');
+        if (!el) return;
+        if (!FILE_SYNC_SUPPORTED) {
+            el.innerHTML = `⚠️ Automatic file backup isn't available in this browser. This calculator is designed to work best with <strong>Chromium-based browsers</strong> (Chrome, Edge, Brave, Opera) for automatic JSON backup. You can still use Export/Import manually.`;
+            return;
+        }
+        const handle = await getStoredFileHandle();
+        if (!handle) {
+            el.innerHTML = `🔗 No backup file linked yet — one will be created the first time you save a recipe. <button class="btn-secondary" style="padding:2px 8px; font-size:0.8rem;" onclick="manualLinkBackupFile()">Link now</button>`;
+            return;
+        }
+        const perm = await handle.queryPermission({ mode: 'readwrite' });
+        if (perm === 'granted') {
+            el.innerHTML = `💾 Auto-backing up to <strong>${handle.name}</strong> on every save. <button class="btn-secondary" style="padding:2px 8px; font-size:0.8rem;" onclick="unlinkBackupFile()">Unlink</button>`;
+        } else {
+            el.innerHTML = `🔗 Backup file <strong>${handle.name}</strong> linked, but needs permission. <button class="btn-secondary" style="padding:2px 8px; font-size:0.8rem;" onclick="reconnectBackupFile()">Reconnect</button>`;
+        }
     }
 
     const UNIT_CONVERSIONS = {
@@ -673,7 +801,8 @@
 
     // --- Dark Mode ---
     function checkTheme() {
-        if(localStorage.getItem('theme') === 'dark') {
+        // Dark mode is the default; only an explicit saved "light" preference turns it off.
+        if(localStorage.getItem('theme') !== 'light') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeToggle').innerText = '☀️';
         }
@@ -1130,6 +1259,13 @@
         currentLoadedRecipeId = recipeId;
         alert(isUpdate ? "Recipe Updated!" : "New Recipe Saved!");
         await renderRecipeBook();
+
+        if (FILE_SYNC_SUPPORTED) {
+            await ensureFileHandleLinked();
+            await syncRecipesToLinkedFile();
+        } else {
+            maybeShowNonChromiumNotice();
+        }
     }
 
     async function loadRecipeToWorkbench(id) {
@@ -1292,12 +1428,14 @@
         await saveRecipeDB(recipe);
         document.getElementById('noteModal').style.display = "none";
         await renderRecipeBook();
+        await syncRecipesToLinkedFile();
     }
 
     async function deleteRecipeAction(id) {
         if (!confirm("Are you sure you want to delete this recipe?")) return;
         await deleteRecipeDB(id);
         await renderRecipeBook();
+        await syncRecipesToLinkedFile();
     }
 
     // --- Export / Import ---
@@ -1329,6 +1467,7 @@
                     await saveRecipeDB(data);
                 }
                 await renderRecipeBook();
+                await syncRecipesToLinkedFile();
                 alert("Import successful!");
             } catch (err) { alert("Invalid recipe file."); }
             event.target.value = ''; 
@@ -1338,6 +1477,7 @@
 
     // --- Render Recipe Book Cards ---
     async function renderRecipeBook() {
+        renderFileSyncStatus();
         const grid = document.getElementById('recipeGrid');
         const allR = await getRecipes();
 
