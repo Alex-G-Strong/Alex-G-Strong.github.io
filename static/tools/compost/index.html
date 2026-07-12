@@ -127,7 +127,7 @@
     <button id="nav-tab3" onclick="showTab('tab3')">3. Ingredients</button>
     <button id="nav-tab4" onclick="showTab('tab4')">4. Operations Sheet</button>
     <button id="nav-tab5" onclick="showTab('tab5')">5. Docs & FAQ</button>
-    <button id="nav-tab6" onclick="showTab('tab6')">🐛 Report Bugs</button>
+    <button id="nav-tab6" onclick="showTab('tab6')">Report Bugs</button>
 </nav>
 
 <datalist id="ingredient-library"></datalist>
@@ -298,7 +298,14 @@
 <div id="tab5" class="tab-content">
     <h2>Documentation & Field Guides</h2>
     <p class="header-note" style="text-align:left;">Click a topic to expand.</p>
-    
+
+    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+        <summary>📄 Full User Guide (README)</summary>
+        <div>
+            <p>Everything on this page in one place, plus a walkthrough of every tab, the solver's math, and data/privacy details. <a href="https://github.com/Alex-G-Strong/Alex-Strongs-Compost-Calculator/blob/master/README.md" target="_blank" rel="noopener" style="color: var(--primary);">Read the full README on GitHub &rarr;</a> (requires an internet connection).</p>
+        </div>
+    </details>
+
     <details class="faq-accordion" onclick="closeOtherAccordions(this)">
         <summary>📲 How to share recipes between devices (Offline Sync)</summary>
         <div>
