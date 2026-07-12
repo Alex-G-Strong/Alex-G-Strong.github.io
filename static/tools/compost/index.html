@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compost Optimizer: Field Workbench</title>
+    <style>
+        /* CSS Variables for Dark Mode Support */
+        :root {
+            --bg: #f4f7f6; --text: #333; --card-bg: #fff; --border: #ccc;
+            --primary: #007bff; --primary-hover: #0056b3; 
+            --success: #28a745; --success-hover: #218838;
+            --danger: #dc3545; --danger-hover: #c82333;
+            --warning: #ffc107; --warning-hover: #e0a800;
+            --muted: #666; --light-bg: #f8f9fa; --highlight: #f0f7ff;
+            --input-bg: #fff; --input-text: #333;
+            --shadow: rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode {
+            --bg: #121212; --text: #e0e0e0; --card-bg: #1e1e1e; --border: #444;
+            --primary: #3a8ee6; --primary-hover: #5ea0eb; 
+            --success: #32b553; --success-hover: #3dcc60;
+            --danger: #e24c5c; --danger-hover: #ed5f6e;
+            --warning: #d6a100; --warning-hover: #e6b217;
+            --muted: #aaa; --light-bg: #2a2a2a; --highlight: #1e3a5f;
+            --input-bg: #2a2a2a; --input-text: #e0e0e0;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        body { font-family: sans-serif; padding: 10px; max-width: 1000px; margin: auto; color: var(--text); background: var(--bg); transition: background 0.3s, color 0.3s;}
+        
+        /* Header & Dark Mode Toggle */
+        .header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+        .theme-toggle { cursor: pointer; font-size: 1.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.2s;}
+        
+        /* Navigation */
+        nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
+        nav button { flex: 1; padding: 12px 10px; font-size: 0.95rem; font-weight: bold; cursor: pointer; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); border-radius: 5px; transition: all 0.2s;}
+        nav button:hover { background: var(--light-bg); }
+        nav button.active-nav { background: var(--primary); color: white; border-color: var(--primary-hover); }
+        
+        /* Tab Content */
+        .tab-content { display: none; padding: 20px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); box-shadow: 0 4px 6px var(--shadow);}
+        .active { display: block; }
+        
+        /* Form Elements */
+        input[type="number"], input[type="text"], select { padding: 8px; font-size: 0.95rem; width: 100%; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--input-bg); color: var(--input-text);}
+        .header-note { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 15px; }
+        .info-icon { color: var(--primary); cursor: help; margin-left: 4px; font-size: 0.9em; text-decoration: none; user-select: none; }
+        
+        /* Buttons */
+        .btn-add { margin-top: 15px; width: 100%; padding: 10px; font-size: 1rem; cursor: pointer; border: 1px dashed var(--primary); border-radius: 5px; background: var(--highlight); color: var(--primary); font-weight: bold;}
+        .btn-solve { width: 100%; padding: 15px; font-size: 1.1rem; background: var(--success); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-weight: bold;}
+        .btn-solve:hover { background: var(--success-hover); }
+        .btn-next { width: 100%; padding: 15px; font-size: 1.1rem; background: var(--muted); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-weight: bold;}
+        .btn-next:hover { background: #5a6268; }
+        .btn-save { background: var(--light-bg); color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 5px 10px; cursor: not-allowed; font-size: 0.8rem; width: 100%;}
+        .btn-save.active-save { background: var(--card-bg); color: var(--primary); border-color: var(--primary); cursor: pointer; }
+        .btn-secondary { padding: 8px 15px; border: 1px solid var(--border); border-radius: 5px; background: var(--card-bg); color: var(--text); cursor: pointer; font-size: 0.9rem;}
+        
+        /* Tables */
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; min-width: 800px; color: var(--text);}
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); vertical-align: middle;}
+        .remove-btn { color: var(--danger); background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .ing-name { min-width: 130px; } .ing-num { min-width: 65px; }
+
+        /* Draggable Priority List */
+        #priorityList { list-style: none; padding: 0; margin: 0; }
+        .draggable-item { display: flex; align-items: center; gap: 10px; padding: 15px; background: var(--light-bg); border: 1px solid var(--border); margin-bottom: 8px; border-radius: 5px; cursor: grab; transition: transform 0.1s ease, box-shadow 0.1s ease; }
+        .draggable-item.dragging { opacity: 0.5; background: var(--highlight); }
+        .drag-handle { font-size: 1.5rem; color: var(--muted); padding-right: 10px; cursor: grab; }
+        .range-inputs { display: flex; gap: 10px; align-items: center; flex: 1; justify-content: flex-end;}
+        .range-inputs label { font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 5px;}
+        .range-inputs input { width: 70px; }
+        
+        /* Modal Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: var(--card-bg); padding: 20px; border-radius: 8px; width: 95%; max-width: 800px; max-height: 85vh; overflow-y: auto; color: var(--text);}
+
+        /* Phase Cards & Results */
+        .phases-wrapper { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+        .phase-card { min-width: 280px; flex: 1; background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 15px; display: flex; flex-direction: column;}
+        .phase-card h4 { margin-top: 0; margin-bottom: 15px; color: var(--primary);}
+        .phase-ing { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--border); font-size: 0.95rem; }
+        .exhausted-badge { display: inline-block; background: var(--danger); color: white; font-size: 0.7rem; padding: 3px 6px; border-radius: 3px; margin-top: 8px;}
+
+        /* Recipe Book Cards */
+        .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; margin-top: 20px;}
+        .recipe-card { border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); padding: 15px; box-shadow: 0 2px 4px var(--shadow); display: flex; flex-direction: column;}
+        .recipe-card h3 { margin: 0 0 5px 0; color: var(--primary); font-size: 1.2rem;}
+        .recipe-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px;}
+        .recipe-notes { background: var(--light-bg); border-left: 3px solid var(--warning); padding: 10px; font-size: 0.9rem; margin-bottom: 10px;}
+        .note-img { max-width: 100%; border-radius: 4px; margin-top: 5px; display: block; }
+        .recipe-actions { display: flex; gap: 5px; flex-wrap: wrap; margin-top: auto;}
+        .recipe-actions button { flex: 1; padding: 6px; font-size: 0.85rem; border: none; border-radius: 4px; cursor: pointer; color: white;}
+        .btn-r-load { background: var(--success); } .btn-r-note { background: var(--warning); color: #333 !important;} 
+        .btn-r-export { background: #17a2b8; } .btn-r-del { background: var(--danger); flex: 0.3 !important;}
+        
+        details { background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 10px; margin-bottom: 15px; }
+        summary { font-weight: bold; cursor: pointer; outline: none; color: var(--text); font-size: 1.1rem; margin-bottom: 5px;}
+        details p { color: var(--text); line-height: 1.5; font-size: 0.95rem;}
+        
+        /* Results Section Styling */
+        .results-panel { background: var(--light-bg); padding: 20px; border: 1px solid var(--border); border-radius: 5px; text-align: center; }
+        .metric-box { padding: 15px 10px; border-radius: 5px; border: 1px solid var(--border); text-align: center; background: var(--card-bg); color: var(--text);}
+        .metric-box.good { border-color: var(--success); border-left: 4px solid var(--success); }
+        .metric-box.bad { border-color: var(--danger); border-left: 4px solid var(--danger); }
+        
+        #results-container { transition: opacity 0.15s ease-in-out; }
+        .flash-hide { opacity: 0; }
+
+        @media print { nav, .btn-solve, .btn-next, .btn-add, .info-icon, .theme-toggle { display: none !important; } body { background: white; color: black; } }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <h1 style="margin: 0;">Compost Optimizer</h1>
+    <div id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</div>
+</div>
+
+<nav>
+    <button id="nav-tab1" class="active-nav" onclick="showTab('tab1')">1. Recipe Book</button>
+    <button id="nav-tab2" onclick="showTab('tab2')">2. Constraints</button>
+    <button id="nav-tab3" onclick="showTab('tab3')">3. Ingredients</button>
+    <button id="nav-tab4" onclick="showTab('tab4')">4. Operations Sheet</button>
+    <button id="nav-tab5" onclick="showTab('tab5')">5. Docs & FAQ</button>
+</nav>
+
+<datalist id="ingredient-library"></datalist>
+
+<div id="libraryModal" class="modal-overlay" onclick="if(event.target===this) closeLibraryModal()">
+    <div class="modal-content" style="max-width: 950px;">
+        <h2 style="margin-bottom: 5px;">Ingredient Library</h2>
+        <p style="background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 12px; font-size: 0.85rem; color: var(--muted); margin: 0 0 12px 0;">
+            💾 Your saved items are stored on this device, in this browser only.
+        </p>
+        <input type="text" id="libSearchInput" placeholder="🔍 Search ingredients by name..." oninput="filterIngredientLibrary(this.value)" style="width: 100%; padding: 10px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; background: var(--input-bg); color: var(--input-text);">
+
+        <h3 style="margin-bottom: 5px;">Your Items</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th><th>C:N</th><th id="libDensityHeader">Density (lb/yd³)</th><th>Moist.</th><th>SI</th><th>Inventory</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customLibraryList"></tbody>
+            </table>
+        </div>
+
+        <h3 style="margin-top: 20px; margin-bottom: 5px;">Reference Database <span style="font-weight: normal; color: var(--muted); font-size: 0.85rem;">(136-feedstock dataset — click Load to add to your recipe)</span></h3>
+        <div id="libCsvSections"></div>
+
+        <button class="btn-next" style="margin-top: 15px;" onclick="closeLibraryModal()">Close</button>
+    </div>
+</div>
+
+<input type="file" id="importInput" style="display: none;" accept=".json" onchange="handleImport(event)">
+
+<div id="tab1" class="tab-content active">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin: 0;">My Recipe Book</h2>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-secondary" onclick="document.getElementById('importInput').click()">📥 Import</button>
+            <button class="btn-secondary" onclick="exportAllRecipes()">📤 Export All</button>
+        </div>
+    </div>
+    <p class="header-note" style="text-align: left; margin-top: 10px;">
+        Load past recipes to your workbench, export them to share via AirDrop/Nearby Share, or add field notes with photos. <a href="#" onclick="showTab('tab5')" style="color: var(--primary);">See FAQ for more details.</a>
+    </p>
+    <p style="background: var(--light-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 12px; font-size: 0.85rem; color: var(--muted); margin-top: -5px;">
+        💾 Recipes are saved on this device, in this browser only. Use <strong>Export All</strong> before switching browsers, computers, or clearing browser data.
+    </p>
+
+    <div id="recipeGrid" class="recipe-grid"></div>
+    <button class="btn-solve" style="margin-top: 30px;" onclick="startNewRecipe()">+ Start a New Recipe</button>
+</div>
+
+<div id="tab2" class="tab-content">
+    <h2 style="text-align: center;">Site & Batch Settings</h2>
+    
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+        <label style="flex: 1; min-width: 200px;">Measurement Unit: <span class="info-icon" title="The physical unit you will use to measure and load ingredients on the pad.">ⓘ</span>
+            <select id="unitSelect" onchange="toggleVolumeUI()" style="margin-top: 5px;">
+                <option value="cuyd" selected>Cubic Yards (cuyd)</option>
+                <option value="cubicmeters">Cubic Meters (m³)</option>
+                <option value="loader">Custom Loader Bucket</option>
+                <option value="wheelbarrow">Wheelbarrow (~6 cu ft)</option>
+                <option value="5gal">5-Gallon Bucket</option>
+            </select>
+        </label>
+        <label id="loaderVolContainer" style="display: none; flex: 1; min-width: 200px;">Loader Bucket Size (cuyd): <span class="info-icon" title="The exact volume of your specific machine's bucket.">ⓘ</span>
+            <input type="number" id="customBucketVol" value="1.0" min="0.1" step="0.1" style="margin-top: 5px;">
+        </label>
+        <label style="flex: 1; min-width: 200px;">Define Batch Size By: <span class="info-icon" title="Choose whether to build based on a direct volume target, or by physical pad footprint dimensions.">ⓘ</span>
+            <select id="batchModeSelect" onchange="toggleVolumeUI()" style="margin-top: 5px;">
+                <option value="direct">Direct Volume</option>
+                <option value="dimensions">Pile Dimensions (L x W x H)</option>
+            </select>
+        </label>
+    </div>
+
+    <div id="directVolContainer" style="margin-top: 15px;">
+        <label><span id="targetVolLabel">Target Batch Volume (cuyd):</span> <span class="info-icon" title="The total amount of compost you want to build in this single pile.">ⓘ</span>
+            <input type="number" id="targetBatchVol" value="20.0" min="0.1" step="0.1" style="margin-top: 5px;">
+        </label>
+    </div>
+
+    <div id="dimensionsContainer" style="display: none; background: var(--light-bg); padding: 15px; border-radius: 5px; margin-top: 15px;">
+        <p id="dimFormulaNote" style="margin-top: 0; font-size: 0.9em; color: var(--muted);">Calculates cubic yards using a parabolic profile (Base × Height × 0.67 × Length).</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <label style="flex: 1; min-width: 100px;"><span id="dimLLabel">Length (ft):</span> <input type="number" id="dimL" value="20" oninput="updateCalculatedVol()"></label>
+            <label style="flex: 1; min-width: 100px;"><span id="dimWLabel">Base Width (ft):</span> <input type="number" id="dimW" value="10" oninput="updateCalculatedVol()"></label>
+            <label style="flex: 1; min-width: 100px;"><span id="dimHLabel">Height (ft):</span> <input type="number" id="dimH" value="5" oninput="updateCalculatedVol()"></label>
+        </div>
+        <p id="heightWarning" style="display: none; color: var(--danger); background: rgba(220,53,69,0.1); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 10px;"></p>
+        <p style="margin-bottom: 0;"><strong>Calculated Target Volume:</strong> <span id="calculatedVolDisplay">24.81</span> <span id="calculatedVolUnit">cuyd</span></p>
+    </div>
+    
+    <hr style="margin: 30px 0; border-color: var(--border);">
+    
+    <h2 style="text-align: center;">Optimization Priorities & Ranges</h2>
+    <p class="header-note">The calculator will prioritize these factors in the order listed. The top item will be strictly enforced. Drag the handle (≡) to reorder.</p>
+    
+    <ul id="priorityList">
+        <li class="draggable-item" draggable="true" data-id="moisture">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;">Moisture (%) <span class="info-icon" title="Target: 55-65%. Too dry slows decomposition; too wet causes anaerobic conditions and odor.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-moisture-min" value="55"></label>
+                <label>Max: <input type="number" id="tgt-moisture-max" value="65"></label>
+            </div>
+        </li>
+        <li class="draggable-item" draggable="true" data-id="density">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;"><span id="densityPriorityLabel">Density (lb/yd³)</span> <span class="info-icon" title="A proxy for porosity. Dense piles lack oxygen; light piles lack mass to retain heat.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-density-min" value="600"></label>
+                <label>Max: <input type="number" id="tgt-density-max" value="800"></label>
+            </div>
+        </li>
+        <li class="draggable-item" draggable="true" data-id="cn">
+            <span class="drag-handle">≡</span>
+            <strong style="width: 140px;">C:N Ratio <span class="info-icon" title="Target: 25-35. The balance of Carbon (browns) to Nitrogen (greens) that feeds the microbes.">ⓘ</span></strong>
+            <div class="range-inputs">
+                <label>Min: <input type="number" id="tgt-cn-min" value="25"></label>
+                <label>Max: <input type="number" id="tgt-cn-max" value="35"></label>
+            </div>
+        </li>
+    </ul>
+
+    <button class="btn-next" onclick="showTab('tab3')">Next: Add Ingredients &rarr;</button>
+</div>
+
+<div id="tab3" class="tab-content">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Ingredient Manager</h2>
+        <button class="btn-secondary" onclick="openLibraryModal()">📚 Ingredient Library</button>
+    </div>
+    <p class="header-note" style="text-align: left;">
+        Type to search library or use the drop down menu to input available inventory. For a custom item, add the facts from lab testing or a google search with some guess-timation. The calculator builds the pile in stages based on these limits.
+    </p>
+    
+    <div class="table-container">
+        <table id="ingredientTable">
+            <thead>
+                <tr>
+                    <th>Ingredient Name</th>
+                    <th>C:N <span class="info-icon" title="% Carbon divided by % Nitrogen, often provided by lab tests.">ⓘ</span></th>
+                    <th>Density <span id="densityInfoIcon" class="info-icon" title="Bulk weight in lbs per cubic yard">ⓘ</span><br><small id="densityUnitHeader">(lb/yd³)</small></th>
+                    <th>Moist. <span class="info-icon" title="Percentage of total mass that is water">ⓘ</span><br><small>(%)</small></th>
+                    <th>Struct. <span class="info-icon" title="Estimate of feedstock's resistance to compaction. 10 = rigid (woodchips), 1 = mushy (food waste). See Docs and FAQ for more">ⓘ</span><br><small>(1-10)</small></th>
+                    <th id="availHeader">Avail. Inventory <span class="info-icon" title="The maximum amount you currently have. The solver will NOT exceed this limit.">ⓘ</span><br><small>(Cubic Yards)</small></th>
+                    <th style="width: 70px;">Action</th>
+                    <th style="width: 40px;"></th>
+                </tr>
+            </thead>
+            <tbody id="ingredientBody"></tbody>
+        </table>
+    </div>
+    
+    <button class="btn-add" onclick="addIngredientRow()">+ Add Row</button>
+    <button class="btn-solve" onclick="autoSolve()">Generate Phased Operations Sheet &rarr;</button>
+</div>
+
+<div id="tab4" class="tab-content">
+    <div id="results-container">
+        <div id="results">
+            <p style="text-align: center; color: var(--muted);">Run the solver from the ingredients tab to generate your Operations Sheet.</p>
+        </div>
+    </div>
+</div>
+
+<div id="tab5" class="tab-content">
+    <h2>Documentation & Field Guides</h2>
+    <p class="header-note" style="text-align:left;">Click a topic to expand.</p>
+    
+    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+        <summary>📲 How to share recipes between devices (Offline Sync)</summary>
+        <div>
+            <p>Because this app stores data directly on your device, recipes do not automatically sync between your computer and phone. To transfer them:
+            <br>1. On your computer, open the <strong>Recipe Book</strong> and click <strong>Export All</strong> (or export a single card). This downloads a small <code>.json</code> file.
+            <br>2. Send that file to your phone. (Use <strong>AirDrop</strong> for Mac to iPhone, or <strong>Quick Share / Nearby Share</strong> for Windows to Android).
+            <br>3. Open the Optimizer on your phone, click <strong>Import Recipe</strong>, and select the file you just transferred. It will instantly load into your Recipe Book.</p>
+        </div>
+    </details>
+
+    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+        <summary>🔎 Troubleshooting: Why can't I see my prior recipes or ingredients?</summary>
+        <div>
+            <p><strong>Q: I saved recipes/ingredients before, but they're gone now — what happened?</strong><br>
+            A: This app saves everything directly in your browser (recipes in IndexedDB, custom ingredients in localStorage) — nothing is uploaded to a server. That storage is tied to <em>this specific browser, on this specific device</em>. Your data will appear to be "missing" if you:</p>
+            <ul style="margin: 0 0 10px 0; padding-left: 20px;">
+                <li>Open the calculator in a <strong>different browser</strong> (e.g. saved in Chrome, now opening in Edge/Firefox/Safari)</li>
+                <li>Open it on a <strong>different device</strong> or under a different Windows/Mac user account</li>
+                <li>Use a <strong>private/incognito window</strong> (this storage is wiped when the window closes)</li>
+                <li>Recently <strong>cleared your browser's site data / browsing history</strong></li>
+            </ul>
+            <p style="margin-bottom: 0;">Always open the calculator from the same browser to keep your data. To move data between browsers or devices, use <strong>Export All</strong> in the Recipe Book and <strong>Import</strong> it on the other side — see the sync FAQ above.</p>
+        </div>
+    </details>
+
+    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+        <summary>🏗️ What is the Structural Index?</summary>
+        <div>
+            <p>The Structural Index (1-10) is a proxy for how well an ingredient resists compaction. Heavy, wet ingredients (food waste = 1) will compact and go anaerobic if the pile is built too high. Rigid carbon bulking agents (wood chips = 10) hold the pile open. The calculator ensures your overall pile maintains an average Structural Score above 5.0 to maintain Free Air Space (FAS).</p>
+        </div>
+    </details>
+
+    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+        <summary>🧠 ReadMe: Architecture & Simulator Math</summary>
+        <div>
+            <p><strong>The "Strict-to-Relaxed" Priority System</strong><br>
+            In field composting, perfect chemistry is often impossible given available feedstocks. By allowing the user to visually rank priorities via drag-and-drop, the mathematical fitness function penalizes deviations from the top priority heavily, forcing the algorithm to satisfy the most critical parameter first.</p>
+            
+            <p><strong>Weighted Hill-Climbing Algorithm</strong><br>
+            Standard matrix solvers are complex to implement without heavy external libraries. This tool uses a stochastic hill-climbing search, which is lightweight, fast, and easily handles custom weighted penalties for non-linear metrics like ratio-based constraints.</p>
+            
+            <p><strong>Multi-Stage Fractional Optimization (Inventory Caps)</strong><br>
+            The calculator builds the pile in "Phases." It optimizes a ratio, scales it until an ingredient runs out, zeroes that ingredient, and recalculates a new ratio to fulfill the remaining volume. This mirrors how an operator actually builds a pile on the pad, ensuring the <em>total</em> pile meets health standards even if feedstocks run out mid-build.</p>
+        </div>
+    </details>
+</div>
+
+<div id="noteModal" class="modal-overlay" onclick="if(event.target===this) document.getElementById('noteModal').style.display='none'">
+    <div class="modal-content" style="max-width: 400px;">
+        <h2>Add Field Note</h2>
+        <textarea id="noteText" rows="4" style="width: 100%; border: 1px solid var(--border); border-radius: 4px; padding: 10px; background: var(--input-bg); color: var(--input-text); margin-bottom: 10px;"></textarea>
+        <label style="display: block; margin-bottom: 10px; color: var(--muted); font-size: 0.9rem;">
+            Attach Photo (Optional):
+            <input type="file" id="notePhoto" accept="image/*" style="display: block; margin-top: 5px;">
+        </label>
+        <input type="hidden" id="noteRecipeId">
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-secondary" style="flex:1;" onclick="document.getElementById('noteModal').style.display='none'">Cancel</button>
+            <button class="btn-solve" style="margin-top:0; flex:1;" onclick="saveNote()">Save Note</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Global State & IndexedDB Engine ---
+    let fullLibrary = [];
+    let currentLoadedRecipeId = null;
+    let latestSimulationData = null;
+    let densityUnitIsMetric = false; // tracks whether density fields are currently displayed in kg/m3
+
+    // --- Canonical Unit System ---
+    // The solver's internal math always works in metric (m3 for volume, kg/m3 for density,
+    // kg for weight). Every other unit (cuyd, ft, lb/yd3, wheelbarrows, buckets...) is a
+    // display/input convenience that gets converted to/from these canonical values at the
+    // UI boundary. This keeps the core formulas unit-agnostic and simple.
+    const KG_M3_PER_LB_YD3 = 0.593276; // multiply lb/yd3 by this to get kg/m3
+    const M3_PER_CUYD = 0.764555;      // multiply yd3 by this to get m3
+    const M3_PER_FT3 = 0.0283168;      // multiply ft3 by this to get m3
+    const KG_PER_LB = 0.453592;
+
+    function isMetricUnit() { return document.getElementById('unitSelect').value === 'cubicmeters'; }
+    // Density is stored canonically as kg/m3 everywhere (library, saved recipes, solver math).
+    // These helpers convert to/from the lb/yd3 display shown when a non-metric unit is active.
+    function densityToDisplay(canonicalKgM3, isMetric) { return isMetric ? canonicalKgM3 : canonicalKgM3 / KG_M3_PER_LB_YD3; }
+    function densityToCanonical(displayVal, isMetric) { return isMetric ? displayVal : displayVal * KG_M3_PER_LB_YD3; }
+
+    // IndexedDB wrapper for Recipes
+    const dbPromise = new Promise((resolve, reject) => {
+        const req = indexedDB.open('CompostDB', 1);
+        req.onupgradeneeded = e => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains('recipes')) {
+                db.createObjectStore('recipes', { keyPath: 'id' });
+            }
+        };
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror = e => reject(e.target.error);
+    });
+
+    async function getRecipes() {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('recipes', 'readonly');
+            const req = tx.objectStore('recipes').getAll();
+            req.onsuccess = () => resolve(req.result || []);
+        });
+    }
+
+    async function saveRecipeDB(recipe) {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('recipes', 'readwrite');
+            tx.objectStore('recipes').put(recipe);
+            tx.oncomplete = () => resolve();
+        });
+    }
+
+    async function deleteRecipeDB(id) {
+        const db = await dbPromise;
+        return new Promise(resolve => {
+            const tx = db.transaction('recipes', 'readwrite');
+            tx.objectStore('recipes').delete(id);
+            tx.oncomplete = () => resolve();
+        });
+    }
+
+    const UNIT_CONVERSIONS = {
+        "cuyd": { name: "Cubic Yards", toM3: M3_PER_CUYD },
+        "cubicmeters": { name: "Cubic Meters", toM3: 1.0 },
+        "loader": { name: "Buckets", toM3: M3_PER_CUYD }, // bucket size is entered in cuyd; converted below
+        "wheelbarrow": { name: "Wheelbarrows", toM3: 6 * M3_PER_FT3 },
+        "5gal": { name: "5-Gal Buckets", toM3: 5 * 0.00378541 }
+    };
+
+    // Density values below are canonical kg/m3 (converted from the original lb/yd3 figures).
+    const internalLibrary = [
+        { name: "Horse Manure", cn: 25, density: 474.6, moisture: 70, si: 4 },
+        { name: "Wood Chips", cn: 400, density: 237.3, moisture: 20, si: 10 },
+        { name: "Grass Clippings", cn: 15, density: 356.0, moisture: 80, si: 1 },
+        { name: "Cow Manure", cn: 18, density: 830.6, moisture: 80, si: 3 },
+        { name: "Poultry Manure", cn: 10, density: 711.9, moisture: 70, si: 2 },
+        { name: "Vegetable Scraps", cn: 15, density: 474.6, moisture: 85, si: 1 },
+        { name: "Coffee Grounds", cn: 20, density: 474.6, moisture: 60, si: 2 },
+        { name: "Leaves (Dry)", cn: 60, density: 118.7, moisture: 15, si: 6 },
+        { name: "Straw", cn: 80, density: 59.3, moisture: 10, si: 9 },
+        { name: "Cardboard/Paper", cn: 350, density: 89.0, moisture: 5, si: 7 },
+        { name: "Sawdust", cn: 500, density: 207.6, moisture: 15, si: 8 },
+        { name: "Food Waste (Mixed)", cn: 15, density: 593.3, moisture: 75, si: 1 }
+    ];
+
+    // 134-item reference dataset generated from categorized_compost_database.csv (see gen_csv_library.py).
+    // Density values are canonical kg/m3. Categorized for the Ingredient Library modal; NOT merged into
+    // fullLibrary/the Ingredients-tab autocomplete, which stays scoped to internalLibrary + custom items.
+    const csvLibrary = [
+        { name: "Apple filter cake", category: "Crop Residues & Processing Wastes", cn: 16, density: 710.2, moisture: 60, si: 4 },
+        { name: "Apple pomace", category: "Crop Residues & Processing Wastes", cn: 48, density: 908.3, moisture: 88, si: 4 },
+        { name: "Apple processing sludge", category: "Crop Residues & Processing Wastes", cn: 7, density: 837.1, moisture: 59, si: 4 },
+        { name: "Brome Hay UNL", category: "Straw, Hay & Silage", cn: 24, density: 97.3, moisture: 7, si: 7 },
+        { name: "Cocoa Shells", category: "Crop Residues & Processing Wastes", cn: 22, density: 452.1, moisture: 8, si: 4 },
+        { name: "Coffee grounds 2", category: "Crop Residues & Processing Wastes", cn: 18, density: 896.4, moisture: 80, si: 4 },
+        { name: "Corn cobs", category: "Crop Residues & Processing Wastes", cn: 94, density: 318.6, moisture: 15, si: 4 },
+        { name: "Corn stalks 1", category: "Crop Residues & Processing Wastes", cn: 67, density: 20.2, moisture: 12, si: 4 },
+        { name: "Corn Stalks UNL", category: "Crop Residues & Processing Wastes", cn: 29, density: 90.2, moisture: 8, si: 4 },
+        { name: "Cranberry filter cake", category: "Crop Residues & Processing Wastes", cn: 31, density: 605.7, moisture: 55, si: 4 },
+        { name: "Cranberry filter cake (with rice hulls)", category: "Crop Residues & Processing Wastes", cn: 42, density: 768.9, moisture: 71, si: 4 },
+        { name: "Cull Potatoes", category: "Crop Residues & Processing Wastes", cn: 18, density: 910.1, moisture: 78, si: 4 },
+        { name: "Fruit waste WSU", category: "Crop Residues & Processing Wastes", cn: 32, density: 831.8, moisture: 80, si: 4 },
+        { name: "Old Silage UNL", category: "Straw, Hay & Silage", cn: 19, density: 297.8, moisture: 32, si: 7 },
+        { name: "Rice hulls 1", category: "Crop Residues & Processing Wastes", cn: 121, density: 119.8, moisture: 14, si: 4 },
+        { name: "Rice hulls 2", category: "Crop Residues & Processing Wastes", cn: 91, density: 119.8, moisture: 10, si: 4 },
+        { name: "Spent silage", category: "Straw, Hay & Silage", cn: 30, density: 249.8, moisture: 68, si: 7 },
+        { name: "Shredded Broom Corn Stalks with Dry Leaves (SRJC)", category: "Yard Trimmings & Vegetation", cn: 30, density: 108.6, moisture: 58, si: 5 },
+        { name: "Grape Pomace (SRJC)", category: "Crop Residues & Processing Wastes", cn: 15, density: 659.7, moisture: 56, si: 4 },
+        { name: "Vegetable produce", category: "Crop Residues & Processing Wastes", cn: 19, density: 892.9, moisture: 87, si: 4 },
+        { name: "Vegetable Waste", category: "Crop Residues & Processing Wastes", cn: 11, density: 949.8, moisture: 87, si: 4 },
+        { name: "Blood", category: "Meat, Fish & Animal By-Products", cn: 3, density: 900, moisture: 30, si: 2 },
+        { name: "Crab and lobster wastes", category: "Meat, Fish & Animal By-Products", cn: 5, density: 325.1, moisture: 47, si: 2 },
+        { name: "Digester Fiber MSU COTC 2022", category: "Crop Residues & Processing Wastes", cn: 40, density: 596.8, moisture: 83, si: 4 },
+        { name: "Feather Meal UNL", category: "Meat, Fish & Animal By-Products", cn: 4, density: 719.6, moisture: 8, si: 2 },
+        { name: "Feather meal and distillers grain mix UNL", category: "Meat, Fish & Animal By-Products", cn: 7, density: 627.7, moisture: 9, si: 2 },
+        { name: "Paunch manure", category: "Manures & Animal Waste", cn: 25, density: 866.2, moisture: 83, si: 3 },
+        { name: "Poultry Mortalities", category: "Manures & Animal Waste", cn: 5, density: 503.1, moisture: 65, si: 3 },
+        { name: "Laying hens manure", category: "Manures & Animal Waste", cn: 7, density: 835.9, moisture: 49, si: 3 },
+        { name: "Mixed livestock manure, well bedded", category: "Manures & Animal Waste", cn: 31, density: 260.4, moisture: 32, si: 3 },
+        { name: "Pig Farm Slurry", category: "Manures & Animal Waste", cn: 14, density: 881.6, moisture: 90, si: 3 },
+        { name: "Poultry", category: "Manures & Animal Waste", cn: 10, density: 690, moisture: 53, si: 3 },
+        { name: "Poultry Manure", category: "Manures & Animal Waste", cn: 9, density: 861.4, moisture: 20, si: 3 },
+        { name: "Poultry manure broiler WSU 2007", category: "Manures & Animal Waste", cn: 12, density: 496, moisture: 49, si: 3 },
+        { name: "Poultry manure broiler WSU 2008", category: "Manures & Animal Waste", cn: 13, density: 370.8, moisture: 70, si: 3 },
+        { name: "Poultry manure broiler WSU 2009", category: "Manures & Animal Waste", cn: 12, density: 461.6, moisture: 42, si: 3 },
+        { name: "Poultry manure broiler WSU 2010", category: "Manures & Animal Waste", cn: 12, density: 407.6, moisture: 38, si: 3 },
+        { name: "Poultry manure broiler WSU COTC", category: "Manures & Animal Waste", cn: 12, density: 433.7, moisture: 36, si: 3 },
+        { name: "Poultry Manure with Litter CU COTC", category: "Manures & Animal Waste", cn: 9, density: 352.4, moisture: 16, si: 3 },
+        { name: "Sheep", category: "Manures & Animal Waste", cn: 14, density: 1040, moisture: 69, si: 3 },
+        { name: "Cattle manure 4 (SRJC)", category: "Manures & Animal Waste", cn: 18, density: 1120.1, moisture: 68, si: 3 },
+        { name: "Chicken manure (SRJC)", category: "Manures & Animal Waste", cn: 6, density: 875.1, moisture: 13, si: 3 },
+        { name: "Duck Manure (SRJC)", category: "Manures & Animal Waste", cn: 19, density: 480, moisture: 52, si: 3 },
+        { name: "Stable", category: "Manures & Animal Waste", cn: 13, density: 795, moisture: 58, si: 3 },
+        { name: "Straw Wheat", category: "Straw, Hay & Silage", cn: 85, density: 199.9, moisture: 28, si: 7 },
+        { name: "Swine", category: "Manures & Animal Waste", cn: 13, density: 841.3, moisture: 80, si: 3 },
+        { name: "Turkey litter", category: "Manures & Animal Waste", cn: 16, density: 465.7, moisture: 26, si: 3 },
+        { name: "Vet Hospital Manure and Bedding", category: "Manures & Animal Waste", cn: 59, density: 210, moisture: 53, si: 3 },
+        { name: "Beef penpack manure MSU COTC 2022", category: "Manures & Animal Waste", cn: 12, density: 512.6, moisture: 30, si: 3 },
+        { name: "Broiler litter", category: "Manures & Animal Waste", cn: 14, density: 512.6, moisture: 37, si: 3 },
+        { name: "Cattle 1", category: "Manures & Animal Waste", cn: 19, density: 866.2, moisture: 81, si: 3 },
+        { name: "Cattle 2", category: "Manures & Animal Waste", cn: 17, density: 866.2, moisture: 81, si: 3 },
+        { name: "Dairy cow", category: "Manures & Animal Waste", cn: 13, density: 795, moisture: 80, si: 3 },
+        { name: "Dairy manure and rice hulls", category: "Manures & Animal Waste", cn: 43, density: 458, moisture: 73, si: 3 },
+        { name: "Dairy Manure (no bedding)", category: "Manures & Animal Waste", cn: 18, density: 1299.9, moisture: 84, si: 3 },
+        { name: "Dairy manure solids", category: "Manures & Animal Waste", cn: 58, density: 428.9, moisture: 73, si: 3 },
+        { name: "Dairy manure with bedding", category: "Manures & Animal Waste", cn: 19, density: 790.2, moisture: 67, si: 3 },
+        { name: "Dairy solids WSU 2007", category: "Manures & Animal Waste", cn: 33, density: 846, moisture: 81, si: 3 },
+        { name: "Dairy solids WSU 2008", category: "Manures & Animal Waste", cn: 29, density: 762.4, moisture: 83, si: 3 },
+        { name: "Dairy solids WSU 2009", category: "Manures & Animal Waste", cn: 57, density: 709.6, moisture: 81, si: 3 },
+        { name: "Urine", category: "Liquids & Additives", cn: 1, density: 1021.6, moisture: 95, si: 1 },
+        { name: "Water", category: "Liquids & Additives", cn: 0, density: 997.9, moisture: 100, si: 1 },
+        { name: "Straw 1", category: "Straw, Hay & Silage", cn: 35, density: 127.6, moisture: 12, si: 7 },
+        { name: "Straw 2", category: "Straw, Hay & Silage", cn: 80, density: 127.6, moisture: 7, si: 7 },
+        { name: "Straw Oat", category: "Straw, Hay & Silage", cn: 60, density: 199.9, moisture: 18, si: 7 },
+        { name: "Straw, Stable Bedding", category: "Straw, Hay & Silage", cn: 127, density: 199.9, moisture: 18, si: 7 },
+        { name: "Dairy solids WSU 2010", category: "Manures & Animal Waste", cn: 47, density: 641.3, moisture: 83, si: 3 },
+        { name: "Dairy solids WSU COTC", category: "Manures & Animal Waste", cn: 42, density: 728.5, moisture: 87, si: 3 },
+        { name: "Dry Manure UNL", category: "Manures & Animal Waste", cn: 13, density: 669.8, moisture: 17, si: 3 },
+        { name: "Feedlot Pen UNL", category: "Manures & Animal Waste", cn: 21, density: 659.7, moisture: 28, si: 3 },
+        { name: "Heifer manure, moderate bedding", category: "Manures & Animal Waste", cn: 28, density: 542.3, moisture: 72, si: 3 },
+        { name: "Horse (general manure)", category: "Manures & Animal Waste", cn: 30, density: 729.1, moisture: 72, si: 3 },
+        { name: "Horse Bedding", category: "Manures & Animal Waste", cn: 35, density: 220.1, moisture: 32, si: 3 },
+        { name: "Horse bedding UNL", category: "Manures & Animal Waste", cn: 25, density: 113.9, moisture: 14, si: 3 },
+        { name: "Horse manure CPP COTC", category: "Manures & Animal Waste", cn: 22, density: 380.3, moisture: 56, si: 3 },
+        { name: "Horse manure SUNY-C COTC", category: "Manures & Animal Waste", cn: 30, density: 148.3, moisture: 34, si: 3 },
+        { name: "Horse Manure and bedding CU COTC", category: "Manures & Animal Waste", cn: 1, density: 640.1, moisture: 56, si: 3 },
+        { name: "Horse manure and bedding UCD COTC", category: "Manures & Animal Waste", cn: 34, density: 189.8, moisture: 68, si: 3 },
+        { name: "Bakery Waste", category: "Food & Municipal Waste", cn: 28, density: 249.8, moisture: 10, si: 1 },
+        { name: "Fair waste WSU 2007", category: "Food & Municipal Waste", cn: 60, density: 170.3, moisture: 55, si: 1 },
+        { name: "Fair waste WSU 2008", category: "Food & Municipal Waste", cn: 126, density: 185.7, moisture: 50, si: 1 },
+        { name: "Fair waste WSU 2009", category: "Food & Municipal Waste", cn: 107, density: 144.2, moisture: 43, si: 1 },
+        { name: "Fair waste WSU 2010", category: "Food & Municipal Waste", cn: 36, density: 110.9, moisture: 42, si: 1 },
+        { name: "Fair waste WSU COTC", category: "Food & Municipal Waste", cn: 64, density: 151.3, moisture: 48, si: 1 },
+        { name: "Food Scraps CU COTC", category: "Food & Municipal Waste", cn: 20, density: 625.9, moisture: 75, si: 1 },
+        { name: "Food Waste WSU", category: "Food & Municipal Waste", cn: 14, density: 603.4, moisture: 65, si: 1 },
+        { name: "Food waste, salad NC COTC", category: "Food & Municipal Waste", cn: 12, density: 1246.5, moisture: 90, si: 1 },
+        { name: "Garbage (food waste)", category: "Food & Municipal Waste", cn: 15, density: 596.2, moisture: 40, si: 1 },
+        { name: "Kitchen and garden waste", category: "Food & Municipal Waste", cn: 15, density: 700.1, moisture: 60, si: 1 },
+        { name: "Sewage sludge 1", category: "Food & Municipal Waste", cn: 13, density: 836.5, moisture: 78, si: 1 },
+        { name: "Sewage sludge 2", category: "Food & Municipal Waste", cn: 10, density: 910.1, moisture: 38, si: 1 },
+        { name: "Food waste - dehydrated (SRJC)", category: "Food & Municipal Waste", cn: 16, density: 589.7, moisture: 19, si: 1 },
+        { name: "Paper pulp", category: "Wood & Paper", cn: 90, density: 835.9, moisture: 82, si: 8 },
+        { name: "Sawdust 1", category: "Wood & Paper", cn: 442, density: 240.3, moisture: 39, si: 8 },
+        { name: "Sawdust 2", category: "Wood & Paper", cn: 247, density: 240.3, moisture: 42, si: 8 },
+        { name: "Shrub trimmings", category: "Yard Trimmings & Vegetation", cn: 53, density: 259.9, moisture: 15, si: 5 },
+        { name: "Softwood (chips, shavings, and so on)", category: "Wood & Paper", cn: 641, density: 189.8, moisture: 20, si: 8 },
+        { name: "Woodchip mulch (SRJC)", category: "Wood & Paper", cn: 38, density: 710.2, moisture: 47, si: 8 },
+        { name: "Woodchips, Raw (SRJC)", category: "Wood & Paper", cn: 46, density: 310.9, moisture: 70, si: 8 },
+        { name: "Telephone books", category: "Wood & Paper", cn: 772, density: 149.5, moisture: 6, si: 8 },
+        { name: "Tree trimmings", category: "Yard Trimmings & Vegetation", cn: 16, density: 768.9, moisture: 70, si: 5 },
+        { name: "Wood Shavings/Sawdust", category: "Wood & Paper", cn: 500, density: 240.3, moisture: 20, si: 8 },
+        { name: "Woodchips, Softwood", category: "Wood & Paper", cn: 102, density: 240.3, moisture: 40, si: 8 },
+        { name: "Woodchips CU COTC", category: "Wood & Paper", cn: 100, density: 430.1, moisture: 45, si: 8 },
+        { name: "Cardboard", category: "Wood & Paper", cn: 378, density: 160.2, moisture: 8, si: 8 },
+        { name: "Corrugated cardboard", category: "Wood & Paper", cn: 563, density: 153.7, moisture: 8, si: 8 },
+        { name: "Grass (compacted)", category: "Yard Trimmings & Vegetation", cn: 15, density: 380.3, moisture: 52, si: 5 },
+        { name: "Grass (loose)", category: "Yard Trimmings & Vegetation", cn: 15, density: 178, moisture: 52, si: 5 },
+        { name: "Green Waste", category: "Yard Trimmings & Vegetation", cn: 53, density: 300.2, moisture: 30, si: 5 },
+        { name: "Greenhouse cleanout", category: "Yard Trimmings & Vegetation", cn: 21, density: 608.1, moisture: 70, si: 5 },
+        { name: "Ground green waste UCD COTC", category: "Yard Trimmings & Vegetation", cn: 47, density: 339.9, moisture: 41, si: 5 },
+        { name: "Ground greenwaste SRJC COTC", category: "Yard Trimmings & Vegetation", cn: 57, density: 348.8, moisture: 29, si: 5 },
+        { name: "Ground wood SUNY-C COTC", category: "Wood & Paper", cn: 61, density: 608.1, moisture: 30, si: 8 },
+        { name: "Hardwood (chips, shavings, and so on)", category: "Wood & Paper", cn: 560, density: 326.3, moisture: 50, si: 8 },
+        { name: "Landscape Browns", category: "Yard Trimmings & Vegetation", cn: 64, density: 148.3, moisture: 20, si: 5 },
+        { name: "Landscape Greens", category: "Yard Trimmings & Vegetation", cn: 13, density: 70, moisture: 24, si: 5 },
+        { name: "Leaves", category: "Yard Trimmings & Vegetation", cn: 54, density: 240.3, moisture: 65, si: 5 },
+        { name: "Leaves, NC COTC", category: "Yard Trimmings & Vegetation", cn: 54, density: 460.4, moisture: 52, si: 5 },
+        { name: "Leaves, Compacted and wet WSU", category: "Yard Trimmings & Vegetation", cn: 47, density: 537.5, moisture: 28, si: 5 },
+        { name: "Leaves, Compacted and moist Cornell", category: "Yard Trimmings & Vegetation", cn: 54, density: 290.7, moisture: 38, si: 5 },
+        { name: "Leaves, Fresh", category: "Yard Trimmings & Vegetation", cn: 37, density: 119.8, moisture: 10, si: 5 },
+        { name: "Leaves, Loose and dry 1", category: "Yard Trimmings & Vegetation", cn: 47, density: 88.4, moisture: 48, si: 5 },
+        { name: "Leaves, Loose and dry 2", category: "Yard Trimmings & Vegetation", cn: 54, density: 119.8, moisture: 15, si: 5 },
+        { name: "Mulch UNL", category: "Yard Trimmings & Vegetation", cn: 50, density: 259.9, moisture: 17, si: 5 },
+        { name: "Newsprint 1", category: "Wood & Paper", cn: 625, density: 160.2, moisture: 6, si: 8 },
+        { name: "Newsprint 2", category: "Wood & Paper", cn: 323, density: 160.2, moisture: 6, si: 8 },
+        { name: "Paper & Card Waste", category: "Wood & Paper", cn: 500, density: 160.2, moisture: 7, si: 8 },
+        { name: "Paper, Office", category: "Wood & Paper", cn: 129, density: 178, moisture: 28, si: 8 },
+        { name: "Woodchips SUNY-C COTC", category: "Wood & Paper", cn: 140, density: 312.1, moisture: 50, si: 8 },
+        { name: "Yard trimmings MSU 2007", category: "Yard Trimmings & Vegetation", cn: 21, density: 399.3, moisture: 61, si: 5 },
+        { name: "Yard trimmings MSU 2008", category: "Yard Trimmings & Vegetation", cn: 29, density: 399.9, moisture: 53, si: 5 },
+        { name: "Yard trimmings MSU 2009", category: "Yard Trimmings & Vegetation", cn: 43, density: 497.2, moisture: 58, si: 5 },
+        { name: "Yard trimmings MSU 2010", category: "Yard Trimmings & Vegetation", cn: 23, density: 474.6, moisture: 47, si: 5 },
+        { name: "Yard trimmings MSU COTC", category: "Yard Trimmings & Vegetation", cn: 28, density: 480.6, moisture: 51, si: 5 }
+    ];
+
+    window.onload = async () => {
+        migrateLibraryUnitsIfNeeded();
+        loadLibrary();
+        addIngredientRow();
+        toggleVolumeUI();
+        initDragAndDrop();
+        checkTheme();
+        await renderRecipeBook();
+    };
+
+    // One-time migration: earlier versions stored custom ingredient density canonically as
+    // lb/yd3; the solver now works in kg/m3 internally, so existing saved values need converting
+    // once so they don't silently get reinterpreted under the new unit.
+    function migrateLibraryUnitsIfNeeded() {
+        if (localStorage.getItem('compostLibraryUnitSchema') === 'kgm3') return;
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        if (customLib.length > 0) {
+            customLib = customLib.map(item => ({ ...item, density: item.density * KG_M3_PER_LB_YD3 }));
+            localStorage.setItem('compostLibrary', JSON.stringify(customLib));
+        }
+        localStorage.setItem('compostLibraryUnitSchema', 'kgm3');
+    }
+
+    // --- Dark Mode ---
+    function checkTheme() {
+        if(localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').innerText = '☀️';
+        }
+    }
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        document.getElementById('themeToggle').innerText = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // --- UI Routing & FAQ Accordions ---
+    function showTab(id) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
+        document.getElementById('nav-' + id).classList.add('active-nav');
+        if(id === 'tab1') renderRecipeBook();
+    }
+
+    function closeOtherAccordions(activeEl) {
+        document.querySelectorAll('.faq-accordion').forEach(el => {
+            if(el !== activeEl) el.removeAttribute('open');
+        });
+    }
+
+    // --- Drag and Drop Logic (Fluid Shifting) ---
+    function initDragAndDrop() {
+        let draggedItem = null;
+        const list = document.getElementById('priorityList');
+
+        list.addEventListener('dragstart', e => {
+            if(e.target.classList.contains('draggable-item')) {
+                draggedItem = e.target;
+                setTimeout(() => draggedItem.classList.add('dragging'), 0);
+            }
+        });
+
+        list.addEventListener('dragend', e => {
+            if(draggedItem) {
+                draggedItem.classList.remove('dragging');
+                draggedItem = null;
+            }
+        });
+
+        list.addEventListener('dragover', e => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(list, e.clientY);
+            if (draggedItem) {
+                if (afterElement == null) {
+                    list.appendChild(draggedItem);
+                } else {
+                    list.insertBefore(draggedItem, afterElement);
+                }
+            }
+        });
+    }
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.draggable-item:not(.dragging)')];
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    // --- Ingredient Library Management ---
+    function loadLibrary() {
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const libMap = new Map();
+        internalLibrary.forEach(item => libMap.set(item.name.toLowerCase(), item));
+        csvLibrary.forEach(item => libMap.set(item.name.toLowerCase(), item));
+        customLib.forEach(item => libMap.set(item.name.toLowerCase(), item)); // custom edits win on name collisions
+        fullLibrary = Array.from(libMap.values());
+        document.getElementById('ingredient-library').innerHTML = fullLibrary.map(item => `<option value="${item.name}">`).join('');
+    }
+
+    // Fixed display order for the Reference Database's collapsible category sections.
+    const CSV_CATEGORY_ORDER = [
+        'Manures & Animal Waste',
+        'Yard Trimmings & Vegetation',
+        'Wood & Paper',
+        'Food & Municipal Waste',
+        'Crop Residues & Processing Wastes',
+        'Straw, Hay & Silage',
+        'Meat, Fish & Animal By-Products',
+        'Liquids & Additives'
+    ];
+
+    function openLibraryModal() {
+        document.getElementById('libDensityHeader').innerText = isMetricUnit() ? 'Density (kg/m³)' : 'Density (lb/yd³)';
+        renderCustomLibrarySection();
+        renderCsvLibrarySections();
+        const search = document.getElementById('libSearchInput');
+        search.value = '';
+        filterIngredientLibrary('');
+        document.getElementById('libraryModal').style.display = "flex";
+        search.focus();
+    }
+
+    function closeLibraryModal() { document.getElementById('libraryModal').style.display = "none"; }
+
+    function renderCustomLibrarySection() {
+        const listContainer = document.getElementById('customLibraryList');
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const isMetric = isMetricUnit();
+        if (customLib.length === 0) {
+            listContainer.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No custom ingredients saved yet. Use \"Save to Lib\" on the Ingredients tab to add one.</td></tr>";
+        } else {
+            listContainer.innerHTML = customLib.map((item, idx) => `
+                <tr id="libRow_${idx}" class="lib-row" data-name="${item.name.toLowerCase()}">
+                    <td><input type="text" value="${item.name}" style="min-width:100px;" oninput="document.getElementById('libBtn_${idx}').disabled=false"></td>
+                    <td><input type="number" value="${item.cn}" style="width:60px;" oninput="document.getElementById('libBtn_${idx}').disabled=false"></td>
+                    <td><input type="number" value="${densityToDisplay(item.density, isMetric).toFixed(1)}" style="width:70px;" oninput="document.getElementById('libBtn_${idx}').disabled=false"></td>
+                    <td><input type="number" value="${item.moisture}" style="width:60px;" oninput="document.getElementById('libBtn_${idx}').disabled=false"></td>
+                    <td><input type="number" value="${item.si}" style="width:50px;" oninput="document.getElementById('libBtn_${idx}').disabled=false"></td>
+                    <td><input type="number" class="lib-inv-input" placeholder="∞" style="width:60px;"></td>
+                    <td style="display:flex; gap:5px; flex-wrap: wrap;">
+                        <button id="libBtn_${idx}" class="btn-save active-save" disabled onclick="updateCustomItem(${idx})">Save</button>
+                        <button class="btn-secondary" style="padding:5px 8px; font-size:0.8rem;" onclick="loadCustomItemToCalculator(${idx}, this)">Load</button>
+                        <button class="remove-btn" style="font-size:1rem; padding: 5px;" onclick="deleteCustomItem(${idx})">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    }
+
+    function renderCsvLibrarySections() {
+        const container = document.getElementById('libCsvSections');
+        const isMetric = isMetricUnit();
+        const byCategory = {};
+        csvLibrary.forEach((item, idx) => {
+            (byCategory[item.category] = byCategory[item.category] || []).push(idx);
+        });
+        const orderedCats = CSV_CATEGORY_ORDER.filter(c => byCategory[c]);
+        container.innerHTML = orderedCats.map(cat => {
+            const idxs = byCategory[cat];
+            const rows = idxs.map(idx => {
+                const item = csvLibrary[idx];
+                return `
+                    <tr class="lib-row" data-name="${item.name.toLowerCase()}">
+                        <td>${item.name}</td>
+                        <td>${item.cn}</td>
+                        <td>${densityToDisplay(item.density, isMetric).toFixed(1)}</td>
+                        <td>${item.moisture}</td>
+                        <td>${item.si}</td>
+                        <td><input type="number" class="lib-inv-input" placeholder="∞" style="width:60px;"></td>
+                        <td><button class="btn-secondary" style="padding:5px 10px; font-size:0.8rem;" onclick="loadCsvItemToCalculator(${idx}, this)">Load</button></td>
+                    </tr>`;
+            }).join('');
+            return `
+                <details class="lib-category">
+                    <summary>${cat} <span style="font-weight: normal; color: var(--muted);">(${idxs.length})</span></summary>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Name</th><th>C:N</th><th>Density</th><th>Moist.</th><th>SI</th><th>Inventory</th><th>Load</th></tr></thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
+                </details>`;
+        }).join('');
+    }
+
+    // Filters both "Your Items" rows and Reference Database rows by name; auto-expands
+    // (and hides empty) category sections while a search query is active.
+    function filterIngredientLibrary(query) {
+        const q = query.trim().toLowerCase();
+        document.querySelectorAll('#libraryModal .lib-row').forEach(row => {
+            row.style.display = (!q || row.getAttribute('data-name').includes(q)) ? '' : 'none';
+        });
+        document.querySelectorAll('#libraryModal .lib-category').forEach(details => {
+            if (!q) { details.open = false; details.style.display = ''; return; }
+            const anyVisible = Array.from(details.querySelectorAll('.lib-row')).some(r => r.style.display !== 'none');
+            details.open = anyVisible;
+            details.style.display = anyVisible ? '' : 'none';
+        });
+    }
+
+    function loadItemDataToCalculator(itemData, invValue) {
+        addIngredientRow();
+        const rows = document.querySelectorAll('#ingredientBody tr');
+        const row = rows[rows.length - 1];
+        const isMetric = isMetricUnit();
+        row.querySelector('.ing-name').value = itemData.name;
+        row.querySelector('.ing-cn').value = itemData.cn;
+        row.querySelector('.ing-density').value = densityToDisplay(itemData.density, isMetric).toFixed(1);
+        row.querySelector('.ing-moisture').value = itemData.moisture;
+        row.querySelector('.ing-si').value = itemData.si;
+        if (invValue !== '' && invValue != null && !isNaN(parseFloat(invValue))) row.querySelector('.ing-avail').value = invValue;
+        closeLibraryModal();
+        showTab('tab3');
+        if (row.scrollIntoView) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function loadCsvItemToCalculator(idx, btn) {
+        const invInput = btn.closest('tr').querySelector('.lib-inv-input');
+        loadItemDataToCalculator(csvLibrary[idx], invInput ? invInput.value : '');
+    }
+
+    function loadCustomItemToCalculator(idx, btn) {
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const invInput = btn.closest('tr').querySelector('.lib-inv-input');
+        loadItemDataToCalculator(customLib[idx], invInput ? invInput.value : '');
+    }
+
+    function updateCustomItem(idx) {
+        const row = document.getElementById(`libRow_${idx}`);
+        const inputs = row.querySelectorAll('input');
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        customLib[idx] = {
+            name: inputs[0].value, cn: parseFloat(inputs[1].value),
+            density: densityToCanonical(parseFloat(inputs[2].value), isMetricUnit()), moisture: parseFloat(inputs[3].value),
+            si: parseFloat(inputs[4].value)
+        };
+        localStorage.setItem('compostLibrary', JSON.stringify(customLib));
+        loadLibrary();
+        const btn = document.getElementById(`libBtn_${idx}`);
+        btn.innerHTML = "Saved"; btn.disabled = true;
+    }
+
+    function deleteCustomItem(idx) {
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        customLib.splice(idx, 1);
+        localStorage.setItem('compostLibrary', JSON.stringify(customLib));
+        loadLibrary(); openLibraryModal();
+    }
+
+    function addIngredientRow() {
+        const tbody = document.getElementById('ingredientBody');
+        const row = document.createElement('tr');
+        const densityPlaceholder = isMetricUnit() ? Math.round(densityToDisplay(600, true)) : 600;
+        row.innerHTML = `
+            <td><input type="text" class="ing-name" list="ingredient-library" placeholder="Name..." onchange="autofillRow(this)"></td>
+            <td><input type="number" class="ing-cn ing-num" placeholder="30" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-density ing-num" placeholder="${densityPlaceholder}" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-moisture ing-num" placeholder="50" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-si ing-num" placeholder="5" min="1" max="10" oninput="markAsEdited(this)"></td>
+            <td><input type="number" class="ing-avail ing-num" placeholder="∞"></td>
+            <td><button class="btn-save" disabled onclick="saveCustomIngredient(this)">Save to Lib</button></td>
+            <td style="text-align: center;"><button class="remove-btn" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+        `;
+        tbody.appendChild(row);
+    }
+
+    function autofillRow(inputElement) {
+        const row = inputElement.closest('tr');
+        const item = fullLibrary.find(i => i.name.toLowerCase() === inputElement.value.trim().toLowerCase());
+        if (item) {
+            row.querySelector('.ing-cn').value = item.cn;
+            row.querySelector('.ing-density').value = densityToDisplay(item.density, isMetricUnit()).toFixed(1);
+            row.querySelector('.ing-moisture').value = item.moisture;
+            row.querySelector('.ing-si').value = item.si || 5;
+            const btn = row.querySelector('.btn-save');
+            btn.classList.remove('active-save'); btn.disabled = true;
+        }
+    }
+    function markAsEdited(el) {
+        const btn = el.closest('tr').querySelector('.btn-save');
+        btn.classList.add('active-save'); btn.disabled = false;
+    }
+    function saveCustomIngredient(btn) {
+        const row = btn.closest('tr');
+        const name = row.querySelector('.ing-name').value.trim();
+        const cn = parseFloat(row.querySelector('.ing-cn').value);
+        const density = densityToCanonical(parseFloat(row.querySelector('.ing-density').value), isMetricUnit());
+        const moisture = parseFloat(row.querySelector('.ing-moisture').value);
+        const si = parseFloat(row.querySelector('.ing-si').value) || 5;
+
+        if (!name || isNaN(cn) || isNaN(density) || isNaN(moisture)) return alert("Please fill out required fields.");
+
+        let customLib = JSON.parse(localStorage.getItem('compostLibrary')) || [];
+        const idx = customLib.findIndex(i => i.name.toLowerCase() === name.toLowerCase());
+        const newItem = { name, cn, density, moisture, si };
+        if (idx > -1) customLib[idx] = newItem; else customLib.push(newItem);
+        localStorage.setItem('compostLibrary', JSON.stringify(customLib));
+        loadLibrary();
+        btn.innerHTML = "Saved!"; btn.classList.remove('active-save'); btn.disabled = true;
+        setTimeout(() => { btn.innerHTML = "Save to Lib"; }, 2000);
+    }
+
+    // --- Tab 2 Settings ---
+    function toggleVolumeUI() {
+        const unit = document.getElementById('unitSelect').value;
+        const mode = document.getElementById('batchModeSelect').value;
+        const isMetric = (unit === 'cubicmeters');
+        document.getElementById('loaderVolContainer').style.display = (unit === 'loader') ? 'block' : 'none';
+
+        if (mode === 'direct') {
+            document.getElementById('directVolContainer').style.display = 'block';
+            document.getElementById('dimensionsContainer').style.display = 'none';
+        } else {
+            document.getElementById('directVolContainer').style.display = 'none';
+            document.getElementById('dimensionsContainer').style.display = 'block';
+            updateCalculatedVol();
+        }
+        const unitName = UNIT_CONVERSIONS[unit].name;
+        document.getElementById('availHeader').innerHTML = `Avail. Inventory <span class="info-icon" title="Max limits.">ⓘ</span><br><small>(${unitName})</small>`;
+
+        document.getElementById('targetVolLabel').innerText = isMetric ? 'Target Batch Volume (m³):' : 'Target Batch Volume (cuyd):';
+        document.getElementById('dimLLabel').innerText = isMetric ? 'Length (m):' : 'Length (ft):';
+        document.getElementById('dimWLabel').innerText = isMetric ? 'Base Width (m):' : 'Base Width (ft):';
+        document.getElementById('dimHLabel').innerText = isMetric ? 'Height (m):' : 'Height (ft):';
+        document.getElementById('dimFormulaNote').innerText = isMetric
+            ? 'Calculates cubic meters using a parabolic profile (Base × Height × 0.67 × Length).'
+            : 'Calculates cubic yards using a parabolic profile (Base × Height × 0.67 × Length).';
+
+        convertDensityFieldsForUnitChange(isMetric);
+        document.getElementById('densityPriorityLabel').innerText = isMetric ? 'Density (kg/m³)' : 'Density (lb/yd³)';
+        document.getElementById('densityUnitHeader').innerText = isMetric ? '(kg/m³)' : '(lb/yd³)';
+        document.getElementById('densityInfoIcon').title = isMetric ? 'Bulk weight in kilograms per cubic meter' : 'Bulk weight in lbs per cubic yard';
+    }
+
+    // Keeps density values semantically correct when the unit toggles between metric and imperial
+    // by converting whatever is currently typed in-place (rather than leaving stale numbers under a new label).
+    function convertDensityFieldsForUnitChange(newIsMetric) {
+        if (newIsMetric === densityUnitIsMetric) return;
+        const convert = (val) => newIsMetric ? val * KG_M3_PER_LB_YD3 : val / KG_M3_PER_LB_YD3;
+        document.querySelectorAll('.ing-density').forEach(inp => {
+            const v = parseFloat(inp.value);
+            if (!isNaN(v)) inp.value = convert(v).toFixed(1);
+        });
+        ['tgt-density-min', 'tgt-density-max'].forEach(id => {
+            const el = document.getElementById(id);
+            const v = parseFloat(el.value);
+            if (!isNaN(v)) el.value = Math.round(convert(v));
+        });
+        densityUnitIsMetric = newIsMetric;
+    }
+
+    function updateCalculatedVol() {
+        const l = parseFloat(document.getElementById('dimL').value) || 0, w = parseFloat(document.getElementById('dimW').value) || 0, h = parseFloat(document.getElementById('dimH').value) || 0;
+        const hWarn = document.getElementById('heightWarning');
+        // Changed to 5/8ths compaction ratio
+        if (h > (w * 5 / 8) && w > 0) { hWarn.style.display = 'block'; hWarn.innerText = "⚠️ Height is more than 5/8ths width - pile risks over compaction. A high structural index is required."; }
+        else hWarn.style.display = 'none';
+        const isMetric = document.getElementById('unitSelect').value === 'cubicmeters';
+        const rawVol = w * h * 0.67 * l; // cubic ft (imperial inputs) or cubic meters (metric inputs)
+        const displayVol = isMetric ? rawVol : (rawVol / 27);
+        document.getElementById('calculatedVolDisplay').innerText = displayVol.toFixed(2);
+        document.getElementById('calculatedVolUnit').innerText = isMetric ? 'm³' : 'cuyd';
+    }
+
+    function getTargetVolumeM3() {
+        const isMetric = document.getElementById('unitSelect').value === 'cubicmeters';
+        if (document.getElementById('batchModeSelect').value === 'direct') {
+            const val = parseFloat(document.getElementById('targetBatchVol').value) || 1.0;
+            return isMetric ? val : val * M3_PER_CUYD;
+        } else {
+            const l = parseFloat(document.getElementById('dimL').value) || 0, w = parseFloat(document.getElementById('dimW').value) || 0, h = parseFloat(document.getElementById('dimH').value) || 0;
+            const rawVol = w * h * 0.67 * l;
+            return isMetric ? rawVol : rawVol * M3_PER_FT3;
+        }
+    }
+    function getUnitMultiplier() {
+        const unit = document.getElementById('unitSelect').value;
+        if (unit === 'loader') return (parseFloat(document.getElementById('customBucketVol').value) || 1.0) * M3_PER_CUYD;
+        return UNIT_CONVERSIONS[unit].toM3;
+    }
+
+    // --- Recipe Book / Persistence Logic ---
+    function startNewRecipe() {
+        currentLoadedRecipeId = null;
+        document.getElementById('ingredientBody').innerHTML = '';
+        addIngredientRow();
+        showTab('tab2');
+    }
+
+    function captureWorkbenchState() {
+        const constraints = {
+            unit: document.getElementById('unitSelect').value,
+            customBucketVol: document.getElementById('customBucketVol').value,
+            batchMode: document.getElementById('batchModeSelect').value,
+            targetBatchVol: document.getElementById('targetBatchVol').value,
+            dimL: document.getElementById('dimL').value,
+            dimW: document.getElementById('dimW').value,
+            dimH: document.getElementById('dimH').value,
+            targets: {
+                moisture: { min: document.getElementById('tgt-moisture-min').value, max: document.getElementById('tgt-moisture-max').value },
+                density: { min: document.getElementById('tgt-density-min').value, max: document.getElementById('tgt-density-max').value },
+                cn: { min: document.getElementById('tgt-cn-min').value, max: document.getElementById('tgt-cn-max').value }
+            },
+            priorityOrder: Array.from(document.querySelectorAll('#priorityList .draggable-item')).map(n => n.getAttribute('data-id'))
+        };
+
+        const ingredients = [];
+        document.querySelectorAll('#ingredientBody tr').forEach((row) => {
+            const name = row.querySelector('.ing-name').value;
+            const cn = row.querySelector('.ing-cn').value;
+            const density = row.querySelector('.ing-density').value;
+            const moisture = row.querySelector('.ing-moisture').value;
+            const si = row.querySelector('.ing-si').value;
+            const avail = row.querySelector('.ing-avail').value;
+            if(name || cn || density || moisture) ingredients.push({ name, cn, density, moisture, si, avail });
+        });
+
+        return { constraints, ingredients };
+    }
+
+    async function saveSimulationToBook(asNew = false) {
+        const nameInput = document.getElementById('currentRecipeName');
+        if (!nameInput.value) return alert("Please provide a recipe name.");
+
+        let isUpdate = currentLoadedRecipeId && !asNew;
+        let recipeId = isUpdate ? currentLoadedRecipeId : Date.now().toString();
+
+        let notes = [];
+        if (isUpdate) {
+            const allR = await getRecipes();
+            const existing = allR.find(r => r.id === recipeId);
+            if (existing && existing.notes) notes = existing.notes;
+        }
+
+        const newRecipe = {
+            id: recipeId,
+            title: nameInput.value,
+            date: new Date().toLocaleDateString(),
+            notes: notes,
+            workbench: captureWorkbenchState(),
+            results: latestSimulationData
+        };
+
+        await saveRecipeDB(newRecipe);
+        currentLoadedRecipeId = recipeId;
+        alert(isUpdate ? "Recipe Updated!" : "New Recipe Saved!");
+        await renderRecipeBook();
+    }
+
+    async function loadRecipeToWorkbench(id) {
+        const allR = await getRecipes();
+        const recipe = allR.find(r => r.id === id);
+        if (!recipe) return;
+
+        currentLoadedRecipeId = id;
+
+        const c = recipe.workbench.constraints;
+        document.getElementById('unitSelect').value = c.unit;
+        document.getElementById('customBucketVol').value = c.customBucketVol;
+        document.getElementById('batchModeSelect').value = c.batchMode;
+        document.getElementById('targetBatchVol').value = c.targetBatchVol;
+        document.getElementById('dimL').value = c.dimL;
+        document.getElementById('dimW').value = c.dimW;
+        document.getElementById('dimH').value = c.dimH;
+        toggleVolumeUI();
+
+        document.getElementById('tgt-moisture-min').value = c.targets.moisture.min;
+        document.getElementById('tgt-moisture-max').value = c.targets.moisture.max;
+        document.getElementById('tgt-density-min').value = c.targets.density.min;
+        document.getElementById('tgt-density-max').value = c.targets.density.max;
+        document.getElementById('tgt-cn-min').value = c.targets.cn.min;
+        document.getElementById('tgt-cn-max').value = c.targets.cn.max;
+
+        const list = document.getElementById('priorityList');
+        c.priorityOrder.forEach(itemId => {
+            const el = list.querySelector(`.draggable-item[data-id="${itemId}"]`);
+            if (el) list.appendChild(el);
+        });
+
+        const tbody = document.getElementById('ingredientBody');
+        tbody.innerHTML = '';
+        recipe.workbench.ingredients.forEach(ing => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" class="ing-name" list="ingredient-library" value="${ing.name}" onchange="autofillRow(this)"></td>
+                <td><input type="number" class="ing-cn ing-num" value="${ing.cn}" oninput="markAsEdited(this)"></td>
+                <td><input type="number" class="ing-density ing-num" value="${ing.density}" oninput="markAsEdited(this)"></td>
+                <td><input type="number" class="ing-moisture ing-num" value="${ing.moisture}" oninput="markAsEdited(this)"></td>
+                <td><input type="number" class="ing-si ing-num" value="${ing.si}" oninput="markAsEdited(this)"></td>
+                <td><input type="number" class="ing-avail ing-num" value="${ing.avail}"></td>
+                <td><button class="btn-save" disabled onclick="saveCustomIngredient(this)">Save</button></td>
+                <td style="text-align: center;"><button class="remove-btn" onclick="this.parentElement.parentElement.remove()">&times;</button></td>
+            `;
+            tbody.appendChild(row);
+        });
+        showTab('tab3');
+    }
+
+    // --- Notes with Photo Handling ---
+    function openNoteModal(id) {
+        document.getElementById('noteRecipeId').value = id;
+        document.getElementById('noteText').value = "";
+        document.getElementById('notePhoto').value = "";
+        document.getElementById('noteModal').style.display = "flex";
+    }
+
+    async function saveNote() {
+        const id = document.getElementById('noteRecipeId').value;
+        const text = document.getElementById('noteText').value;
+        const fileInput = document.getElementById('notePhoto');
+        
+        if (!text && !fileInput.files[0]) return alert("Please add text or a photo.");
+
+        const allR = await getRecipes();
+        const recipe = allR.find(r => r.id === id);
+        
+        let photoData = null;
+        if (fileInput.files[0]) {
+            photoData = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result);
+                reader.readAsDataURL(fileInput.files[0]);
+            });
+        }
+
+        const dateStamp = new Date().toLocaleDateString();
+        const newNote = { date: dateStamp, text: text, photo: photoData };
+        
+        if(!recipe.notes) recipe.notes = [];
+        recipe.notes.push(newNote);
+
+        await saveRecipeDB(recipe);
+        document.getElementById('noteModal').style.display = "none";
+        await renderRecipeBook();
+    }
+
+    async function deleteRecipeAction(id) {
+        if (!confirm("Are you sure you want to delete this recipe?")) return;
+        await deleteRecipeDB(id);
+        await renderRecipeBook();
+    }
+
+    // --- Export / Import ---
+    async function exportSingleRecipe(id) {
+        const allR = await getRecipes();
+        const recipe = allR.find(r => r.id === id);
+        downloadJSON(recipe, `compost-recipe-${recipe.title.replace(/\s+/g, '-').toLowerCase()}.json`);
+    }
+    async function exportAllRecipes() { 
+        const allR = await getRecipes();
+        downloadJSON(allR, 'compost-recipe-book-backup.json'); 
+    }
+    function downloadJSON(data, filename) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+    }
+    
+    async function handleImport(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (Array.isArray(data)) {
+                    for(let r of data) await saveRecipeDB(r);
+                } else {
+                    await saveRecipeDB(data);
+                }
+                await renderRecipeBook();
+                alert("Import successful!");
+            } catch (err) { alert("Invalid recipe file."); }
+            event.target.value = ''; 
+        };
+        reader.readAsText(file);
+    }
+
+    // --- Render Recipe Book Cards ---
+    async function renderRecipeBook() {
+        const grid = document.getElementById('recipeGrid');
+        const allR = await getRecipes();
+
+        if (allR.length === 0) {
+            grid.innerHTML = "<p style='color: var(--muted); padding: 20px; grid-column: 1/-1;'>No recipes saved yet. Build a pile on the workbench and save it!</p>";
+            return;
+        }
+
+        grid.innerHTML = allR.map(r => {
+            const res = r.results || { gVol: 0, phases: [], gMoisture: 0, gDensity: 0, gCN: 0 };
+            const savedUnit = (r.workbench && r.workbench.constraints && r.workbench.constraints.unit) || 'cuyd';
+            const savedBucketVol = r.workbench && r.workbench.constraints ? r.workbench.constraints.customBucketVol : null;
+            const savedUnitInfo = UNIT_CONVERSIONS[savedUnit] || UNIT_CONVERSIONS.cuyd;
+            const savedMultiplier = savedUnit === 'loader' ? (parseFloat(savedBucketVol) || 1.0) * M3_PER_CUYD : savedUnitInfo.toM3;
+            const savedVolDisplay = res.gVol ? (res.gVol / savedMultiplier).toFixed(1) : '?';
+            const savedIsMetric = savedUnit === 'cubicmeters';
+            const savedDensDisplay = res.gDensity ? densityToDisplay(res.gDensity, savedIsMetric).toFixed(0) : '-';
+            const savedDensUnit = savedIsMetric ? 'kg/m³' : 'lb/yd³';
+
+            let inspectHtml = `
+                <details>
+                    <summary>Inspect Results</summary>
+                    <div style="margin-top: 10px; font-size: 0.85rem;">
+                        <strong>Phases Built:</strong> ${res.phases ? res.phases.length : 0}<br>
+                        <strong>Final Metrics:</strong> Moisture: ${res.gMoisture ? res.gMoisture.toFixed(1) : '-'}% | C:N: ${res.gCN ? res.gCN.toFixed(1) : '-'} | Dens: ${savedDensDisplay} ${savedDensUnit}<br>
+                    </div>
+                </details>`;
+            
+            let notesHtml = '';
+            if (r.notes && r.notes.length > 0) {
+                notesHtml = `<div class="recipe-notes" style="max-height: 200px; overflow-y: auto;">` + 
+                    r.notes.map(n => `<strong>[${n.date}]</strong><br>${n.text}${n.photo ? `<img src="${n.photo}" class="note-img">` : ''}<br><br>`).join('') +
+                `</div>`;
+            }
+
+            return `
+                <div class="recipe-card">
+                    <h3>${r.title}</h3>
+                    <div class="recipe-meta">📅 ${r.date} &bull; 🏗️ ${savedVolDisplay} ${savedUnitInfo.name}</div>
+                    ${notesHtml}
+                    ${inspectHtml}
+                    <div class="recipe-actions">
+                        <button class="btn-r-load" onclick="loadRecipeToWorkbench('${r.id}')">Load Input</button>
+                        <button class="btn-r-note" onclick="openNoteModal('${r.id}')">+ Note</button>
+                        <button class="btn-r-export" onclick="exportSingleRecipe('${r.id}')">Export</button>
+                        <button class="btn-r-del" onclick="deleteRecipeAction('${r.id}')">✕</button>
+                    </div>
+                </div>
+            `;
+        }).reverse().join('');
+    }
+
+    // --- Core Solver Algorithm ---
+    function autoSolve() {
+        const orderNodes = document.querySelectorAll('#priorityList .draggable-item');
+        const orderedIds = Array.from(orderNodes).map(node => node.getAttribute('data-id'));
+        const weights = { [orderedIds[0]]: 1000, [orderedIds[1]]: 100, [orderedIds[2]]: 10 };
+        
+        const isMetric = isMetricUnit();
+        const dynTargets = {
+            moisture: { min: parseFloat(document.getElementById('tgt-moisture-min').value), max: parseFloat(document.getElementById('tgt-moisture-max').value) },
+            density: { min: densityToCanonical(parseFloat(document.getElementById('tgt-density-min').value), isMetric), max: densityToCanonical(parseFloat(document.getElementById('tgt-density-max').value), isMetric) },
+            cn: { min: parseFloat(document.getElementById('tgt-cn-min').value), max: parseFloat(document.getElementById('tgt-cn-max').value) }
+        };
+
+        const rows = document.querySelectorAll('#ingredientBody tr');
+        let activeIngredients = [];
+        const multiplier = getUnitMultiplier();
+
+        rows.forEach((row) => {
+            const name = row.querySelector('.ing-name').value || "Unnamed Item";
+            const cn = parseFloat(row.querySelector('.ing-cn').value);
+            const density = densityToCanonical(parseFloat(row.querySelector('.ing-density').value), isMetric);
+            const moisture = parseFloat(row.querySelector('.ing-moisture').value);
+            const si = parseFloat(row.querySelector('.ing-si').value) || 5;
+            let availableUI = parseFloat(row.querySelector('.ing-avail').value);
+            
+            if(!isNaN(cn) && !isNaN(density) && !isNaN(moisture)) {
+                let availM3 = isNaN(availableUI) ? Infinity : availableUI * multiplier;
+                activeIngredients.push({ name, cn, density, moisture, si, availM3, totalUsedM3: 0, exhausted: false }); 
+            }
+        });
+
+        if (activeIngredients.length < 2) return alert("Please fill out at least two valid ingredients.");
+
+        let targetBatchVolM3 = getTargetVolumeM3();
+        let remainingTargetVol = targetBatchVolM3;
+        let phases = [];
+        let globalHaltReason = null;
+
+        const evalFractionalScore = (ratio) => {
+            let tV = 0, tW = 0, tM = 0, tD = 0, tN = 0;
+            ratio.forEach(ing => {
+                const volM3 = ing.frac; 
+                const weight = volM3 * ing.density;
+                const mWeight = weight * (ing.moisture / 100);
+                const dWeight = weight - mWeight;
+                tV += volM3; tW += weight; tM += mWeight; tD += dWeight; tN += (dWeight / ing.cn);
+            });
+            const m = (tM / tW) * 100; const d = tW / tV; const cn = tD / tN;
+
+            const errM = m < dynTargets.moisture.min ? dynTargets.moisture.min - m : (m > dynTargets.moisture.max ? m - dynTargets.moisture.max : 0);
+            const errD = d < dynTargets.density.min ? dynTargets.density.min - d : (d > dynTargets.density.max ? d - dynTargets.density.max : 0);
+            const errCN = cn < dynTargets.cn.min ? dynTargets.cn.min - cn : (cn > dynTargets.cn.max ? cn - dynTargets.cn.max : 0);
+            return (errM * weights.moisture) + (errD * weights.density) + (errCN * weights.cn);
+        };
+
+        const calcMetrics = (volArray) => {
+            let tV = 0, tW = 0, tM = 0, tD = 0, tN = 0, tSI = 0;
+            volArray.forEach(ing => {
+                const weight = ing.volM3 * ing.origIng.density;
+                const mWeight = weight * (ing.origIng.moisture / 100);
+                const dWeight = weight - mWeight;
+                tV += ing.volM3; tW += weight; tM += mWeight; tD += dWeight; tN += (dWeight / ing.origIng.cn);
+                tSI += (ing.volM3 * ing.origIng.si);
+            });
+            return { m: (tM / tW) * 100, d: tW / tV, cn: tD / tN, si: tSI / tV, weight: tW };
+        };
+
+        while (remainingTargetVol > 0.05) {
+            let available = activeIngredients.filter(i => i.availM3 > 0.05 && !i.exhausted);
+            if (available.length === 0) { globalHaltReason = "Ran out of all available inventory limits."; break; }
+
+            let ratio = available.map(ing => ({...ing, frac: 1.0 / available.length}));
+            let currentScore = evalFractionalScore(ratio);
+
+            for (let i = 0; i < 5000; i++) {
+                if (ratio.length < 2) break;
+                let testRatio = ratio.map(r => ({...r}));
+                let idxA = Math.floor(Math.random() * testRatio.length);
+                let idxB = Math.floor(Math.random() * testRatio.length);
+                if (idxA === idxB) continue;
+                
+                let shift = 0.05;
+                if (testRatio[idxA].frac > shift) {
+                    testRatio[idxA].frac -= shift; testRatio[idxB].frac += shift;
+                    let tScore = evalFractionalScore(testRatio);
+                    if (tScore < currentScore) { currentScore = tScore; ratio = testRatio; }
+                }
+                if (currentScore === 0) break;
+            }
+
+            if (currentScore > 1000 && phases.length > 0) { globalHaltReason = "Further phases would ruin healthy pile chemistry bounds."; break; }
+
+            let maxScale = Infinity;
+            let limitingIng = null;
+            ratio.forEach(ing => {
+                if (ing.frac > 0.001) {
+                    let mainIng = activeIngredients.find(i => i.name === ing.name);
+                    let limit = mainIng.availM3 / ing.frac;
+                    if (limit < maxScale) { maxScale = limit; limitingIng = mainIng.name; }
+                }
+            });
+
+            let phaseVolM3 = Math.min(remainingTargetVol, maxScale);
+            if (phaseVolM3 < 0.05) break; 
+
+            let phaseDetails = {
+                phaseNum: phases.length + 1,
+                volumeM3: phaseVolM3,
+                targetPct: (phaseVolM3 / targetBatchVolM3) * 100,
+                ingredients: [],
+                limiting: (phaseVolM3 === maxScale && maxScale !== Infinity) ? limitingIng : null
+            };
+
+            ratio.forEach(ing => {
+                let usedVol = ing.frac * phaseVolM3;
+                if (usedVol > 0.001) {
+                    let mainIng = activeIngredients.find(i => i.name === ing.name);
+                    mainIng.availM3 -= usedVol;
+                    mainIng.totalUsedM3 += usedVol;
+                    if (mainIng.availM3 < 0.05) mainIng.exhausted = true;
+                    phaseDetails.ingredients.push({ name: ing.name, volM3: usedVol, origIng: mainIng });
+                }
+            });
+
+            phaseDetails.metrics = calcMetrics(phaseDetails.ingredients);
+            phases.push(phaseDetails);
+            remainingTargetVol -= phaseVolM3;
+        }
+
+        renderPhasedResults(phases, activeIngredients, targetBatchVolM3, globalHaltReason, dynTargets, orderedIds);
+    }
+
+    function renderPhasedResults(phases, allIngredients, targetVolM3, haltReason, dynTargets, orderedIds) {
+        showTab('tab4');
+        const container = document.getElementById('results-container');
+        if(!container) return; // Prevent errors if DOM missing
+        container.classList.add('flash-hide');
+        const unitName = UNIT_CONVERSIONS[document.getElementById('unitSelect').value].name;
+        const multiplier = getUnitMultiplier();
+
+        setTimeout(() => {
+            const resultsDiv = document.getElementById('results');
+            if (phases.length === 0) {
+                resultsDiv.innerHTML = `<div class="results-panel"><h3 style="color: var(--danger);">Pile Failed</h3><p>Cannot build a healthy pile. Adjust inventory or constraints.</p></div>`;
+                container.classList.remove('flash-hide'); return;
+            }
+
+            let gVol = 0, gWeight = 0, gMoistW = 0, gDryW = 0, gN = 0, gSI = 0;
+            allIngredients.forEach(ing => {
+                if(ing.totalUsedM3 > 0) {
+                    gVol += ing.totalUsedM3;
+                    let w = ing.totalUsedM3 * ing.density;
+                    let mw = w * (ing.moisture / 100); let dw = w - mw;
+                    gWeight += w; gMoistW += mw; gDryW += dw; gN += (dw / ing.cn); gSI += (ing.totalUsedM3 * ing.si);
+                }
+            });
+            const gMoisture = (gMoistW / gWeight) * 100;
+            const gDensity = gWeight / gVol;
+            const gCN = gDryW / gN;
+            const gAvgSI = gSI / gVol;
+
+            latestSimulationData = { phases, gVol, gWeight, gMoisture, gDensity, gCN, gAvgSI };
+
+            const getStatus = (val, min, max) => {
+                if (val >= min && val <= max) return "good";
+                return "bad";
+            };
+            const mS = getStatus(gMoisture, dynTargets.moisture.min, dynTargets.moisture.max);
+            const dS = getStatus(gDensity, dynTargets.density.min, dynTargets.density.max);
+            const cnS = getStatus(gCN, dynTargets.cn.min, dynTargets.cn.max);
+            const siS = gAvgSI >= 5 ? "good" : "bad";
+
+            const isMetric = document.getElementById('unitSelect').value === 'cubicmeters';
+            const densityUnitLabel = isMetric ? 'kg/m³' : 'lb/yd³';
+            const displayDensity = densityToDisplay(gDensity, isMetric);
+            const displayDensityMin = densityToDisplay(dynTargets.density.min, isMetric);
+            const displayDensityMax = densityToDisplay(dynTargets.density.max, isMetric);
+
+            const healthBlocks = {
+                moisture: `<div class="metric-box ${mS}"><span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Moisture</span><strong style="display: block; font-size: 1.3rem;">${gMoisture.toFixed(1)}%</strong><span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${dynTargets.moisture.min}-${dynTargets.moisture.max})</span></div>`,
+                density: `<div class="metric-box ${dS}"><span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Bulk Density (${densityUnitLabel})</span><strong style="display: block; font-size: 1.3rem;">${displayDensity.toFixed(0)}</strong><span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${displayDensityMin.toFixed(0)}-${displayDensityMax.toFixed(0)})</span></div>`,
+                cn: `<div class="metric-box ${cnS}"><span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">C:N Ratio</span><strong style="display: block; font-size: 1.3rem;">${gCN.toFixed(1)}:1</strong><span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: ${dynTargets.cn.min}-${dynTargets.cn.max})</span></div>`
+            };
+            const sortedMetricsHtml = orderedIds.map(id => healthBlocks[id]).join('');
+
+            let haltHtml = '';
+            if (haltReason || (targetVolM3 - gVol) > 0.1) {
+                haltHtml = `<div style="background: rgba(220,53,69,0.1); color: var(--danger); padding: 15px; border: 1px solid var(--danger); border-radius: 5px; margin-bottom: 20px;"><strong>⚠️ Pile Halted at ${(gVol / multiplier).toFixed(1)} ${unitName} </strong> (Target was ${(targetVolM3 / multiplier).toFixed(1)} ${unitName}).<br><em>Reason: ${haltReason || "Insufficient inventory limits."}</em></div>`;
+            } else {
+                haltHtml = `<div style="background: rgba(40,167,69,0.1); color: var(--success); padding: 15px; border: 1px solid var(--success); border-radius: 5px; margin-bottom: 20px; text-align: center;"><strong>✅ Target Volume Reached Successfully!</strong></div>`;
+            }
+
+            let summaryRows = allIngredients.filter(i => i.totalUsedM3 > 0).map(ing => {
+                let note = ing.exhausted ? `<span style="color: var(--danger); font-size: 0.85rem; font-weight: bold;">(Exhausted)</span>` : "";
+                let amountInUnit = (ing.totalUsedM3 / multiplier).toFixed(1);
+                return `<tr><td><strong>${ing.name}</strong> ${note}</td><td>${amountInUnit} ${unitName}</td></tr>`;
+            }).join('');
+
+            let phaseCards = phases.map(p => {
+                let ingList = p.ingredients.map(i => `<div class="phase-ing"><span>${i.name}</span> <strong>${(i.volM3 / multiplier).toFixed(1)} ${unitName}</strong></div>`).join('');
+                let limitBadge = p.limiting ? `<div class="exhausted-badge">Ran out of ${p.limiting}</div>` : `<div style="color: var(--success); font-size: 0.8rem; margin-top: 5px; font-weight: bold;">Target Hit</div>`;
+                return `
+                <div class="phase-card">
+                    <h4 style="text-align: center;">Phase ${p.phaseNum}</h4>
+                    <div style="background: var(--card-bg); border-radius: 5px; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border); text-align: center;">
+                        <span style="font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 2px;">Target Volume Added</span>
+                        <strong style="font-size: 1.2rem; display: block; color: var(--primary);">${(p.volumeM3 / multiplier).toFixed(1)} ${unitName} <small style="color: var(--muted);">(${p.targetPct.toFixed(0)}%)</small></strong>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 15px; text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
+                        <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 8px 4px;"><span style="display:block; font-size:0.75rem; color:var(--muted); margin-bottom: 2px;">Moisture</span><strong style="font-size:1rem;">${p.metrics.m.toFixed(1)}%</strong></div>
+                        <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 8px 4px;"><span style="display:block; font-size:0.75rem; color:var(--muted); margin-bottom: 2px;">C:N</span><strong style="font-size:1rem;">${p.metrics.cn.toFixed(1)}</strong></div>
+                        <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 8px 4px;"><span style="display:block; font-size:0.75rem; color:var(--muted); margin-bottom: 2px;">Density (${densityUnitLabel})</span><strong style="font-size:1rem;">${densityToDisplay(p.metrics.d, isMetric).toFixed(0)}</strong></div>
+                    </div>
+                    <div>${ingList}</div><div style="text-align: center;">${limitBadge}</div>
+                </div>`;
+            }).join('');
+
+            // Generate Auto-Name
+            const activeIngs = allIngredients.filter(i => i.totalUsedM3 > 0).sort((a,b) => b.totalUsedM3 - a.totalUsedM3);
+            const defaultName = activeIngs.slice(0, 3).map(i => i.name.split(' ')[0]).join(' + ') + " Mix";
+            
+            let btnText = currentLoadedRecipeId ? "Update Existing Recipe" : "Save New Recipe";
+
+            resultsDiv.innerHTML = `
+                ${haltHtml}
+                <div style="background: var(--light-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 20px;">
+                    <label style="font-weight: bold; color: var(--primary);">Recipe Name:</label>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <input type="text" id="currentRecipeName" value="${defaultName}" style="flex: 2;">
+                        <button class="btn-solve" style="margin-top: 0; flex: 1;" onclick="saveSimulationToBook(false)">${btnText}</button>
+                        ${currentLoadedRecipeId ? `<button class="btn-secondary" style="flex: 1;" onclick="saveSimulationToBook(true)">Save as Copy</button>` : ''}
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="text-align: center;">Total Pile Yield</h3>
+                        <div class="results-panel">
+                            <p style="margin: 0 0 10px 0; font-size: 1.2rem;"><strong>${(gVol / multiplier).toFixed(2)} ${unitName}</strong> built</p>
+                            <p style="margin: 0; color: var(--muted);">${isMetric ? (gWeight / 1000).toFixed(2) + ' Metric Tons' : (gWeight / KG_PER_LB / 2000).toFixed(2) + ' Tons'}</p>
+                        </div>
+                    </div>
+                    <div style="flex: 2; min-width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">Overall Pile Health</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center;">
+                            ${sortedMetricsHtml}
+                            <div class="metric-box ${siS}">
+                                <span style="display: block; font-size: 0.85rem; margin-bottom: 2px;">Structure Score</span>
+                                <strong style="display: block; font-size: 1.3rem;">${gAvgSI.toFixed(1)} / 10</strong>
+                                <span style="display: block; font-size: 0.75rem; margin-top: 2px;">(Target: 5.0+)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="margin: 30px 0; border-color: var(--border);">
+                <h3 style="text-align: center;">Total Recipe Summary</h3>
+                <table style="background: var(--card-bg); border: 1px solid var(--border); margin-bottom: 25px;"><tbody>${summaryRows}</tbody></table>
+                <h3 style="text-align: center; margin-bottom: 10px;">Phase Construction Breakdown</h3>
+                <p style="text-align: center; font-size: 0.9em; color: var(--muted); margin-top: 0;">Build the pile in these sequential layers.</p>
+                <div class="phases-wrapper">${phaseCards}</div>
+                
+                <button class="btn-next" style="margin-top: 30px; background: var(--primary);" onclick="window.print()">🖨️ Print Operations Sheet</button>
+            `;
+            container.classList.remove('flash-hide');
+        }, 150); 
+    }
+</script>
+</body>
+</html>
