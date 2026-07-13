@@ -127,7 +127,7 @@
     <button id="nav-tab3" onclick="showTab('tab3')">3. Ingredients</button>
     <button id="nav-tab4" onclick="showTab('tab4')">4. Operations Sheet</button>
     <button id="nav-tab5" onclick="showTab('tab5')">5. Docs & FAQ</button>
-    <button id="nav-tab6" onclick="showTab('tab6')">Report Bugs</button>
+    <button id="nav-tab6" onclick="showTab('tab6')">Report Feedback and Bugs</button>
 </nav>
 
 <datalist id="ingredient-library"></datalist>
@@ -363,8 +363,8 @@
             <p style="margin-top: 0;">On Chromium-based browsers, the first time you save a recipe you'll be prompted to pick (or create) a <code>.json</code> backup file on disk. From then on, every save, update, delete, note, or import silently rewrites that file with your full, current recipe book — no manual Export needed. The Recipe Book tab shows the linked filename and lets you unlink or reconnect it any time.</p>
             <p>Firefox has explicitly declined to implement the underlying API, and Safari has never supported it. On those browsers this feature isn't available, and a one-time notice explains that automatic backup needs a Chromium-based browser — Export/Import still works everywhere. Because of this, <strong>the calculator is designed to work best in Chrome, Edge, or Opera</strong>.</p>
 
-            <h4 style="color: var(--primary); margin-bottom: 5px;">Reporting Bugs</h4>
-            <p style="margin-top: 0;">Use the <strong>🐛 Report Bugs</strong> tab above for a structured bug report form.</p>
+            <h4 style="color: var(--primary); margin-bottom: 5px;">Reporting Feedback and Bugs</h4>
+            <p style="margin-top: 0;">Use the <strong>💬 Report Feedback and Bugs</strong> tab above to send general feedback or a bug report. Technical users can also file a structured issue directly on GitHub from that tab.</p>
         </div>
     </details>
 
@@ -416,34 +416,30 @@
 </div>
 
 <div id="tab6" class="tab-content">
-    <h2 style="text-align: center;">🐛 Report a Bug</h2>
-    <p style="background: rgba(255,193,7,0.15); border: 1px solid var(--warning); border-radius: 5px; padding: 10px 15px; font-size: 0.9rem; margin-bottom: 20px;">
-        ⚠️ This tool is a personal project and <strong>may not be actively maintained</strong>. Bug reports are welcome and appreciated, but there's no guarantee of a fix or response time.
+    <h2 style="text-align: center;">💬 Report Feedback and Bugs</h2>
+    <p style="background: rgba(255,193,7,0.15); border: 1px solid var(--warning); border-radius: 5px; padding: 10px 15px; font-size: 0.9rem; margin-bottom: 15px;">
+        ⚠️ This tool is a personal project and <strong>may not be actively maintained</strong>. Feedback and bug reports are welcome and appreciated, but there's no guarantee of a fix or response time.
+    </p>
+    <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;">
+        Technical user who'd rather file a structured bug report directly? <a href="https://github.com/Alex-G-Strong/Alex-Strongs-Compost-Calculator/issues/new/choose" target="_blank" rel="noopener" style="color: var(--primary);">Open an issue on GitHub</a> instead.
     </p>
     <p class="header-note" style="text-align: left;">
-        This form follows GitHub's standard bug report format. Fill it out, then click Submit — it opens a pre-filled issue on GitHub in a new tab for you to review and post (a free GitHub account is required to actually submit it there).
+        Use this form for anything — general feedback, confusing workflows, feature ideas, or bugs. It automatically records when and how it was submitted (timestamp and browser info) so there's no need to look up a version number yourself.
     </p>
 
     <label style="display: block; margin-bottom: 15px;">Title <span style="color: var(--danger);">*</span>
-        <input type="text" id="bugTitle" placeholder="Short summary of the problem" style="margin-top: 5px;">
+        <input type="text" id="bugTitle" placeholder="Short summary of your feedback or the problem" style="margin-top: 5px;">
     </label>
 
-    <label style="display: block; margin-bottom: 15px;">Version/Commit Hash <span style="color: var(--danger);">*</span> <span class="info-icon" title="What version of the tool are you running?">ⓘ</span>
-        <input type="text" id="bugVersion" placeholder="e.g. the live site URL, or today's date if unsure" style="margin-top: 5px;">
+    <label style="display: block; margin-bottom: 15px;">Notes and Feedback <span style="color: var(--danger);">*</span>
+        <textarea id="bugNotes" rows="5" placeholder="What's on your mind? General thoughts on the tool, a workflow that felt confusing or clunky, a feature you wish it had, or what happened if something went wrong." style="width: 100%; margin-top: 5px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; background: var(--input-bg); color: var(--input-text); box-sizing: border-box; font-family: inherit;"></textarea>
     </label>
 
-    <label style="display: block; margin-bottom: 15px;">Steps to Reproduce <span style="color: var(--danger);">*</span>
+    <label style="display: block; margin-bottom: 20px;">For bugs, steps to reproduce (optional)
         <textarea id="bugReproduction" rows="5" placeholder="1. Open the Ingredients tab...&#10;2. Add an ingredient named...&#10;3. Click Generate Phased Operations Sheet...&#10;4. See error / unexpected result..." style="width: 100%; margin-top: 5px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; background: var(--input-bg); color: var(--input-text); box-sizing: border-box; font-family: inherit;"></textarea>
     </label>
 
-    <label style="display: block; margin-bottom: 20px;">Terminal Output or Error Logs <span class="info-icon" title="Optional. Open your browser's DevTools (F12) console and paste any red error text here.">ⓘ</span>
-        <textarea id="bugLogs" rows="5" placeholder="Paste any browser console errors here (optional)" style="width: 100%; margin-top: 5px; padding: 8px; border: 1px solid var(--border); border-radius: 4px; background: var(--input-bg); color: var(--input-text); box-sizing: border-box; font-family: monospace; font-size: 0.85rem;"></textarea>
-    </label>
-
-    <button class="btn-solve" onclick="submitBugReport()">Submit Bug Report on GitHub &rarr;</button>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 15px;">
-        Prefer not to fill out a form? <a href="https://github.com/Alex-G-Strong/Alex-Strongs-Compost-Calculator/issues/new/choose" target="_blank" rel="noopener" style="color: var(--primary);">Open a blank issue on GitHub directly</a>.
-    </p>
+    <button class="btn-solve" onclick="submitFeedback()">Submit Feedback</button>
 </div>
 
 <div id="noteModal" class="modal-overlay" onclick="if(event.target===this) document.getElementById('noteModal').style.display='none'">
@@ -898,30 +894,59 @@
     }
 
     // --- Bug Reporting ---
-    // Opens a GitHub issue pre-filled via query params matching the field `id`s in
-    // .github/ISSUE_TEMPLATE/bug_report.yml, so submissions land in the same structured
-    // format whether filed from this in-app form or directly on GitHub.
-    const BUG_REPORT_REPO = 'Alex-G-Strong/Alex-Strongs-Compost-Calculator';
+    // Feedback is submitted to a Google Form in the background (fetch with mode:'no-cors'),
+    // so it lands in a Google Sheet without the user ever leaving this page. Technical users
+    // who want a structured GitHub issue instead use the separate link on the same tab.
+    //
+    // SETUP REQUIRED: create a Google Form with these fields (any order): Title, Notes and
+    // Feedback, Steps to Reproduce, Timestamp, Browser/User Agent, Page URL. Then use the
+    // form's "Get pre-filled link" option (⋮ menu), fill in each field with a placeholder,
+    // and copy the resulting entry.NNNNNNN IDs into FEEDBACK_FORM_CONFIG below. The action
+    // URL is the form's normal URL with /viewform replaced by /formResponse.
+    const FEEDBACK_FORM_CONFIG = {
+        actionUrl: 'REPLACE_WITH_YOUR_GOOGLE_FORM_ACTION_URL', // e.g. https://docs.google.com/forms/d/e/FORM_ID/formResponse
+        entries: {
+            title: 'REPLACE_WITH_ENTRY_ID',
+            notes: 'REPLACE_WITH_ENTRY_ID',
+            reproduction: 'REPLACE_WITH_ENTRY_ID',
+            timestamp: 'REPLACE_WITH_ENTRY_ID',
+            userAgent: 'REPLACE_WITH_ENTRY_ID',
+            pageUrl: 'REPLACE_WITH_ENTRY_ID'
+        }
+    };
 
-    function submitBugReport() {
+    async function submitFeedback() {
         const title = document.getElementById('bugTitle').value.trim();
-        const version = document.getElementById('bugVersion').value.trim();
+        const notes = document.getElementById('bugNotes').value.trim();
         const reproduction = document.getElementById('bugReproduction').value.trim();
-        const logs = document.getElementById('bugLogs').value.trim();
 
-        if (!title || !version || !reproduction) {
-            return alert('Please fill out Title, Version/Commit Hash, and Steps to Reproduce before submitting.');
+        if (!title || !notes) {
+            return alert('Please fill out Title and Notes and Feedback before submitting.');
         }
 
-        const params = new URLSearchParams({
-            template: 'bug_report.yml',
-            title: title,
-            version: version,
-            reproduction: reproduction
-        });
-        if (logs) params.set('logs', logs);
+        if (FEEDBACK_FORM_CONFIG.actionUrl.includes('REPLACE_WITH')) {
+            return alert('The feedback form isn\'t fully set up yet. Please use the GitHub link above instead.');
+        }
 
-        window.open(`https://github.com/${BUG_REPORT_REPO}/issues/new?${params.toString()}`, '_blank', 'noopener');
+        const formData = new FormData();
+        formData.append(FEEDBACK_FORM_CONFIG.entries.title, title);
+        formData.append(FEEDBACK_FORM_CONFIG.entries.notes, notes);
+        formData.append(FEEDBACK_FORM_CONFIG.entries.reproduction, reproduction);
+        formData.append(FEEDBACK_FORM_CONFIG.entries.timestamp, new Date().toISOString());
+        formData.append(FEEDBACK_FORM_CONFIG.entries.userAgent, navigator.userAgent);
+        formData.append(FEEDBACK_FORM_CONFIG.entries.pageUrl, location.href);
+
+        try {
+            // no-cors means we can't read the response, so we optimistically assume success --
+            // this is the standard, accepted way to submit to Google Forms from an external page.
+            await fetch(FEEDBACK_FORM_CONFIG.actionUrl, { method: 'POST', mode: 'no-cors', body: formData });
+            alert('Thanks! Your feedback was submitted.');
+            document.getElementById('bugTitle').value = '';
+            document.getElementById('bugNotes').value = '';
+            document.getElementById('bugReproduction').value = '';
+        } catch (e) {
+            alert('Could not submit feedback (are you offline?). Please try again or use the GitHub link above.');
+        }
     }
 
     // --- Drag and Drop Logic (Fluid Shifting) ---
