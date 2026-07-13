@@ -162,6 +162,9 @@
 <input type="file" id="importInput" style="display: none;" accept=".json" onchange="handleImport(event)">
 
 <div id="tab1" class="tab-content active">
+    <p style="background: var(--highlight); border: 1px solid var(--primary); border-radius: 5px; padding: 10px 15px; font-size: 0.9rem; text-align: center; margin-top: 0;">
+        👋 First time here? <a href="#" onclick="openReadmeGuide(); return false;" style="color: var(--primary); font-weight: bold;">Visit our README</a> for a full walkthrough.
+    </p>
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <h2 style="margin: 0;">My Recipe Book</h2>
         <div style="display: flex; gap: 10px;">
@@ -300,10 +303,68 @@
     <h2>Documentation & Field Guides</h2>
     <p class="header-note" style="text-align:left;">Click a topic to expand.</p>
 
-    <details class="faq-accordion" onclick="closeOtherAccordions(this)">
+    <details id="readmeGuideAccordion" class="faq-accordion" onclick="closeOtherAccordions(this)">
         <summary>📄 Full User Guide (README)</summary>
-        <div>
-            <p>Everything on this page in one place, plus a walkthrough of every tab, the solver's math, and data/privacy details. <a href="https://github.com/Alex-G-Strong/Alex-Strongs-Compost-Calculator/blob/master/README.md" target="_blank" rel="noopener" style="color: var(--primary);">Read the full README on GitHub &rarr;</a> (requires an internet connection).</p>
+        <div style="line-height: 1.6;">
+            <p>A single-page, offline-capable web app for designing multi-ingredient compost recipes. You tell it what feedstocks you have on hand and how much of each, rank what matters most (moisture, density, or C:N ratio), and it builds a phased "Operations Sheet" telling you exactly how much of each ingredient to load onto the pad. No install, no server, no internet connection required.</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">Quick Start</h4>
+            <ol style="padding-left: 20px; margin-top: 0;">
+                <li>Click <strong>+ Start a New Recipe</strong>.</li>
+                <li>Walk through the tabs in order: <strong>Constraints → Ingredients → Operations Sheet</strong>.</li>
+                <li>Save the result to your Recipe Book so you can reload, print, or annotate it later.</li>
+            </ol>
+            <p>Everything is saved locally in your browser — nothing is uploaded anywhere. Opens in dark mode by default; click the 🌙/☀️ toggle in the top right to switch.</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">1. Recipe Book</h4>
+            <p style="margin-top: 0;">The home tab. Lists every recipe you've saved, showing the date, total volume, and final pile health metrics. From here you can:</p>
+            <ul style="padding-left: 20px; margin-top: 0;">
+                <li><strong>Load Input</strong> — pull a saved recipe back onto the workbench to tweak and re-solve it.</li>
+                <li><strong>+ Note</strong> — attach a dated field note (and optionally a photo) to a recipe.</li>
+                <li><strong>Export / Export All</strong> — download one recipe or your whole recipe book as a <code>.json</code> file.</li>
+                <li><strong>Import</strong> — load a <code>.json</code> file exported from this app (yours or someone else's).</li>
+                <li><strong>🔗 Share</strong> — generates a link and QR code that encode just that recipe's ingredients and settings. Anyone who opens the link or scans the code gets it loaded straight into their own calculator.</li>
+                <li><strong>✕</strong> — delete a recipe.</li>
+            </ul>
+            <p>A status line under the header shows whether an automatic backup file is linked (see Automatic File Backup below).</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">2. Constraints — Site & Batch Settings</h4>
+            <ul style="padding-left: 20px; margin-top: 0;">
+                <li><strong>Measurement Unit</strong> — Cubic Yards, Cubic Meters, a custom loader bucket, Wheelbarrow, or 5-Gallon Bucket. Selecting <strong>Cubic Meters</strong> switches the whole batch-sizing workflow to metric (dimensions, target volume, and results all switch to m³/meters).</li>
+                <li><strong>Define Batch Size By</strong> — Direct Volume, or Pile Dimensions (Length × Width × Height, using a parabolic pile profile). A warning appears if your height risks over-compaction.</li>
+                <li><strong>Optimization Priorities & Ranges</strong> — drag Moisture, Density, and C:N Ratio into the order that matters most. <strong>The solver strictly prioritizes whichever card is on top</strong> — if your feedstocks can't satisfy all three at once, it sacrifices the lowest-ranked one first.</li>
+            </ul>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">3. Ingredients</h4>
+            <p style="margin-top: 0;">Build your list of available feedstocks: Name (autocompletes from the built-in library and your own saved items), C:N, Density, Moisture, Structural Index (1–10, resistance to compaction), and Available Inventory (the solver will never exceed this). For a feedstock not in the library, fill in the values yourself and click <strong>Save to Lib</strong>.</p>
+            <p><strong>📚 Ingredient Library</strong> (button at the top of this tab) opens a larger reference tool: your own saved items, plus a 134-item Reference Database of real, named feedstocks grouped into collapsible categories, with a search bar and a <strong>Load</strong> button per item to drop it straight into a new row.</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">4. Operations Sheet (Results)</h4>
+            <ul style="padding-left: 20px; margin-top: 0;">
+                <li><strong>Status banner</strong> — green if the full target volume was built within your health ranges; red if it halted early.</li>
+                <li><strong>Total Pile Yield</strong> and <strong>Overall Pile Health</strong> (moisture, density, C:N, Structure Score).</li>
+                <li><strong>Phase Construction Breakdown</strong> — the pile is built in sequential phases as feedstocks run out; build it on the pad phase by phase, in order.</li>
+                <li><strong>Print Operations Sheet</strong> — a clean, field-ready printout.</li>
+                <li><strong>Save New Recipe / Update / Save as Copy</strong> to your Recipe Book.</li>
+            </ul>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">How the Solver Works</h4>
+            <ul style="padding-left: 20px; margin-top: 0;">
+                <li><strong>Canonical metric backend</strong> — internally, all math runs in cubic meters, kg/m³, and kilograms, regardless of the unit you've selected. Every other unit converts at the display/input boundary, so solving the same physical batch in imperial or metric gives the same result.</li>
+                <li><strong>Strict-to-relaxed priority weighting</strong> — your drag-and-drop order assigns penalty weights to deviations from each target, so the top-ranked metric is satisfied first.</li>
+                <li><strong>Stochastic hill-climbing</strong> — the app randomly nudges the ingredient ratio and keeps any change that improves the fit, rather than a heavy linear solver.</li>
+                <li><strong>Multi-phase fractional optimization</strong> — the pile is built in phases to respect hard inventory caps, mirroring how you'd actually build a pile on the pad as feedstocks run out.</li>
+            </ul>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">Data & Privacy</h4>
+            <p style="margin-top: 0;">Everything lives entirely in your browser, tied to that specific browser and device — nothing is sent to a server. This data <strong>will not appear</strong> if you open the calculator in a different browser, device, private/incognito window, or after clearing that browser's site data. Use <strong>Export All</strong> periodically to back up your recipes and move them between browsers/devices via <strong>Import</strong>.</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">Automatic File Backup (Chrome, Edge, Opera)</h4>
+            <p style="margin-top: 0;">On Chromium-based browsers, the first time you save a recipe you'll be prompted to pick (or create) a <code>.json</code> backup file on disk. From then on, every save, update, delete, note, or import silently rewrites that file with your full, current recipe book — no manual Export needed. The Recipe Book tab shows the linked filename and lets you unlink or reconnect it any time.</p>
+            <p>Firefox has explicitly declined to implement the underlying API, and Safari has never supported it. On those browsers this feature isn't available, and a one-time notice explains that automatic backup needs a Chromium-based browser — Export/Import still works everywhere. Because of this, <strong>the calculator is designed to work best in Chrome, Edge, or Opera</strong>.</p>
+
+            <h4 style="color: var(--primary); margin-bottom: 5px;">Reporting Bugs</h4>
+            <p style="margin-top: 0;">Use the <strong>🐛 Report Bugs</strong> tab above for a structured bug report form.</p>
         </div>
     </details>
 
@@ -826,6 +887,14 @@
         document.querySelectorAll('.faq-accordion').forEach(el => {
             if(el !== activeEl) el.removeAttribute('open');
         });
+    }
+
+    function openReadmeGuide() {
+        showTab('tab5');
+        const details = document.getElementById('readmeGuideAccordion');
+        closeOtherAccordions(details);
+        details.setAttribute('open', '');
+        if (details.scrollIntoView) details.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // --- Bug Reporting ---
